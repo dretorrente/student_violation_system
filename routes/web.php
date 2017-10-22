@@ -10,21 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::group(['middleware' =>['web']], function() {
+Route::get('/elementary', function () {
+    return view('elementary.auth.signin');
+})->name('elem.signin');
+Route::post('/elementary', [
+    'uses'  => 'UserController@login_elem',
+    'as'    => 'elem.signin'
+]);
+Route::group(['middleware' =>['auth.elem']], function() {
 
     Route::get('/elementary/home', [
         'uses'       => 'UserController@home_elem',
-        'as'         => 'elem.home',
-        'middleware' => 'auth.elem'
+        'as'         => 'elem.home'
     ]);
-    Route::get('/elementary', function () {
-        return view('elementary.auth.signin');
-    })->name('elem.signin');
-    Route::post('/elementary', [
-        'uses'  => 'UserController@login_elem',
-        'as'    => 'elem.signin'
-    ]);
+
     Route::get('/elementary/logout', [
         'uses'  => 'UserController@logout_elem',
         'as'    => 'elem.logout'
