@@ -35,39 +35,36 @@ Route::group(['middleware' =>['auth.elem']], function() {
     Route::post('/elementary/students', [
         'uses'  => 'StudentController@add_students_elem'
     ]);
+
+    Route::get('/elementary/forgot', function () {
+        return view('elementary.auth.forgot');
+    });
+
+    Route::get('/elemenatary/offense', function () {
+        return view('elementary.stud_offense.index');
+    });
+    Route::get('/elementary/records', function () {
+        return view('elementary.offense_records.index');
+    });
+    Route::get('/elementary/section', function() {
+        return view('elementary.section.index');
+    });
+    Route::get('/elementary/users', function() {
+        return view('elementary.users.index');
+    });
+    Route::get('/elementary/settings', function() {
+        return view('elementary.admin.settings');
+    });
+    Route::get('/elementary/violation', function() {
+        return view('elementary.violations.index');
+    });
+    Route::get('elementary/schoolyear', function() {
+        return view('elementary.schoolyear.index');
+    });
 });
 
-//Route::get('/elementary', function () {
-//	return view('elementary.auth.signin');
-//});
-//Route::get('/elementary/forgot', function () {
-//	return view('elementary.auth.forgot');
-//});
-//Route::get('/elementary/home', function () {
-//    return view('elementary.admin.home');
-//});
 
-//Route::get('/elemenatary/offense', function () {
-//	return view('elementary.stud_offense.index');
-//});
-//Route::get('/elementary/records', function () {
-//	return view('elementary.offense_records.index');
-//});
-//Route::get('/elementary/section', function() {
-//	return view('elementary.section.index');
-//});
-//Route::get('/elementary/users', function() {
-//	return view('elementary.users.index');
-//});
-//Route::get('/elementary/settings', function() {
-//	return view('elementary.admin.settings');
-//});
-//Route::get('/elementary/violation', function() {
-//	return view('elementary.violations.index');
-//});
-//Route::get('elementary/schoolyear', function() {
-//	return view('elementary.schoolyear.index');
-//});
+
 
 
 // junior
