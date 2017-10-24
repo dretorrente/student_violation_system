@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +10,9 @@
 |
 */
 Route::get('/elementary', function () {
+    if(\Illuminate\Support\Facades\Auth::check()){
+        return redirect('/elementary/home');
+    }
     return view('elementary.auth.signin');
 })->name('elem.signin');
 Route::post('/elementary', [
@@ -30,12 +32,26 @@ Route::group(['middleware' =>['auth.elem']], function() {
     ]);
 
     Route::get('/elementary/students', [
-        'uses'  => 'StudentController@students_elem'
+        'uses'  => 'StudentController@student_elem'
     ]);
     Route::post('/elementary/students', [
-        'uses'  => 'StudentController@add_students_elem'
+        'uses'  => 'StudentController@add_student_elem',
+        'as'    => 'elem.studentadd'
     ]);
-
+    Route::get('/elementary/section', [
+        'uses'  => 'SectionController@section_elem'
+    ]);
+    Route::post('/elementary/section', [
+        'uses'  => 'SectionController@add_section_elem',
+        'as'    => 'elem.sectionadd'
+    ]);
+    Route::get('elementary/schoolyear',[
+        'uses'  => 'SchoolYearController@schoolyear_elem'
+    ]);
+    Route::post('elementary/schoolyear',[
+        'uses'  => 'SchoolYearController@add_schoolyear_elem',
+        'as'    => 'elem.syadd'
+    ]);
     Route::get('/elementary/forgot', function () {
         return view('elementary.auth.forgot');
     });
@@ -46,9 +62,6 @@ Route::group(['middleware' =>['auth.elem']], function() {
     Route::get('/elementary/records', function () {
         return view('elementary.offense_records.index');
     });
-    Route::get('/elementary/section', function() {
-        return view('elementary.section.index');
-    });
     Route::get('/elementary/users', function() {
         return view('elementary.users.index');
     });
@@ -58,9 +71,7 @@ Route::group(['middleware' =>['auth.elem']], function() {
     Route::get('/elementary/violation', function() {
         return view('elementary.violations.index');
     });
-    Route::get('elementary/schoolyear', function() {
-        return view('elementary.schoolyear.index');
-    });
+
 });
 
 

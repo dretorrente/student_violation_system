@@ -16,7 +16,6 @@ class CreateSchoolYearTable extends Migration
         Schema::create('school_year', function (Blueprint $table) {
             $table->increments('id');
             $table->string('school_year');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

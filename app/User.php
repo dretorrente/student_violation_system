@@ -29,7 +29,7 @@ class User extends Model implements Authenticatable
         'password', 'remember_token',
     ];
 
-    public function students(){
-        return $this->hasMany('App\Student');
-    }
+//    public function students(){
+//        return $this->hasMany('App\Student');
+//    }
 }

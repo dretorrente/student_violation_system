@@ -7,10 +7,16 @@ use Illuminate\Support\Facades\Auth;
 class StudentController extends Controller
 {
 
-    public function students_elem(){
+    public function student_elem(){
         return view('elementary.student.index');
     }
-    public function add_students_elem(){
+    public function add_student_elem(Request $request){
+        $student = new Student();
+        if ($request->isMethod('post')) {
+            echo '<pre>';
+            var_dump($request->all());
+        }
+
 
     }
 

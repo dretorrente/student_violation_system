@@ -17,7 +17,6 @@ class CreateSectionsTable extends Migration
             $table->increments('id');
             $table->string('grade');
             $table->string('section');
-            $table->rememberToken();
             $table->timestamps();
         });
     }
