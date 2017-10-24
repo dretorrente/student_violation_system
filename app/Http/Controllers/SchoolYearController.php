@@ -8,12 +8,15 @@ class SchoolYearController extends Controller
 {
 
     public function schoolyear_elem(){
-        return view('elementary.schoolyear.index');
+        $school_years = SchoolYear::all();
+        return view('elementary.schoolyear.index',['school_years' => $school_years]);
     }
     public function add_schoolyear_elem(Request $request){
-        $schoolyear = new SchoolYear();
         if ($request->isMethod('post')) {
-
+            $schoolyear = new SchoolYear();
+            $schoolyear->school_year = $request['school_year'];
+            $schoolyear->save();
+            return redirect('/elementary/schoolyear/');
         }
     }
 }

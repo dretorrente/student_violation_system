@@ -45,10 +45,10 @@ Route::group(['middleware' =>['auth.elem']], function() {
         'uses'  => 'SectionController@add_section_elem',
         'as'    => 'elem.sectionadd'
     ]);
-    Route::get('elementary/schoolyear',[
+    Route::get('/elementary/schoolyear',[
         'uses'  => 'SchoolYearController@schoolyear_elem'
     ]);
-    Route::post('elementary/schoolyear',[
+    Route::post('/elementary/schoolyear',[
         'uses'  => 'SchoolYearController@add_schoolyear_elem',
         'as'    => 'elem.syadd'
     ]);

@@ -11,9 +11,9 @@ class StudentController extends Controller
         return view('elementary.student.index');
     }
     public function add_student_elem(Request $request){
-        $student = new Student();
         if ($request->isMethod('post')) {
-            echo '<pre>';
+            $students = new Student();
+            $students->fill($request->all());
             var_dump($request->all());
         }
 
