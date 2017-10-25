@@ -13,18 +13,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">ID No.</label>
-                                <input type="text" name="" class="form-control" id="field-1">
+                                <input type="text" name="student_id" class="form-control" id="student_id">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">School Year</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                      <option>2017-2018</option>
-                                      <option>2016-2017</option>
-                                      <option>2015-2016</option>
-                                      <option>2014-2015</option>
-                                      <option>2013-2014</option>
+                                <select class="form-control" name="sy_id" id="sy_id">
+                                    @foreach($school_years as $school_year)
+                                      <option value="{{$school_year->id}}">{{$school_year->school_year}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -33,19 +31,19 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">First Name</label>
-                                <input type="text" class="form-control" id="field-1">
+                                <input type="text" name="first_name" id="first_name" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Middle Name</label>
-                                <input type="text" class="form-control" id="field-2">
+                                <input type="text" name="middle_name" class="form-control" id="middle_name">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Last Name</label>
-                                <input type="text" class="form-control" id="field-2">
+                                <input type="text" name="last_name" id="last_name" class="form-control" id="field-2">
                             </div>
                         </div>
                     </div>
@@ -53,13 +51,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">Age</label>
-                                <input type="number" class="form-control" id="field-1">
+                                <input type="number" name="age" id="age" class="form-control" id="field-1">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Gender</label>
-                                <input type="text" class="form-control" id="field-2">
+                                <select class="form-control" id="gender" name="gender">
+                                      <option value="{{Config::get('constants.gender.male')}}">Male</option value="{{Config::get('constants.gender.female')}}">
+                                      <option>Female</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -67,29 +68,17 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">Adviser</label>
-                                <input type="text" class="form-control" id="field-1">
+                                <input type="text" name="adviser" id="adviser" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Grade &amp; Section</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                      <option>12 - Falcata</option>
-                                      <option>12 - Salome</option>
-                                      <option>12 - Compassion</option>
-                                      <option>12 - Compassion</option>
-                                      <option>12 - Compassion</option>
-                                      <option>12 - Compassion</option>
-                                      <option>12 - Compassion</option>
-                                      <option>12 - Falcata</option>
-                                      <option>11 - Falcata</option>
-                                      <option>11 - Falcata</option>
-                                      <option>11 - Salome</option>
-                                      <option>11 - Salome</option>
-                                      <option>11 - Salome</option>
-                                      <option>11 - Salome</option>
-                                      <option>11 - Salome</option>
+                                <select class="form-control" id="section_id" name="section_id">
+                                @foreach($sections as $section)
+                                    <option>{{$section->grade}} - {{$section->section}}</option>
                                 </select>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -97,7 +86,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-3" class="control-label">Address</label>
-                                <input type="text" class="form-control" id="field-3">
+                                <input type="text" name="address" id="address" class="form-control">
                             </div>
                         </div>
                     </div>
