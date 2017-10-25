@@ -19,7 +19,7 @@ class CreateStudentsTable extends Migration
             $table->string('student_id');
             $table->string('sy_id');
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->integer('age');
             $table->enum('gender',array(1,2));

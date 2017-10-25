@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
-    public function home_elem(){
+    public function home_elem() {
         return view('elementary.admin.home');
     }
 
-    public function login_elem(Request $request){
+    public function login_elem(Request $request) {
 
         $this->validate($request, [
             'username' => 'required|exists:users,username,group_id,3',
@@ -29,7 +29,7 @@ class UserController extends Controller
         }
     }
 
-    public function logout_elem(){
+    public function logout_elem() {
         Auth::logout();
         return redirect()->route('elem.signin');
     }

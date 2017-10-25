@@ -19,9 +19,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Student Offense Records</h3>
             </div>
-        @section('modal')
-            @include('elementary.student.includes.modal')
-        @show
+
         <div class="col-lg-6">
             <div style="padding: 10px 3px;" class="btn-group">
                 <select class="form-control" id="exampleFormControlSelect1">
@@ -42,7 +40,7 @@
             </div>
               <button class="btn btn-info">Print</button>
         </div>
-      
+
 
             <div class="panel-body">
                 <div class="row">
@@ -224,7 +222,7 @@
                                             <th>City</th>
                                         </tr>
                                     </thead>
-                                 
+
                                 </table>
                             </div>
                         </div>

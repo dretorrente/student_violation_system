@@ -10,7 +10,8 @@
 |
 */
 Route::get('/elementary', function () {
-    if(\Illuminate\Support\Facades\Auth::check()){
+
+    if(\Illuminate\Support\Facades\Auth::user()['group_id']==3){
         return redirect('/elementary/home');
     }
     return view('elementary.auth.signin');

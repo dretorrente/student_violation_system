@@ -1,3 +1,4 @@
+<?php
 return [
     'gender' => [
         'male' => 1,

@@ -64,11 +64,12 @@
                             </thead>
 
                             <tbody>
+                            @foreach($students as $student)
                                 <tr>
-                                    <td>1</td>
-                                    <td>1000801721</td>
-                                    <td>2017-2018</td>
-                                    <td>Tiger Nixon</td>
+                                    <td>{{$student->id}}</td>
+                                    <td>{{$student->student_id}}</td>
+                                    <td>{{$student->school_year}}</td>
+                                    <td>{!! Helper::fullname($student->first_name,$student->middle_name,$student->last_name) !!}</td>
                                     <td>61</td>
                                     <td>Male</td>
                                     <td>Rocky</td>
@@ -76,126 +77,7 @@
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>1000806991</td>
-                                    <td>2017-2018</td>
-                                    <td>Garrett Winters</td>
-                                    <td>63</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Accountant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>1000801021</td>
-                                    <td>2017-2018</td>
-                                    <td>Ashton Cox</td>
-                                    <td>66</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Junior Technical Author</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>1000801081</td>
-                                    <td>2017-2018</td>
-                                    <td>Cedric Kelly</td>
-                                    <td>22</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Senior Javascript Developer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>1000801555</td>
-                                    <td>2017-2018</td>
-                                    <td>Airi Satou</td>
-                                    <td>33</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Accountant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>1000801091</td>
-                                    <td>2017-2018</td>
-                                    <td>Brielle William</td>
-                                    <td>61</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Integration Specialist</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>1000801121</td>
-                                    <td>2017-2018</td>
-                                    <td>Herrod Chandler</td>
-                                    <td>59</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Sales Assistant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>1000801221</td>
-                                    <td>2017-2018</td>
-                                    <td>Rhona Davidson</td>
-                                    <td>55</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Integration Specialist</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>1000801841</td>
-                                    <td>2017-2018</td>
-                                    <td>Colleen Hurst</td>
-                                    <td>39</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Javascript Developer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>1000801761</td>
-                                    <td>2017-2018</td>
-                                    <td>Sonya Frost</td>
-                                    <td>23</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Software Engineer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>1000801021</td>
-                                    <td>2017-2018</td>
-                                    <td>Jena Gaines</td>
-                                    <td>30</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Office Manager</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
