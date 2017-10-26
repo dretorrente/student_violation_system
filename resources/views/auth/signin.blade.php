@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 @section('header')
-    @include('elementary.auth.partials.header')
+    @include('auth.partials.header')
 @show
 
 <body class="login-page">
@@ -64,7 +64,7 @@
         </div>
     </div>
     @section('scripts')
-        @include('elementary.auth.partials.scripts')
+        @include('auth.partials.scripts')
     @show
 </body>
 </html>

@@ -29,10 +29,12 @@ Route::post('/', [
     'uses'  => 'UserController@login',
     'as'    => 'post.signin'
 ]);
-
+ Route::get('/junior/home', function () {
+       return view('junior.admin.home');
+    });
 // Middleware for authentication elementary
 Route::group(['middleware' =>['auth.shs']], function() {
-
+    //elementary routes
     Route::get('/elementary/home', [
         'uses' => 'UserController@home_elem',
         'as'   => 'elem.home'
@@ -83,43 +85,44 @@ Route::group(['middleware' =>['auth.shs']], function() {
     Route::get('/elementary/violation', function() {
         return view('elementary.violations.index');
     });
+
+
+    //junior routes
+    Route::get('/junior/forgot', function () {
+       return view('junior.auth.forgot');
+    });
+   
+    Route::get('/junior/student', function () {
+       return view('junior.student.index');
+    });
+    Route::get('/junior/offense', function () {
+       return view('junior.stud_offense.index');
+    });
+    Route::get('/junior/records', function () {
+       return view('junior.offense_records.index');
+    });
+    Route::get('/junior/section', function() {
+       return view('junior.section.index');
+    });
+    Route::get('/junior/users', function() {
+       return view('junior.users.index');
+    });
+    Route::get('/junior/settings', function() {
+       return view('junior.admin.settings');
+    });
+    Route::get('/junior/violation', function() {
+       return view('junior.violations.index');
+    });
+    Route::get('/junior/schoolyear', function() {
+       return view('junior.schoolyear.index');
+    });
+
 });
 //Login Routes junior
 
 
 
 // Middleware for authentication junior
-
-    // Route::get('/junior/forgot', function () {
-    //    return view('junior.auth.forgot');
-    // });
-    // Route::get('/junior/home', function () {
-    //    return view('junior.admin.home');
-    // });
-    // Route::get('/junior/student', function () {
-    //    return view('junior.student.index');
-    // });
-    // Route::get('/junior/offense', function () {
-    //    return view('junior.stud_offense.index');
-    // });
-    // Route::get('/junior/records', function () {
-    //    return view('junior.offense_records.index');
-    // });
-    // Route::get('/junior/section', function() {
-    //    return view('junior.section.index');
-    // });
-    // Route::get('/junior/users', function() {
-    //    return view('junior.users.index');
-    // });
-    // Route::get('/junior/settings', function() {
-    //    return view('junior.admin.settings');
-    // });
-    // Route::get('/junior/violation', function() {
-    //    return view('junior.violations.index');
-    // });
-    // Route::get('/junior/schoolyear', function() {
-    //    return view('junior.schoolyear.index');
-    // });
 
 
 // senior
