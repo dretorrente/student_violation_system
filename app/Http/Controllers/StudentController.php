@@ -15,6 +15,7 @@ class StudentController extends Controller
         $students = DB::table('students')
                     ->join('school_years', 'students.sy_id', '=', 'school_years.id')
                     ->select('students.*', 'school_years.school_year')
+                    ->where('students.group_id', '=', 3)
                     ->get();
         return view('elementary.student.index',['sections' => $sections],['school_years' => $school_years,'students'=>$students]);
     }

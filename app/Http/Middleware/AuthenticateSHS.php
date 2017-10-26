@@ -27,7 +27,7 @@ class AuthenticateElem
             }
             else
             {
-                return redirect()->route('elem.signin');
+                return redirect()->route('signin');
             }
         }
         return $next($request);

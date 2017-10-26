@@ -9,27 +9,38 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/elementary', function () {
+
+//Login Routes elementary
+Route::get('/', function () {
 
     if(\Illuminate\Support\Facades\Auth::user()['group_id']==3){
         return redirect('/elementary/home');
     }
-    return view('elementary.auth.signin');
-})->name('elem.signin');
-Route::post('/elementary', [
-    'uses'  => 'UserController@login_elem',
-    'as'    => 'elem.signin'
+    if(\Illuminate\Support\Facades\Auth::user()['group_id']==2){
+        return redirect('/junior/home');
+    }
+    if(\Illuminate\Support\Facades\Auth::user()['group_id']==1){
+        return redirect('/senior/home');
+    }
+    return view('auth.signin');
+})->name('signin');
+
+Route::post('/', [
+    'uses'  => 'UserController@login',
+    'as'    => 'post.signin'
 ]);
-Route::group(['middleware' =>['auth.elem']], function() {
+
+// Middleware for authentication elementary
+Route::group(['middleware' =>['auth.shs']], function() {
 
     Route::get('/elementary/home', [
-        'uses'       => 'UserController@home_elem',
-        'as'         => 'elem.home'
+        'uses' => 'UserController@home_elem',
+        'as'   => 'elem.home'
     ]);
 
-    Route::get('/elementary/logout', [
-        'uses'  => 'UserController@logout_elem',
-        'as'    => 'elem.logout'
+    Route::get('/logout', [
+        'uses'  => 'UserController@logout',
+        'as'    => 'logout'
     ]);
 
     Route::get('/elementary/students', [
@@ -72,52 +83,44 @@ Route::group(['middleware' =>['auth.elem']], function() {
     Route::get('/elementary/violation', function() {
         return view('elementary.violations.index');
     });
-
 });
+//Login Routes junior
 
 
 
+// Middleware for authentication junior
 
+    // Route::get('/junior/forgot', function () {
+    //    return view('junior.auth.forgot');
+    // });
+    // Route::get('/junior/home', function () {
+    //    return view('junior.admin.home');
+    // });
+    // Route::get('/junior/student', function () {
+    //    return view('junior.student.index');
+    // });
+    // Route::get('/junior/offense', function () {
+    //    return view('junior.stud_offense.index');
+    // });
+    // Route::get('/junior/records', function () {
+    //    return view('junior.offense_records.index');
+    // });
+    // Route::get('/junior/section', function() {
+    //    return view('junior.section.index');
+    // });
+    // Route::get('/junior/users', function() {
+    //    return view('junior.users.index');
+    // });
+    // Route::get('/junior/settings', function() {
+    //    return view('junior.admin.settings');
+    // });
+    // Route::get('/junior/violation', function() {
+    //    return view('junior.violations.index');
+    // });
+    // Route::get('/junior/schoolyear', function() {
+    //    return view('junior.schoolyear.index');
+    // });
 
-// junior
-
-//Route::get('/junior', function () {
-//    return view('junior.auth.signin');
-//});
-//Route::get('/junior/forgot', function () {
-//    return view('junior.auth.forgot');
-//});
-//Route::get('/junior/home', function () {
-//    return view('junior.admin.home');
-//});
-//Route::get('/junior/student', function () {
-//    return view('junior.student.index');
-//});
-//Route::get('/junior/offense', function () {
-//    return view('junior.stud_offense.index');
-//});
-//Route::get('/junior/records', function () {
-//    return view('junior.offense_records.index');
-//});
-//Route::get('/junior/section', function() {
-//    return view('junior.section.index');
-//});
-//Route::get('/junior/users', function() {
-//    return view('junior.users.index');
-//});
-//Route::get('/junior/settings', function() {
-//    return view('junior.admin.settings');
-//});
-//Route::get('/junior/violation', function() {
-//    return view('junior.violations.index');
-//});
-//Route::get('/junior/schoolyear', function() {
-//    return view('junior.schoolyear.index');
-//});
-
-
-
-//Route::get('/home', 'HomeController@index');
 
 // senior
 
