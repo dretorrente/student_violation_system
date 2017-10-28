@@ -48,9 +48,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Student Offense Records</h3>
             </div>
-        @section('modal')
-            @include('elementary.student.includes.modal')
-        @show
+
 
           
 

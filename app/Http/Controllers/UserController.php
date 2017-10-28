@@ -23,30 +23,16 @@ class UserController extends Controller
         {
             return redirect()->route('elem.home');
 
-        }else{
-            return redirect()->back()->withInput($request->all)->with(['message' => 'Invalid password']);
-
         }
-
-
-        if(Auth::attempt(['username' => $request['username'], 'password' => $request['password'], 'group_id'=>2]))
-        {
+        elseif(Auth::attempt(['username' => $request['username'], 'password' => $request['password'], 'group_id'=>2])) {
             return redirect()->route('junior.home');
-
-        }else{
-            return redirect()->back()->withInput($request->all)->with(['message' => 'Invalid password']);
-
         }
-
-        if(Auth::attempt(['username' => $request['username'], 'password' => $request['password'], 'group_id'=>1]))
-        {
+        elseif(Auth::attempt(['username' => $request['username'], 'password' => $request['password'], 'group_id'=>1])){
             return redirect()->route('senior.home');
-
-        }else{
-            return redirect()->back()->withInput($request->all)->with(['message' => 'Invalid password']);
-
         }
-
+        else{
+            return redirect()->back()->withInput($request->all)->with(['message' => 'Invalid password']);
+        }
     }
 
     public function logout() {
@@ -58,6 +44,10 @@ class UserController extends Controller
     // junior
     public function home_junior() {
         return view('junior.admin.home');
+    }
+
+    public function home_senior() {
+        return view('senior.admin.home');
     }
 
 }

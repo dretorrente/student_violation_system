@@ -29,9 +29,7 @@ Route::post('/', [
     'uses'  => 'UserController@login',
     'as'    => 'post.signin'
 ]);
- Route::get('/junior/home', function () {
-       return view('junior.admin.home');
-    });
+
 // Middleware for authentication elementary
 Route::group(['middleware' =>['auth.shs']], function() {
     //elementary routes
@@ -70,7 +68,7 @@ Route::group(['middleware' =>['auth.shs']], function() {
         return view('elementary.auth.forgot');
     });
 
-    Route::get('/elemenatary/offense', function () {
+    Route::get('/elementary/offense', function () {
         return view('elementary.stud_offense.index');
     });
     Route::get('/elementary/records', function () {
@@ -88,18 +86,23 @@ Route::group(['middleware' =>['auth.shs']], function() {
 
 
     //junior routes
+    Route::get('/junior/home', [
+        'uses' => 'UserController@home_junior',
+        'as'   => 'junior.home'
+    ]);
+
     Route::get('/junior/forgot', function () {
-       return view('junior.auth.forgot');
+        return view('junior.auth.forgot');
     });
    
     Route::get('/junior/student', function () {
-       return view('junior.student.index');
+        return view('junior.student.index');
     });
-    Route::get('/junior/offense', function () {
-       return view('junior.stud_offense.index');
+    Route::get('/jrstud_offense', function () {
+        return view('junior.stud_offense.index');
     });
     Route::get('/junior/records', function () {
-       return view('junior.offense_records.index');
+        return view('junior.offense_records.index');
     });
     Route::get('/junior/section', function() {
        return view('junior.section.index');
@@ -117,52 +120,45 @@ Route::group(['middleware' =>['auth.shs']], function() {
        return view('junior.schoolyear.index');
     });
 
+    //senior routes
+    Route::get('/senior/home', [
+        'uses' => 'UserController@home_senior',
+        'as'   => 'senior.home'
+    ]);
+    Route::get('/forgot', function () {
+        return view('senior.auth.forgot');
+    });
+
+    Route::get('/senior/student', function () {
+        return view('senior.student.index');
+    });
+    Route::get('/senior/offense', function () {
+        return view('senior.stud_offense.index');
+    });
+    Route::get('/senior/records', function () {
+        return view('senior.offense_records.index');
+    });
+    Route::get('/senior/section', function() {
+        return view('senior.section.index');
+    });
+    Route::get('/senior/users', function() {
+        return view('senior.users.index');
+    });
+    Route::get('/senior/settings', function() {
+        return view('senior.admin.settings');
+    });
+    Route::get('/senior/violation', function() {
+        return view('senior.violations.index');
+    });
+    Route::get('/senior/schoolyear', function() {
+        return view('senior.schoolyear.index');
+    });
+    Route::get('/senior/resetpass', function() {
+        return view('senior.resetpass.index');
+    });
 });
-//Login Routes junior
 
 
-
-// Middleware for authentication junior
-
-
-// senior
-
-//Route::get('/senior', function () {
-//    return view('senior.auth.signin');
-//});
-//Route::get('/forgot', function () {
-//    return view('senior.auth.forgot');
-//});
-//Route::get('/senior/home', function () {
-//    return view('senior.admin.home');
-//});
-//Route::get('/senior/student', function () {
-//    return view('senior.student.index');
-//});
-//Route::get('/senior/offense', function () {
-//    return view('senior.stud_offense.index');
-//});
-//Route::get('/senior/records', function () {
-//    return view('senior.offense_records.index');
-//});
-//Route::get('/senior/section', function() {
-//    return view('senior.section.index');
-//});
-//Route::get('/senior/users', function() {
-//    return view('senior.users.index');
-//});
-//Route::get('/senior/settings', function() {
-//    return view('senior.admin.settings');
-//});
-//Route::get('/senior/violation', function() {
-//    return view('senior.violations.index');
-//});
-//Route::get('/senior/schoolyear', function() {
-//    return view('senior.schoolyear.index');
-//});
-//Route::get('/senior/resetpass', function() {
-//    return view('senior.resetpass.index');
-//});
 
 
 
