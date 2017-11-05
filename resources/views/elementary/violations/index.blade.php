@@ -48,6 +48,7 @@
                             </thead>
 
                             <tbody>
+                                @foreach($violations as $violation)
                                 <tr>
                                     <td><input type="checkbox" name=""></td>
                                     <td>Wearing earings inside of the school</td>
@@ -61,7 +62,8 @@
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
                                 </tr>
-                                <tr>
+                                @endforeach
+                                <!-- <tr>
                                     <td>Minor Offense</td>
                                     <td>Not wearing proper slocks</td>
                                     <td>Promisory Note, noted by the student</td>
@@ -164,7 +166,7 @@
                                     <td>Administrator</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
 

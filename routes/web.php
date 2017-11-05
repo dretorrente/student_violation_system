@@ -80,9 +80,16 @@ Route::group(['middleware' =>['auth.shs']], function() {
     Route::get('/elementary/settings', function() {
         return view('elementary.admin.settings');
     });
-    Route::get('/elementary/violation', function() {
-        return view('elementary.violations.index');
-    });
+    // Route::post('/elementary/violation', function() {
+    //     return view('elementary.violations.index');
+    // });
+    Route::get('/elementary/violation', [
+        'uses' => 'ViolationController@violation_elem'
+    ]);
+    Route::post('/elementary/violation', [
+        'uses' => 'ViolationController@add_violation_elem',
+        'as'   => 'elem.addviolation'
+    ]);
 
 
     //junior routes
