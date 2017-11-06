@@ -80,17 +80,25 @@ Route::group(['middleware' =>['auth.shs']], function() {
     Route::get('/elementary/settings', function() {
         return view('elementary.admin.settings');
     });
-    // Route::post('/elementary/violation', function() {
-    //     return view('elementary.violations.index');
-    // });
-    Route::get('/elementary/violation', [
+
+    Route::get('/elementary/violation',[
         'uses' => 'ViolationController@violation_elem'
     ]);
-    Route::post('/elementary/violation', [
+
+    Route::post('/elementary/violation',[
         'uses' => 'ViolationController@add_violation_elem',
         'as'   => 'elem.addviolation'
     ]);
 
+    Route::match(['get', 'post'], '/elementary/delete/{id}',[
+        'uses' => 'ViolationController@delete_violation_elem',
+        'as'   => 'elem.deleteViolation'
+    ]);
+
+    Route::post('/elementary/update/',[
+        'uses' => 'ViolationController@update_violation_elem',
+        'as'   => 'elem.updateViolation'
+    ]);
 
     //junior routes
     Route::get('/junior/home', [

@@ -13,6 +13,8 @@ class CreateSchoolYearTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('school_years');
+
         Schema::create('school_years', function (Blueprint $table) {
             $table->increments('id');
             $table->string('school_year');

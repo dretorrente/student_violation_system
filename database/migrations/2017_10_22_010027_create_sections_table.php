@@ -13,6 +13,8 @@ class CreateSectionsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('sections');
+
         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('grade');

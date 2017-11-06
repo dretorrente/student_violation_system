@@ -13,17 +13,19 @@ class CreateViolationsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('violations');
+
         Schema::create('violations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('violation');
             $table->string('category');
-            $table->string('1st_sanction')->nullable();;
-            $table->string('2nd_sanction')->nullable();;
-            $table->string('3rd_sanction')->nullable();;
-            $table->string('4th_sanction')->nullable();;
-            $table->string('5th_sanction')->nullable();;
-            $table->string('6th_sanction')->nullable();;
-            $table->string('7th_sanction')->nullable();;
+            $table->string('first_sanction')->nullable();
+            $table->string('second_sanction')->nullable();
+            $table->string('third_sanction')->nullable();
+            $table->string('fourth_sanction')->nullable();
+            $table->string('fifth_sanction')->nullable();
+            $table->string('sixth_sanction')->nullable();
+            $table->string('seventh_sanction')->nullable();
             $table->timestamps();
         });
     }

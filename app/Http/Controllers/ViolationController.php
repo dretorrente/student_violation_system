@@ -2,29 +2,55 @@
 
 namespace App\Http\Controllers;
 use App\Violation;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+
 class ViolationController extends Controller
 {
-
-    public function violation_elem(){
-        $violations = Violation::all();
-        return view('elementary.violations.index',['violations' => $violations]);
+    public function violation_elem() {
+    	$violation = DB::table('violations')->simplePaginate(10);
+        return view('elementary.violations.index',['violations' => $violation]);
     }
-    public function add_violation_elem(Request $request){
-        if ($request->isMethod('post')) {
+
+    public function add_violation_elem(Request $request) {
+    	 if ($request->isMethod('post')) {
             $violation = new Violation();
-            $violation->violation    = $request['violation'];
-            $violation->category     = $request['category'];
-            $violation->1st_sanction = $request['1st_sanction'];
-            $violation->2nd_sanction = $request['2nd_sanction'];
-            $violation->3rd_sanction = $request['3rd_sanction'];
-            $violation->4th_sanction = $request['4th_sanction'];
-            $violation->5th_sanction = $request['5th_sanction'];
-            $violation->6th_sanction = $request['6th_sanction'];
-            $violation->7th_sanction = $request['7th_sanction'];
-            $violation->save();
+            $violation->fill($request->all());
+            if ($violation->save()) {
+            	Session::flash('message','Your violation has been succesfully added!');
+    			Session::flash('alert-class', 'alert-info'); 
+            } else {
+            	Session::flash('message','Your violation has been failed to saved!');
+    			Session::flash('alert-class', 'alert-danger'); 
+            }
             return redirect('/elementary/violation/');
         }
+    }
+
+    public function delete_violation_elem($id) {
+    	$violation = Violation::find($id);
+    	if ($violation) {
+    		$violation->delete();
+    		Session::flash('message','Your violation has been deleted!');
+    		Session::flash('alert-class', 'alert-info'); 
+    		return redirect('/elementary/violation/');
+    	} else {
+    		return redirect('/elementary/violation/');
+    	}
+    }
+
+    public function update_violation_elem(Request $request) {
+    	$update = Violation::find($request['id']);
+    	if ($update) {
+    		$update->fill($request->all());
+    		$update->save();
+    		Session::flash('message','Your violation has been succesfully update!');
+    		Session::flash('alert-class', 'alert-info'); 
+    		return redirect('/elementary/violation/');
+    	} else {
+    		return redirect('/elementary/violation/');
+    	}
     }
 }
