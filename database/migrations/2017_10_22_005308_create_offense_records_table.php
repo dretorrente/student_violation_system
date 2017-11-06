@@ -13,6 +13,8 @@ class CreateOffenseRecordsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('offense_records');
+        
         Schema::create('offense_records', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('student_id');

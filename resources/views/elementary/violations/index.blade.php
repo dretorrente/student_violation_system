@@ -3,6 +3,12 @@
 @section('title', 'Violations & Sanctions | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
 <div class="content">
+@if (Session::has('message'))
+    <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        {{ Session::get('message') }}
+    </div>
+@endif
    <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -31,7 +37,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <table id="datatable" class="table table-striped table-hover">
+                        <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Category</th>
@@ -48,128 +54,26 @@
                             </thead>
 
                             <tbody>
+                                @foreach($violations as $violation)
                                 <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>Wearing earings inside of the school</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
+                                    <td id="category-{{ $violation->id }}">{{ $violation->category }}</td>
+                                    <td id="violation-{{ $violation->id }}">{{ $violation->violation }}</td>
+                                    <td id="first-{{ $violation->id }}">{{ $violation->first_sanction }}</td>
+                                    <td id="second-{{ $violation->id }}">{{ $violation->second_sanction }}</td>
+                                    <td id="third-{{ $violation->id }}">{{ $violation->third_sanction }}</td>
+                                    <td id="fourth-{{ $violation->id }}">{{ $violation->fourth_sanction }}</td>
+                                    <td id="fifth-{{ $violation->id }}">{{ $violation->fifth_sanction }}</td>
+                                    <td id="sixth-{{ $violation->id }}">{{ $violation->sixth_sanction }}</td>
+                                    <td id="seventh-{{ $violation->id }}">{{ $violation->seventh_sanction }}</td>
+                                    <td><button data-tooltip='tooltip' data-placement='top' data-original-title='Update' data-toggle='modal' data-target='#violation-update' type='button' class='btn-xs btn btn-purple waves-effect waves-light m-b-5 update' id="{{ $violation->id }}"><i class='md md-border-color'></i></button>
+                                    <button data-tooltip='tooltip' data-placement='top' data-original-title='Delete' data-toggle='modal' data-target='#violation-delete' type='button' class='btn-xs btn btn-danger waves-effect waves-light m-b-5 delete' id="{{ $violation->id }}"><i class='md md-delete'"></i></button></td>
                                 </tr>
-                                <tr>
-                                    <td>Minor Offense</td>
-                                    <td>Not wearing proper slocks</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>Minor Offense</td>
-                                    <td>Wearing earings inside of the school</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>Minor Offense</td>
-                                    <td>Not wearing proper slocks</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Staff</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>Minor Offense</td>
-                                    <td>Wearing earings inside of the school</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>Minor Offense</td>
-                                    <td>Not wearing proper slocks</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Staff</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>Minor Offense</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td>Administrator</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>Minor Offense</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td>Administrator</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>Minor Offense</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td>Administrator</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#violation-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#violation-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
+                {{ $violations->links() }}  
             </div>
         </div>
     </div>
@@ -205,6 +109,49 @@
             </div>
         </div>
     </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete').on('click', function(){
+            var id = $(this).attr('id');
+            $('.confirmation').data('id',id);
+        });
+
+        $('.confirmation').on('click', function(){
+            window.location.href = "/elementary/delete/"+$(this).data('id');
+        });
+
+        $('.update').on('click', function(){
+            var updateId = $(this).attr('id');
+            $('#exampleFormControlSelect2').val($('#category-'+updateId).text());
+            $('textarea[name=violation]').text($('#violation-'+updateId).text());
+            $('input[name=first_sanction]').val($('#first-'+updateId).text());
+            $('input[name=second_sanction]').val($('#second-'+updateId).text());
+            $('input[name=third_sanction]').val($('#third-'+updateId).text());
+            $('input[name=fourth_sanction]').val($('#fourth-'+updateId).text());
+            $('input[name=fifth_sanction]').val($('#fifth-'+updateId).text());
+            $('input[name=sixth_sanction]').val($('#sixth-'+updateId).text());
+            $('input[name=seventh_sanction]').val($('#seventh-'+updateId).text());
+            $('input[name=id]').val(updateId);
+        });
+
+        $('.close, .close2').on('click', function(){
+            removeInputs();
+        });
+
+    });
+    function removeInputs() {
+        $('#exampleFormControlSelect2').val("");
+        $('textarea[name=violation]').text("");
+        $('input[name=first_sanction]').val("");
+        $('input[name=second_sanction]').val("");
+        $('input[name=third_sanction]').val("");
+        $('input[name=fourth_sanction]').val("");
+        $('input[name=fifth_sanction]').val("");
+        $('input[name=sixth_sanction]').val("");
+        $('input[name=seventh_sanction]').val("");
+        $('input[name=id]').val("");
+    }
+</script>
 @section('footer')
     @include('elementary.student.includes.footer')
 @show
