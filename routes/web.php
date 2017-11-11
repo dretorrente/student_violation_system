@@ -77,9 +77,13 @@ Route::group(['middleware' =>['auth.shs']], function() {
     Route::get('/elementary/users', function() {
         return view('elementary.users.index');
     });
-    Route::get('/elementary/settings', function() {
-        return view('elementary.admin.settings');
-    });
+    Route::get('/elementary/settings', [
+        'uses' => 'UserController@setting_elem'
+    ]);
+    Route::post('/elementary/edit/',[
+        'uses' => 'UserController@update_elem',
+        'as'   => 'elem.updateSettings'
+    ]);
 
     Route::get('/elementary/violation',[
         'uses' => 'ViolationController@violation_elem'
