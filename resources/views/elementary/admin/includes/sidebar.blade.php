@@ -2,7 +2,7 @@
         <div class="sidebar-inner slimscrollleft">
             <div class="user-details">
                 <div class="pull-left">
-                    <img src="assets/images/users/cus8.png" alt="" class="thumb-md img-circle">
+                    <img src="{{asset('assets/images/users/cus8.png')}}" alt="" class="thumb-md img-circle">
                 </div>
                 <div class="user-info">
                     <div class="dropdown">
@@ -22,7 +22,7 @@
                         <a href="{{ url('/elementary/students') }}" class="waves-effect"><i style="font-size: 20px;" class="ion-ios7-people"></i><span>Student Management</span></a>
                     </li>
                     <li>
-                        <a href="{{url('/elementary/records')}}" class="waves-effect"><i class="md md-assignment-late"></i><span>Student Offense</span></a>
+                        <a href="{{ url('/elementary/offense') }}" class="waves-effect"><i class="md md-assignment-late"></i><span>Student Offense</span></a>
                     </li>
                     <li class="has_sub">
                         <a href="#" class="waves-effect"><i class="md md-perm-data-setting"></i><span>File Maintenance </span><span class="pull-right"><i class="md md-add"></i></span></a>
@@ -37,11 +37,15 @@
                     </li>
 
                      <li>
-                        <a href="{{ url('/elementary/offense') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>Stud Offense</span></a>
+                        <a href="{{url('/elementary/records')}}" class="waves-effect"><i class="ion-android-book"></i><span>Stud. Offense Records</span></a>
                     </li>
 
-                    <li>
-                        <a href="javascript:;" class="waves-effect"><i class="md md-textsms"></i><span>Send SMS </span></a>
+                    <li class="has_sub">
+                        <a href="#" class="waves-effect"><i class="md md-textsms"></i><span>SMS</span><span class="pull-right"><i class="md md-add"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{url('/elementary/compose')}}"><i class="fa fa-pencil"></i> Compose Message</a></li>
+                            <li><a href="{{url('/elementary/contacts')}}"><i class="md-contacts"></i> Contacts</a></li>
+                        </ul>
                     </li>
 
                      <li>
@@ -49,7 +53,7 @@
                     </li>
 
                      <li>
-                        <a style="margin-left:2px;" href="{{url('/elementary')}}" class="waves-effect"><i style="font-size: 18.5px;" class="ion-log-out"></i><span>Sign Out </span></a>
+                        <a style="margin-left:2px;" href="{{ route('logout') }}" class="waves-effect"><i style="font-size: 18.5px;" class="ion-log-out"></i><span>Sign Out </span></a>
                     </li>
 
                 <div class="clearfix"></div>

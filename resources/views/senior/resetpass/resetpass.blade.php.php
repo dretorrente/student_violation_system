@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<title>
+    @section('title')
+        Reset Password | Prefect of Discipline Students Violation Monitoring System
+</title>
 @section('header')
     @include('senior.auth.partials.header')
 @show
@@ -7,16 +11,15 @@
     <div class="login-box">
         <div class="logo">
             <a class="col-md-12">Prefect of Discipline</a>
-            <small style="visibility: hidden;">Reset Password Settings</small>
+            <small>Student's Violation Monitoring System</small>
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">
-               
-                    <div class="msg">Reset Password</div>
+                <form id="sign_in" method="POST">  
+                    <div class="msg">Reset Password Settings</div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="ion-person-stalker"></i>
+                            <i class="ion-locked    "></i>
                         </span>
                         <div class="form-line">
                             <input type="text" class="form-control" name="currentpass" placeholder="Current Password" required autofocus>
@@ -24,7 +27,7 @@
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="ion-locked"></i>
+                            <i class="md-lock"></i>
                         </span>
                         <div class="form-line">
                             <input type="password" class="form-control" name="newpass" placeholder="New Password" required>
@@ -32,7 +35,7 @@
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="ion-locked"></i>
+                            <i class="md-lock"></i>
                         </span>
                         <div class="form-line">
                             <input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password" required>

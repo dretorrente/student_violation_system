@@ -30,7 +30,7 @@ Route::post('/', [
     'as'    => 'post.signin'
 ]);
 
-// Middleware for authentication elementary
+// Middleware for authentication elementary, junior, senior
 Route::group(['middleware' =>['auth.shs']], function() {
     //elementary routes
     Route::get('/elementary/home', [
@@ -50,6 +50,11 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses'  => 'StudentController@add_student_elem',
         'as'    => 'elem.studentadd'
     ]);
+    Route::post('/elementary/student/update',[
+        'uses' => 'StudentController@update_student_elem',
+        'as'   => 'elem.updateStudent'
+    ]);
+
     Route::get('/elementary/section', [
         'uses'  => 'SectionController@section_elem'
     ]);
@@ -57,6 +62,17 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses'  => 'SectionController@add_section_elem',
         'as'    => 'elem.sectionadd'
     ]);
+
+    Route::post('/elementary/section/update',[
+        'uses' => 'SectionController@update_section_elem',
+        'as'   => 'elem.updateSection'
+    ]);
+
+    Route::match(['get', 'post'], '/elementary/section_delete/{id}',[
+        'uses' => 'SectionController@delete_section_elem',
+        'as'   => 'elem.deleteSection'
+    ]);
+
     Route::get('/elementary/schoolyear',[
         'uses'  => 'SchoolYearController@schoolyear_elem'
     ]);
@@ -64,22 +80,41 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses'  => 'SchoolYearController@add_schoolyear_elem',
         'as'    => 'elem.syadd'
     ]);
+
+    Route::post('/elementary/sy/update',[
+        'uses' => 'SchoolYearController@update_sy_elem',
+        'as'   => 'elem.updateSY'
+    ]);
+
+    Route::match(['get', 'post'], '/elementary/sy_delete/{id}',[
+        'uses' => 'SchoolYearController@delete_sy_elem',
+        'as'   => 'elem.deleteSchoolYear'
+    ]);
+
     Route::get('/elementary/forgot', function () {
         return view('elementary.auth.forgot');
     });
 
-    Route::get('/elementary/offense', function () {
-        return view('elementary.stud_offense.index');
-    });
-    Route::get('/elementary/records', function () {
-        return view('elementary.offense_records.index');
-    });
+
+    Route::get('/elementary/offense',[
+        'uses'  => 'OffenseController@offense_elem',
+    ]);
+
+    Route::post('/elementary/offense',[
+        'uses'  => 'OffenseController@add_offense_elem',
+        'as'    => 'elem.offenseadd'
+    ]);
+    Route::get('/elementary/records',[
+        'uses'  => 'OffenseController@offense_records_elem',
+    ]);
+
     Route::get('/elementary/users', function() {
         return view('elementary.users.index');
     });
     Route::get('/elementary/settings', [
         'uses' => 'UserController@setting_elem'
     ]);
+
     Route::post('/elementary/edit/',[
         'uses' => 'UserController@update_elem',
         'as'   => 'elem.updateSettings'
@@ -102,6 +137,20 @@ Route::group(['middleware' =>['auth.shs']], function() {
     Route::post('/elementary/update/',[
         'uses' => 'ViolationController@update_violation_elem',
         'as'   => 'elem.updateViolation'
+    ]);
+
+
+    Route::get('/elementary/contacts', [
+        'uses' => 'ContactController@sms_contact_elem'
+    ]);
+
+    Route::get('/elementary/compose', [
+        'uses' => 'ContactController@sms_compose_elem'
+    ]);
+
+    Route::post('/elementary/contacts', [
+        'uses'  => 'ContactController@add_contact_elem',
+        'as'    => 'elem.contactadd'
     ]);
 
     //junior routes

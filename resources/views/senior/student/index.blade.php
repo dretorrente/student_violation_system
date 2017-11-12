@@ -8,7 +8,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Students</a></li>
+                        <li>Student Management</li>
                     </ol>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                                     <td>Rocky</td>
                                     <td>12 - System Architect</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
@@ -86,7 +86,7 @@
                                     <td>Rocky</td>
                                     <td>11 - Accountant</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
@@ -98,7 +98,7 @@
                                     <td>Rocky</td>
                                     <td>12 - Junior Technical Author</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
@@ -110,7 +110,7 @@
                                     <td>Rocky</td>
                                     <td>12 - Senior Javascript Developer</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
@@ -122,7 +122,7 @@
                                     <td>Rocky</td>
                                     <td>12 - Accountant</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>6</td>
@@ -134,7 +134,7 @@
                                     <td>Rocky</td>
                                     <td>11 - Integration Specialist</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>7</td>
@@ -146,7 +146,7 @@
                                     <td>Rocky</td>
                                     <td>11 - Sales Assistant</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>8</td>
@@ -158,7 +158,7 @@
                                     <td>Rocky</td>
                                     <td>11 - Integration Specialist</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>9</td>
@@ -170,7 +170,7 @@
                                     <td>Rocky</td>
                                     <td>12 - Javascript Developer</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>10</td>
@@ -182,7 +182,7 @@
                                     <td>Rocky</td>
                                     <td>12 - Software Engineer</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>11</td>
@@ -194,7 +194,7 @@
                                     <td>Rocky</td>
                                     <td>12 - Office Manager</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

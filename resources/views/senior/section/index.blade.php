@@ -7,7 +7,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Grade &amp; Section</a></li>
+                        <li>Grade &amp; Sections</li>
                     </ol>
                 </div>
             </div>

@@ -7,6 +7,7 @@ use App\Section;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 class StudentController extends Controller
 {
     public function student_elem(){
@@ -25,9 +26,25 @@ class StudentController extends Controller
             $students->fill($request->all());
             $students->group_id = Auth::user()['group_id'];
             if($students->save()){
+                Session::flash('message','Your student has been succesfully added!');
+                Session::flash('alert-class', 'alert-info');
                 return redirect('/elementary/students/');
             }
 
+        }
+    }
+
+
+    public function update_student_elem(Request $request) {
+        $update = Student::find($request['id']);
+        if ($update) {
+            $update->fill($request->all());
+            $update->save();
+            Session::flash('message','Your student has been succesfully update!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/elementary/students/');
+        } else {
+            return redirect('/elementary/students/');
         }
     }
 }

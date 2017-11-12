@@ -1,7 +1,7 @@
 
 
 @extends('senior.admin.layouts.dashboard')
-@section('title', 'Student Management | Prefect of Discipline Students Violation Monitoring System')
+@section('title', 'Student Offense | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
 <div class="content">
    <div class="container">
@@ -9,14 +9,14 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Offense</a></li>
+                        <li>Student Offense</li>
                     </ol>
                 </div>
             </div>
 
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Information</h3>
+            <h3 class="panel-title">Student Information</h3>
         </div>
         <div class="panel-body">
             @section('modal')
@@ -24,7 +24,7 @@
         @show
             <div class="col-md-6"> 
                 <div class="form-group"> 
-                    <button data-toggle="modal" data-target="#select-student" class="btn btn-primary">Select Student Profile</button>
+                    <button data-toggle="modal" data-target="#select-student" class="btn btn-info">Select Student Profile</button>
                     <br>
                     <label for="field-1" class="control-label">Search Student ID</label> 
                      <input type="text" class="form-control" id="field-1">
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-     <div class="panel panel-primary">
+     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Offense</h3>
         </div>
@@ -202,7 +202,7 @@
            
              
 
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h3 style="visibility: hidden;" class="panel-title">Student Information</h3>
         </div>
@@ -216,7 +216,7 @@
                      <label for="field-1" class="control-label">Student Offense</label> 
                      <input type="text" class="form-control" id="field-1">
                      <label for="field-1" class="control-label">Description</label> 
-                     <textarea rows="3" cols="44"></textarea> 
+                     <textarea class="form-control" rows="3" cols="44"></textarea> 
                 </div> 
             </div>
              <div class="col-md-4"> 
@@ -226,8 +226,8 @@
                      <label for="field-1" class="control-label">Offense Number of Attempt</label> 
                      <input type="text" class="form-control" id="field-1"> 
                      <label for="field-1" class="control-label">Sanction</label> 
-                     <textarea rows="3" cols="44"></textarea><br>
-                     <button type="button" style="margin-left: 255px;" class="btn btn-info"><i class="md md-check"></i>Save</button>
+                     <textarea class="form-control" rows="3" cols="44"></textarea><br>
+                     <button type="button" style="margin-left: 255px;" class="btn btn-info"><i class="md md-check"></i> Save</button>
                 </div> 
             </div>
         </div>

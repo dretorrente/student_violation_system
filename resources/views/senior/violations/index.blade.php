@@ -8,7 +8,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="{{url('/home')}}">Dashboard</a></li>
-                        <li><a href="#">Violations &amp; Sanctions</a></li>
+                        <li>Violations &amp; Sanctions</li>
                     </ol>
                 </div>
             </div>
@@ -49,7 +49,7 @@
 
                             <tbody>
                                 <tr>
-                                    <td><input type="checkbox" name=""></td>
+                                    <td>Minor Offense</td>
                                     <td>Wearing earings inside of the school</td>
                                     <td>Promisory Note, noted by the student</td>
                                     <td>Promisory Note, noted by the student</td>
