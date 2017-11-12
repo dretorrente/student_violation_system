@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                 <h4 class="modal-title">Add Violation</h4> 
             </div>
-            <form action="{{ route('elem.addviolation')}}" method="post">
+            <form action="{{ route('elem.addviolation') }}" method="post">
             {{csrf_field()}}
             <div class="modal-body"> 
                 <div class="row"> 

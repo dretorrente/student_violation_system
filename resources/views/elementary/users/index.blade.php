@@ -45,38 +45,16 @@
                                         </thead>
 
                                         <tbody>
+                                        @foreach($users as $user)
                                         <tr>
-                                            <td>1</td>
-                                            <td>nix@gmail.com</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>Administrator</td>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->username }}</td>
+                                            <td>{{ $user->role }}</td>
                                             <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#user-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                                 <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#user-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>winters@gmail.com</td>
-                                            <td>Garrett Winters</td>
-                                            <td>Staff</td>
-                                            <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#user-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                                <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#user-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>ash@gmail.com</td>
-                                            <td>Ashton Cox</td>
-                                            <td>Staff</td>
-                                            <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#user-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                                <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#user-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>kel@gmail.com</td>
-                                            <td>Cedric Kelly</td>
-                                            <td>Administrator</td>
-                                            <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#user-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                                <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#user-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                        </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
 

@@ -108,9 +108,15 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses'  => 'OffenseController@offense_records_elem',
     ]);
 
-    Route::get('/elementary/users', function() {
-        return view('elementary.users.index');
-    });
+    Route::get('/elementary/users',[
+        'uses' => 'UserController@elem_management'
+    ]);
+
+    Route::match(['get', 'post'], '/elementary/users_add',[
+        'uses' => 'UserController@elem_management_add',
+        'as'   => 'elem.userAdd'
+    ]);
+
     Route::get('/elementary/settings', [
         'uses' => 'UserController@setting_elem'
     ]);

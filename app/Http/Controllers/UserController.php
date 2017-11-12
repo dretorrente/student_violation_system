@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\User;
 use Hash;
+use DB;
+use Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -86,6 +88,39 @@ class UserController extends Controller
             Session::flash('message','Your account has been successfully update!');
             Session::flash('alert-class', 'alert-info'); 
             return redirect('/elementary/settings/');
+        }
+    }
+    /**
+     * elementary users management list
+     * @return void
+     */
+    public function elem_management() {
+        $users = DB::table('users')->where('group_id', '3')->get();
+        return view('elementary.users.index',['users' => $users]);
+    }
+    /**
+     * Elementary management add staff
+     */
+    public function elem_management_add(Request $request) {
+        if ($request->isMethod('post')) {
+            $user           = new User();
+            $password       = md5(uniqid(rand(), true));
+            $hashPassword   = Hash::make($password);
+            $user->email    = $request['email'];
+            $user->username = $request['username'];
+            $user->role     = $request['role'];
+            $user->group_id = 3;
+            $user->password = $hashPassword;
+
+            $request_data = $request->all();
+            if ($user->save()) {
+                Mail::send('elementary.users.email', ['password' => $password], function ($m) use ($request_data) {
+                    $m->from('lihuza@duck2.club', 'Your Temporary Password');
+
+                    $m->to($request_data['email'], $request_data['username'])->subject('Your Temporary Password');
+                });
+                return redirect('/elementary/users/');
+            }
         }
     }
 
