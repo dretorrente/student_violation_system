@@ -8,7 +8,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Users</a></li>
+                        <li>User Management</li>
                     </ol>
                 </div>
             </div>

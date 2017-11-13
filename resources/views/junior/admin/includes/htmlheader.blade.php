@@ -12,6 +12,12 @@
  	<link rel="shortcut icon" href="assets/images/favicon.ico">
     <!-- Plugins css -->
     <link href="{{asset('assets/plugins/modal-effect/css/component.css')}}" rel="stylesheet">
+
+    <link href="{{asset('assets/plugins/tagsinput/jquery.tagsinput.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/jquery-multi-select/multi-select.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/plugins/select2/dist/css/select2.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/plugins/select2/dist/css/select2-bootstrap.css')}}" rel="stylesheet" type="text/css">
+    
     <!-- DataTables -->
     <link href="{{asset('assets/plugins/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/plugins/datatables/buttons.bootstrap.min.css')}}" rel="stylesheet" type="text/css">

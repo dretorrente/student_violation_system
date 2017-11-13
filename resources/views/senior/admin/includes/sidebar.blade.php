@@ -27,13 +27,15 @@
                     <li>
                         <a href="{{ url('/student') }}" class="waves-effect"><i style="font-size: 20px;" class="ion-ios7-people"></i><span>Student Management</span></a>
                     </li>
-                    <li>
-                        <a href="{{url('/offense_records')}}" class="waves-effect"><i class="md md-assignment-late"></i><span>Student Offense</span></a>
+
+                     <li>
+                        <a href="{{ url('/stud_offense') }}" class="waves-effect"><i class="md md-assignment-late"></i><span>Student Offense</span></a>
                     </li>
+
                     <li class="has_sub">
                         <a href="#" class="waves-effect"><i class="md md-perm-data-setting"></i><span>File Maintenance </span><span class="pull-right"><i class="md md-add"></i></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="{{url('/violation')}}"><i class="md md-my-library-books"></i> Violations</a></li>
+                            <li><a href="{{url('/violation')}}"><i class="ion-ios7-paper"></i> Violations</a></li>
                             <li><a href="{{url('/section')}}"><i class="md md-format-list-numbered"></i> Sections</a></li>
                             <li><a href="{{url('/schoolyear')}}"><i class="md md-event-available"></i> School Year</a></li>
                         </ul>
@@ -43,11 +45,15 @@
                     </li>
 
                      <li>
-                        <a href="{{ url('/stud_offense') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>Stud Offense</span></a>
+                        <a href="{{url('/offense_records')}}" class="waves-effect"><i class="ion-android-book"></i><span>Stud. Offense Records</span></a>
                     </li>
 
-                    <li>
-                        <a href="javascript:;" class="waves-effect"><i class="md md-textsms"></i><span>Send SMS </span></a>
+                    <li class="has_sub">
+                         <a href="#" class="waves-effect"><i class="md md-textsms"></i><span>SMS</span><span class="pull-right"><i class="md md-add"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{url('/srcomposemsg')}}"><i class="fa fa-pencil"></i> Compose Message</a></li>
+                            <li><a href="{{url('/srcontacts')}}"><i class="md-contacts"></i> Contacts</a></li>
+                        </ul>
                     </li>
 
                      <li>

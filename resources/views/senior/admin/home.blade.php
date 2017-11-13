@@ -19,18 +19,18 @@
                 <span class="mini-stat-icon"><i class="ion-ios7-paper"></i></span>
                 <div class="mini-stat-info text-right">
                     <span class="counter">15852</span>
-                    Total Sales
+                    Number of Violations
                 </div>
                 <div class="tiles-progress">
                     <div class="m-t-20">
-                        <h5 class="text-center text-uppercase text-white m-0">Violations <span class="pull-right">235</span></h5>
+                        <h5 class="text-center text-uppercase text-white m-0">Violations</h5>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6 col-lg-3">
             <div class="mini-stat clearfix bg-info bx-shadow">
-                <span class="mini-stat-icon"><i class="ion-person-stalker"></i></span>
+                <span class="mini-stat-icon"><i class="ion-ios7-people"></i></span>
                 <div class="mini-stat-info text-right">
                     <span class="counter">956</span>
                     Number of Students
@@ -45,7 +45,7 @@
         
         <div class="col-sm-6 col-lg-3">
             <div class="mini-stat clearfix bg-pink bx-shadow">
-                <span class="mini-stat-icon"><i class="ion-ios7-people"></i></span>
+                <span class="mini-stat-icon"><i class="ion-person-stalker"></i></span>
                 <div class="mini-stat-info text-right">
                     <span class="counter">20544</span>
                     Number of Users 
@@ -60,14 +60,14 @@
 
         <div class="col-sm-6 col-lg-3">
             <div class="mini-stat clearfix bg-success bx-shadow">
-                <span class="mini-stat-icon"><i class="ion-ios7-cloudy-night"></i></span>
+                <span class="mini-stat-icon"><i class="ion-android-book"></i></span>
                 <div class="mini-stat-info text-right">
                     <span class="counter">5210</span>
-                    New Users
+                    Number of Records
                 </div>
                 <div class="tiles-progress">
                     <div class="m-t-20">
-                        <h5 class="text-center text-uppercase text-white m-0">Last month's Users</h5>
+                        <h5 class="text-center text-uppercase text-white m-0">Student Offense Records</h5>
                     </div>
                 </div>
             </div>

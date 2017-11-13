@@ -1,304 +1,160 @@
-{{-- Add Student --}}
-<div id="student-add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+{{-- Student Profile --}}
+<div id="select-student" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog"> 
         <div class="modal-content"> 
             <div class="modal-header"> 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Add Student</h4> 
-            </div> 
-            <div class="modal-body"> 
-                <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">ID No.</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-2" class="control-label">School Year</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>2017-2018</option>
-                                  <option>2016-2017</option>
-                                  <option>2015-2016</option>
-                                  <option>2014-2015</option>
-                                  <option>2013-2014</option>
-                            </select>
-                        </div>
-                    </div> 
-                </div>
-                <div class="row"> 
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">First Name</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Middle Name</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
-                    </div>
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Last Name</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
-                    </div> 
-                </div>
-                 <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">Age</label> 
-                            <input type="number" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Gender</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
-                    </div>
-                </div> 
-                <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">Adviser</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Grade &amp; Section</label> 
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>12 - Falcata</option>
-                                  <option>12 - Salome</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Falcata</option>
-                                  <option>11 - Falcata</option>
-                                  <option>11 - Falcata</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                            </select>
-                        </div> 
-                    </div>
-                </div> 
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">Address</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
-            </div> 
-        </div> 
-    </div>
-</div>
-
-{{-- Update Student --}}
-<div id="student-update" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Update Student</h4> 
-            </div> 
-            <div class="modal-body"> 
-                <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">ID No.</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-2" class="control-label">School Year</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>2017-2018</option>
-                                  <option>2016-2017</option>
-                                  <option>2015-2016</option>
-                                  <option>2014-2015</option>
-                                  <option>2013-2014</option>
-                            </select>
-                        </div>
-                    </div> 
-                </div>
-                <div class="row"> 
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">First Name</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Middle Name</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
-                    </div>
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Last Name</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
-                    </div> 
-                </div>
-                 <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">Age</label> 
-                            <input type="number" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Gender</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
-                    </div>
-                </div>
-                <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">Adviser</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Grade &amp; Section</label> 
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>12 - Falcata</option>
-                                  <option>12 - Salome</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Falcata</option>
-                                  <option>11 - Falcata</option>
-                                  <option>11 - Falcata</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                            </select>
-                        </div> 
-                    </div>
-                </div>  
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">Address</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Save Changes</button> 
-            </div> 
-        </div> 
-    </div>
-</div>
-
-
-{{-- Add Grade/Section --}}
-<div id="section-add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Add Section</h4> 
+                <h4 class="modal-title">Select Student Information</h4> 
             </div> 
             <div class="modal-body"> 
                 <div class="row">
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Grade</label> 
-                            <input type="text" class="form-control" id="field-3">
-                        </div> 
+                    <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <table id="datatable" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Student ID</th>
+                                    <th>School-Year</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Adviser</th>
+                                    <th>Grade &amp; Section</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801721</td>
+                                    <td>2017-2018</td>
+                                    <td>Tiger Nixon</td>
+                                    <td>61</td>
+                                    <td>Male</td>
+                                    <td>Rocky</td>
+                                    <td>12 - System Architect</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000806991</td>
+                                    <td>2017-2018</td>
+                                    <td>Garrett Winters</td>
+                                    <td>63</td>
+                                    <td>Male</td>
+                                    <td>Rocky</td>
+                                    <td>11 - Accountant</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801021</td>
+                                    <td>2017-2018</td>
+                                    <td>Ashton Cox</td>
+                                    <td>66</td>
+                                    <td>Male</td>
+                                    <td>Rocky</td>
+                                    <td>12 - Junior Technical Author</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801081</td>
+                                    <td>2017-2018</td>
+                                    <td>Cedric Kelly</td>
+                                    <td>22</td>
+                                    <td>Male</td>
+                                    <td>Rocky</td>
+                                    <td>12 - Senior Javascript Developer</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801555</td>
+                                    <td>2017-2018</td>
+                                    <td>Airi Satou</td>
+                                    <td>33</td>
+                                    <td>Female</td>
+                                    <td>Rocky</td>
+                                    <td>12 - Accountant</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801091</td>
+                                    <td>2017-2018</td>
+                                    <td>Brielle William</td>
+                                    <td>61</td>
+                                    <td>Female</td>
+                                    <td>Rocky</td>
+                                    <td>11 - Integration Specialist</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801121</td>
+                                    <td>2017-2018</td>
+                                    <td>Herrod Chandler</td>
+                                    <td>59</td>
+                                    <td>Female</td>
+                                    <td>Rocky</td>
+                                    <td>11 - Sales Assistant</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801221</td>
+                                    <td>2017-2018</td>
+                                    <td>Rhona Davidson</td>
+                                    <td>55</td>
+                                    <td>Male</td>
+                                    <td>Rocky</td>
+                                    <td>11 - Integration Specialist</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801841</td>
+                                    <td>2017-2018</td>
+                                    <td>Colleen Hurst</td>
+                                    <td>39</td>
+                                    <td>Female</td>
+                                    <td>Rocky</td>
+                                    <td>12 - Javascript Developer</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801761</td>
+                                    <td>2017-2018</td>
+                                    <td>Sonya Frost</td>
+                                    <td>23</td>
+                                    <td>Female</td>
+                                    <td>Rocky</td>
+                                    <td>12 - Software Engineer</td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""></td>
+                                    <td>1000801021</td>
+                                    <td>2017-2018</td>
+                                    <td>Jena Gaines</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>Rocky</td>
+                                    <td>12 - Office Manager</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">Section</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
+               
+                </div>
+          
             <div class="modal-footer"><br> 
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
+                <button type="button" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Select Student</button> 
             </div> 
         </div> 
     </div>
 </div>
-
-{{-- Update Grade/Section --}}
-<div id="section-update" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Update Section</h4> 
-            </div> 
-            <div class="modal-body"> 
-                <div class="row">
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Grade</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div>
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">Section</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
-            </div> 
-        </div> 
-    </div>
 </div>
-
-{{-- Delete Grade/Section --}}
-<div id="section-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Delete Section</h4> 
-            </div> 
-            <div class="modal-body"> 
-                <p>Are you sure you want to delete this section ?</p>
-            </div>
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"> Cancel</button> 
-                <button type="button" class="btn btn-danger waves-effect waves-light"><i class="ion-trash-b"></i> Delete</button> 
-            </div> 
-        </div> 
-    </div>
-</div>
-

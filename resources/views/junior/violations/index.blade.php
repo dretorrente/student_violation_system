@@ -8,7 +8,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="{{url('/home')}}">Dashboard</a></li>
-                        <li><a href="#">Violations &amp; Sanctions</a></li>
+                        <li>Violations &amp; Sanctions</li>
                     </ol>
                 </div>
             </div>

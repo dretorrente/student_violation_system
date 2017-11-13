@@ -1,4 +1,3 @@
-
 @extends('senior.admin.layouts.dashboard')
 @section('title', 'School Year | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
@@ -8,16 +7,15 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">School Year</a></li>
+                        <li>School Year</li>
                     </ol>
                 </div>
             </div>
-
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">List of School Year</h3>
+                <h3 class="panel-title">List of Section</h3>
             </div>
 
         <div class="col-lg-6 pull-right">
@@ -34,32 +32,34 @@
                         <table id="datatable" class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>ID</th>
                                     <th>School Year</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>2017-2018</td>
+                                    <td>12 - Salome</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#sy-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#sy-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>2015-2016</td>
+                                    <td>11 - Salome</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#sy-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#sy-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>2016-2017</td>
+                                    <td>12 - Falcata</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#sy-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#sy-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
-                                    <td>2016-2017</td>
+                                    <td>11 - ICT</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#sy-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#sy-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
                                 </tr>
@@ -71,7 +71,7 @@
             </div>
         </div>
     </div>
-</div> <!-- End Row -->
+</div>
             <div style="visibility: hidden;" class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -100,9 +100,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+      </div>
+</div>
 @section('footer')
-    @include('senior.schoolyear.includes.footer')
+    @include('senior.student.includes.footer')
 @show
 @endsection

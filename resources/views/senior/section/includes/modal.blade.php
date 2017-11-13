@@ -55,7 +55,7 @@
             </div> 
             <div class="modal-footer"><br> 
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
+                <button type="button" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Save Changes</button> 
             </div> 
         </div> 
     </div>

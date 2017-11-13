@@ -6,12 +6,18 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
- 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
- 	<meta content="Dashboard" name="POD-Devs" />
- 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
- 	<link rel="shortcut icon" href="assets/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="Dashboard" name="POD-Devs" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
     <!-- Plugins css -->
     <link href="{{asset('assets/plugins/modal-effect/css/component.css')}}" rel="stylesheet">
+
+    <link href="{{asset('assets/plugins/tagsinput/jquery.tagsinput.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/plugins/jquery-multi-select/multi-select.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/plugins/select2/dist/css/select2.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/plugins/select2/dist/css/select2-bootstrap.css')}}" rel="stylesheet" type="text/css">
+
     <!-- DataTables -->
     <link href="{{asset('assets/plugins/datatables/jquery.dataTables.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/plugins/datatables/buttons.bootstrap.min.css')}}" rel="stylesheet" type="text/css">
@@ -26,16 +32,16 @@
     <link href="{{asset('assets/css/pages.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/menu2.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet">
- 	
-    <!-- Plugins css -->
-   {{--  <link href="{{ asset('assets/plugins/modal-effect/css/component.css') }}" rel="stylesheet"> --}}
 
- 	<script src="{{asset('assets/js/modernizr.min.js')}}"></script>
+    <!-- Plugins css -->
+    {{--  <link href="{{ asset('assets/plugins/modal-effect/css/component.css') }}" rel="stylesheet"> --}}
+
+    <script src="{{asset('assets/js/modernizr.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
- 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>

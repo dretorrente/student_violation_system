@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOffenseRecordsTable extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateOffenseRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('offense_records');
-        
-        Schema::create('offense_records', function (Blueprint $table) {
+        Schema::dropIfExists('contacts');
+
+        Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('student_id');
-            $table->dateTime('date_commit');
-            $table->integer('category_id');
-            $table->integer('offense_id');
-            $table->rememberToken();
+            $table->string('name');
+            $table->string('contact_no');
             $table->timestamps();
         });
     }

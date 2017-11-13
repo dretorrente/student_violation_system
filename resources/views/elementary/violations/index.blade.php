@@ -56,7 +56,7 @@
                             <tbody>
                                 @foreach($violations as $violation)
                                 <tr>
-                                    <td id="category-{{ $violation->id }}">{{ $violation->category }}</td>
+                                    <td id="category-{{ $violation->id }}">{{Config::get('constants.violation_name.'.$violation->category)}}</td>
                                     <td id="violation-{{ $violation->id }}">{{ $violation->violation }}</td>
                                     <td id="first-{{ $violation->id }}">{{ $violation->first_sanction }}</td>
                                     <td id="second-{{ $violation->id }}">{{ $violation->second_sanction }}</td>
@@ -66,7 +66,7 @@
                                     <td id="sixth-{{ $violation->id }}">{{ $violation->sixth_sanction }}</td>
                                     <td id="seventh-{{ $violation->id }}">{{ $violation->seventh_sanction }}</td>
                                     <td><button data-tooltip='tooltip' data-placement='top' data-original-title='Update' data-toggle='modal' data-target='#violation-update' type='button' class='btn-xs btn btn-purple waves-effect waves-light m-b-5 update' id="{{ $violation->id }}"><i class='md md-border-color'></i></button>
-                                    <button data-tooltip='tooltip' data-placement='top' data-original-title='Delete' data-toggle='modal' data-target='#violation-delete' type='button' class='btn-xs btn btn-danger waves-effect waves-light m-b-5 delete' id="{{ $violation->id }}"><i class='md md-delete'"></i></button></td>
+                                    <button data-tooltip='tooltip' data-placement='top' data-original-title='Delete' data-toggle='modal' data-target='#violation-delete' type='button' class='btn-xs btn btn-danger waves-effect waves-light m-b-5 delete' id="{{ $violation->id }}"><i class="'md md-delete'"></i></button></td>
                                 </tr>
                                 @endforeach
                             </tbody>
