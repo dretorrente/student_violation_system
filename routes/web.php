@@ -117,6 +117,16 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'   => 'elem.userAdd'
     ]);
 
+    Route::match(['get', 'post'], '/elementary/users_delete/{id}',[
+        'uses' => 'UserController@elem_delete_management',
+        'as'   => 'elem.deleteUser'
+    ]);
+
+    Route::match(['get', 'post'], '/elementary/users_update',[
+        'uses' => 'UserController@elem_management_update',
+        'as'   => 'elem.userUpdate'
+    ]);
+
     Route::get('/elementary/settings', [
         'uses' => 'UserController@setting_elem'
     ]);
@@ -208,9 +218,20 @@ Route::group(['middleware' =>['auth.shs']], function() {
         return view('senior.auth.forgot');
     });
 
-    Route::get('/senior/student', function () {
-        return view('senior.student.index');
-    });
+    Route::get('/senior/students/', [
+        'uses'  => 'StudentController@student_senior'
+    ]);
+
+    Route::post('/senior/students', [
+        'uses'  => 'StudentController@add_senior_elem',
+        'as'    => 'elem.senioradd'
+    ]);
+
+    Route::post('/senior/student/update',[
+        'uses' => 'StudentController@update_student_senior',
+        'as'   => 'elem.updateStudent'
+    ]);
+
     Route::get('/senior/offense', function () {
         return view('senior.stud_offense.index');
     });

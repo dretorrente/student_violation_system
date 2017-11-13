@@ -6,6 +6,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                 <h4 class="modal-title">Add Student</h4> 
             </div> 
+            <form action="{{ route('elem.senioradd')}}" method="post">
+                {{csrf_field()}}
             <div class="modal-body"> 
                 <div class="row"> 
                     <div class="col-md-6"> 
@@ -18,202 +20,192 @@
                         <div class="form-group">
                             <label for="field-2" class="control-label">School Year</label>
                             <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>2017-2018</option>
-                                  <option>2016-2017</option>
-                                  <option>2015-2016</option>
-                                  <option>2014-2015</option>
-                                  <option>2013-2014</option>
+                                <option selected disabled>Please select school year</option>
+                                @foreach($school_years as $school_year)
+                                <option value="{{$school_year->id}}">{{$school_year->school_year}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div> 
                 </div>
-                <div class="row"> 
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">First Name</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Middle Name</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">First Name</label>
+                            <input type="text" name="first_name" id="first_name" class="form-control">
+                        </div>
                     </div>
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Last Name</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
-                    </div> 
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">Middle Name</label>
+                            <input type="text" name="middle_name" class="form-control" id="middle_name">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">Last Name</label>
+                            <input type="text" name="last_name" id="last_name" class="form-control" id="field-2">
+                        </div>
+                    </div>
                 </div>
-                 <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">Age</label> 
-                            <input type="number" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Gender</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">Age</label>
+                            <input type="number" name="age" id="age" class="form-control" id="field-1">
+                        </div>
                     </div>
-                </div> 
-                <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">Adviser</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Grade &amp; Section</label> 
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>12 - Falcata</option>
-                                  <option>12 - Salome</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Falcata</option>
-                                  <option>11 - Falcata</option>
-                                  <option>11 - Falcata</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">Gender</label>
+                            <select class="form-control" id="gender" name="gender">
+                                <option selected disabled>Please select gender</option>
+                                <option value="{{Config::get('constants.gender_name.male')}}">Male</option>
+                                <option value="{{Config::get('constants.gender_name.female')}}">Female</option>
                             </select>
-                        </div> 
+                        </div>
                     </div>
-                </div> 
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">Address</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">Adviser</label>
+                            <input type="text" name="adviser" id="adviser" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-2" class="control-label">Grade &amp; Section</label>
+                            <select class="form-control" id="section_id" name="section_id">
+                                <option selected disabled>Please select Grade & Section</option>
+                            @foreach($sections as $section)
+                                <option value="{{$section->grade}} - {{$section->section}}">{{$section->grade}} - {{$section->section}}</option>
+                            @endforeach
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-3" class="control-label">Address</label>
+                            <input type="text" name="address" id="address" class="form-control">
+                        </div>
+                    </div>
                 </div> 
             </div> 
             <div class="modal-footer"><br> 
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
+                <button type="submit" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
             </div> 
+            </form>
         </div> 
     </div>
 </div>
 
 {{-- Update Student --}}
-<div id="student-update" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="student-update" class="modal fade student-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog"> 
         <div class="modal-content"> 
             <div class="modal-header"> 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                 <h4 class="modal-title">Update Student</h4> 
-            </div> 
-            <div class="modal-body"> 
-                <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">ID No.</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-2" class="control-label">School Year</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>2017-2018</option>
-                                  <option>2016-2017</option>
-                                  <option>2015-2016</option>
-                                  <option>2014-2015</option>
-                                  <option>2013-2014</option>
-                            </select>
+            </div>
+            <form action="{{ route('elem.updateStudent')}}" method="post">
+                {{csrf_field()}}
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">ID No.</label>
+                                <input type="text" name="student_id" class="form-control" id="student_id" required="required">
+                            </div>
                         </div>
-                    </div> 
-                </div>
-                <div class="row"> 
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">First Name</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Middle Name</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">School Year</label>
+                                <select class="form-control" name="sy_id" id="sy_id">
+                                    <option selected disabled>Please select school year</option>
+                                    @foreach($school_years as $school_year)
+                                        <option value="{{$school_year->id}}">{{$school_year->school_year}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Last Name</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
-                    </div> 
-                </div>
-                 <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">Age</label> 
-                            <input type="number" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Gender</label> 
-                            <input type="text" class="form-control" id="field-2"> 
-                        </div> 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label" >First Name</label>
+                                <input type="text" name="first_name" class="form-control" id="first_name" required="required">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Middle Name</label>
+                                <input type="text" name="middle_name" class="form-control" id="middle_name">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" required="required">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Age</label>
+                                <input type="number" name="age" class="form-control" id="age" required="required">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Gender</label>
+                                <select class="form-control" id="gender" name="gender">
+                                    <option selected disabled>Please select gender</option>
+                                    <option value="{{Config::get('constants.gender_name.male')}}">Male</option>
+                                    <option value="{{Config::get('constants.gender_name.female')}}">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Adviser</label>
+                                <input type="text" name="adviser" class="form-control" id="adviser" required="required">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Grade &amp; Section</label>
+                                <select class="form-control" id="section_id" name="section_id">
+                                    <option selected disabled>Please select Grade & Section</option>
+                                    @foreach($sections as $section)
+                                        <option value="{{$section->grade}} - {{$section->section}}">{{$section->grade}} - {{$section->section}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-3" class="control-label">Address</label>
+                                <input type="text" name="address" class="form-control" id="address" required="required">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row"> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-1" class="control-label">Adviser</label> 
-                            <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div> 
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Grade &amp; Section</label> 
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>12 - Falcata</option>
-                                  <option>12 - Salome</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Compassion</option>
-                                  <option>12 - Falcata</option>
-                                  <option>11 - Falcata</option>
-                                  <option>11 - Falcata</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                                  <option>11 - Salome</option>
-                            </select>
-                        </div> 
-                    </div>
-                </div>  
-                <div class="row"> 
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">Address</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Save Changes</button> 
-            </div> 
+                <input type="hidden" name="id" id="hiddenStudent" class="form-control">
+                <div class="modal-footer"><br>
+                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button>
+                    <button type="submit" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Save Changes</button>
+                </div>
+            </form>
         </div> 
     </div>
 </div>
@@ -296,7 +288,7 @@
             </div>
             <div class="modal-footer"><br> 
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"> Cancel</button> 
-                <button type="button" class="btn btn-danger waves-effect waves-light"><i class="ion-trash-b"></i> Delete</button> 
+                <button type="button" class="btn btn-danger waves-effect waves-light confirmation"><i class="ion-trash-b"></i> Delete</button>
             </div> 
         </div> 
     </div>

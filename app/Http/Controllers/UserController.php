@@ -124,6 +124,38 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * elementary users management update
+     * @return [type] [description]
+     */
+    public function elem_management_update(request $request) {
+        $user = User::find($request['id']);
+        if ($user) {
+            $user->email = $request['email'];
+            $user->username = $request['username'];
+            $user->role = $request['role'];
+            $user->save();
+            Session::flash('message','Your users has been succesfully update!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/elementary/users/');
+        }
+    }
+
+    /**
+     * 
+     */
+    public function elem_delete_management($id) {
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            Session::flash('message','Your user has been deleted!');
+            Session::flash('alert-class', 'alert-info'); 
+            return redirect('/elementary/users/');
+        } else {
+            return redirect('/elementary/users/');
+        }
+    }
+
     public function logout() {
         Auth::logout();
         return redirect()->route('signin');

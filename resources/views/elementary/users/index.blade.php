@@ -3,6 +3,12 @@
 @section('title', 'User Management | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
     <div class="content">
+        @if (Session::has('message'))
+            <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ Session::get('message') }}
+            </div>
+        @endif
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -48,11 +54,11 @@
                                         @foreach($users as $user)
                                         <tr>
                                             <td>{{ $user->id }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->username }}</td>
-                                            <td>{{ $user->role }}</td>
-                                            <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#user-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                                <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#user-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
+                                            <td id="email-{{ $user->id }}">{{ $user->email }}</td>
+                                            <td id="username-{{ $user->id }}">{{ $user->username }}</td>
+                                            <td id="role-{{ $user->id }}">{{ $user->role }}</td>
+                                            <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#user-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $user->id }}"><i class="md md-border-color"></i></button>
+                                            <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#user-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5 delete" id="{{ $user->id }}" ><i class="md md-delete"></i></button></td>
                                         </tr>
                                         @endforeach
                                         </tbody>
@@ -97,4 +103,24 @@
 @section('footer')
     @include('elementary.student.includes.footer')
 @show
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete').on('click', function(){
+            var id = $(this).attr('id');
+            $('.confirmation').data('id',id);
+        });
+
+        $('.confirmation').on('click', function(){
+            window.location.href = "/elementary/users_delete/"+$(this).data('id');
+        });
+        
+        $('.update').on('click', function(){
+            var id = $(this).attr('id');
+            $('#email').val($('#email-'+id).text());
+            $('#role').val($('#role-'+id).text());
+            $('#username').val($('#username-'+id).text());
+            $('input[name=id]').val(id);
+        })
+    });
+</script>
 @endsection
