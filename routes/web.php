@@ -154,6 +154,11 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses' => 'ContactController@sms_compose_elem'
     ]);
 
+    Route::post('/elementary/compose', [
+        'uses' => 'ContactController@sms_send_elem',
+        'as'   => 'elem.sendSMS'
+    ]);
+
     Route::post('/elementary/contacts', [
         'uses'  => 'ContactController@add_contact_elem',
         'as'    => 'elem.contactadd'

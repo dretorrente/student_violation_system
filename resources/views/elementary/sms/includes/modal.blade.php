@@ -13,13 +13,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Name</label>
-                                <input type="text" name="name" class="form-control" id="field-3">
+                                <input type="text" name="name" class="form-control" id="field-3" required="required">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-3" class="control-label">Contact no.</label>
-                                <input type="text" name="contact_no" class="form-control" id="field-3">
+                                <input type="text" name="contact_no" class="form-control" id="field-3" placeholder="Ex. 91912345678" required="required">
                             </div>
                         </div>
                     </div>
