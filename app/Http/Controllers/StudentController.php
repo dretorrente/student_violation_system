@@ -18,7 +18,7 @@ class StudentController extends Controller
                     ->select('students.*', 'school_years.school_year')
                     ->where('students.group_id', '=', 3)
                     ->get();
-        return view('elementary.student.index',['sections' => $sections],['school_years' => $school_years,'students'=>$students]);
+        return view('elementary.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
     }
     public function add_student_elem(Request $request){
         if ($request->isMethod('post')) {

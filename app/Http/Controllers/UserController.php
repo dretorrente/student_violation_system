@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Offense;
 use Hash;
 use DB;
 use Mail;
