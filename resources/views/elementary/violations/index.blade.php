@@ -66,7 +66,7 @@
                                     <td id="sixth-{{ $violation->id }}">{{ $violation->sixth_sanction }}</td>
                                     <td id="seventh-{{ $violation->id }}">{{ $violation->seventh_sanction }}</td>
                                     <td><button data-tooltip='tooltip' data-placement='top' data-original-title='Update' data-toggle='modal' data-target='#violation-update' type='button' class='btn-xs btn btn-purple waves-effect waves-light m-b-5 update' id="{{ $violation->id }}"><i class='md md-border-color'></i></button>
-                                    <button data-tooltip='tooltip' data-placement='top' data-original-title='Delete' data-toggle='modal' data-target='#violation-delete' type='button' class='btn-xs btn btn-danger waves-effect waves-light m-b-5 delete' id="{{ $violation->id }}"><i class="'md md-delete'"></i></button></td>
+                                    <button data-tooltip='tooltip' data-placement='top' data-original-title='Delete' data-toggle='modal' data-target='#violation-delete' type='button' class='btn-xs btn btn-danger waves-effect waves-light m-b-5 delete' id="{{ $violation->id }}"><i class="md md-delete"></i></button></td>
                                 </tr>
                                 @endforeach
                             </tbody>

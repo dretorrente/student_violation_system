@@ -47,4 +47,53 @@ class StudentController extends Controller
             return redirect('/elementary/students/');
         }
     }
+
+    // Senior high school
+
+    /**
+     * senior high dashboard
+     */
+    public function student_senior(){
+        $sections = Section::all();
+        $school_years = SchoolYear::all();
+        $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->select('students.*', 'school_years.school_year')
+                    ->where('students.group_id', '=', 1)
+                    ->get();
+        return view('senior.student.index',['sections' => $sections],['school_years' => $school_years,'students'=>$students]);
+    }
+
+    /**
+     * Senior high add students
+     */
+    public function add_senior_elem(Request $request){
+        if ($request->isMethod('post')) {
+            $students = new Student();
+            $students->fill($request->all());
+            $students->group_id = Auth::user()['group_id'];
+            if($students->save()){
+                Session::flash('message','Your student has been succesfully added!');
+                Session::flash('alert-class', 'alert-info');
+                return redirect('/senior/students/');
+            }
+
+        }
+    }
+
+    /**
+     * Senior high update students
+     */
+    public function update_student_senior(Request $request) {
+        $update = Student::find($request['id']);
+        if ($update) {
+            $update->fill($request->all());
+            $update->save();
+            Session::flash('message','Your student has been succesfully update!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/senior/students/');
+        } else {
+            return redirect('/senior/students/');
+        }
+    }
 }
