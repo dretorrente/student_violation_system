@@ -3,12 +3,18 @@
 @section('title', 'Student Management | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
 <div class="content">
+    @if (Session::has('message'))
+        <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ Session::get('message') }}
+        </div>
+    @endif
    <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li>Student Management</li>
+                        <li><a href="#">Students</a></li>
                     </ol>
                 </div>
             </div>
@@ -54,148 +60,38 @@
                                     <th>#</th>
                                     <th>Student ID</th>
                                     <th>School-Year</th>
-                                    <th>Name</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name</th>
+                                    <th>Last Name</th>
                                     <th>Age</th>
                                     <th>Gender</th>
                                     <th>Adviser</th>
                                     <th>Grade &amp; Section</th>
+                                    <th>Address</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1000801721</td>
-                                    <td>2017-2018</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>61</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - System Architect</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>1000806991</td>
-                                    <td>2017-2018</td>
-                                    <td>Garrett Winters</td>
-                                    <td>63</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Accountant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>1000801021</td>
-                                    <td>2017-2018</td>
-                                    <td>Ashton Cox</td>
-                                    <td>66</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Junior Technical Author</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>1000801081</td>
-                                    <td>2017-2018</td>
-                                    <td>Cedric Kelly</td>
-                                    <td>22</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Senior Javascript Developer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>1000801555</td>
-                                    <td>2017-2018</td>
-                                    <td>Airi Satou</td>
-                                    <td>33</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Accountant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>1000801091</td>
-                                    <td>2017-2018</td>
-                                    <td>Brielle William</td>
-                                    <td>61</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Integration Specialist</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>1000801121</td>
-                                    <td>2017-2018</td>
-                                    <td>Herrod Chandler</td>
-                                    <td>59</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Sales Assistant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>1000801221</td>
-                                    <td>2017-2018</td>
-                                    <td>Rhona Davidson</td>
-                                    <td>55</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Integration Specialist</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>1000801841</td>
-                                    <td>2017-2018</td>
-                                    <td>Colleen Hurst</td>
-                                    <td>39</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Javascript Developer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>1000801761</td>
-                                    <td>2017-2018</td>
-                                    <td>Sonya Frost</td>
-                                    <td>23</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Software Engineer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>1000801021</td>
-                                    <td>2017-2018</td>
-                                    <td>Jena Gaines</td>
-                                    <td>30</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Office Manager</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                   
-                                </tr>
+                                @foreach($students as $student)
+                                    <tr>
+                                        <td>{{$student->id}}</td>
+                                        <td>{{$student->student_id}}</td>
+                                        <td>{{$student->school_year}}</td>
+                                        <td>{{$student->first_name}}</td>
+                                        <td>{{$student->middle_name}}</td>
+                                        <td>{{$student->last_name}}</td>
+                                        <td>{{$student->age}}</td>
+                                        <td>{{Config::get('constants.gender.'.$student->gender)}}</td>
+                                        <td>{{$student->adviser}}</td>
+                                        <td>{{$student->section_id}}</td>
+                                        <td>{{$student->address}}</td>
+                                        <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
+                                        <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                        <input type="hidden" value="{{$student->sy_id}}">
+                                        <input type="hidden" value="{{$student->gender}}">
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -235,6 +131,47 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete').on('click', function(){
+            var id = $(this).attr('id');
+            $('.confirmation').data('id',id);
+        });
+
+        $('.confirmation').on('click', function(){
+            window.location.href = "/junior/delete/"+$(this).data('id');
+        });
+        $('.update').on('click', function(){
+            var parent = $(this).parent().parent();
+            var id = $(':nth-child(1)', parent).text();
+            var studentID = $(':nth-child(2)', parent).html();
+            var first_name =  $(':nth-child(4)', parent).text();
+            var middle_name =  $(':nth-child(5)', parent).text();
+            var last_name =  $(':nth-child(6)', parent).text();
+            var age =  $(':nth-child(7)', parent).text();
+            var gender =  $(':nth-child(14)', parent).val();
+            var adviser =  $(':nth-child(9)', parent).text();
+            var section =  $(':nth-child(10)', parent).text();
+            var address =  $(':nth-child(11)', parent).text();
+            var school_year = $(':nth-child(13)', parent).val();
+            $('#student-update #student_id').val(studentID);
+            $('#student-update #first_name').val(first_name);
+            $('#student-update #middle_name').val(middle_name);
+            $('#student-update #last_name').val(last_name);
+            $('#student-update #age').val(age);
+            $('#student-update #gender').val(gender);
+            $('#student-update #adviser').val(adviser);
+            $('#student-update #address').val(address);
+            $('#student-update #sy_id').val(school_year);
+            $('#student-update #section_id').val(section);
+            $('#student-update #gender').val(gender);
+            $('#student-update #hiddenStudent').val(id);
+        });
+    });
+</script>
+
+
 @section('footer')
     @include('junior.student.includes.footer')
 @show

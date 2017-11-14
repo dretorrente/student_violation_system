@@ -2,20 +2,14 @@
         <div class="sidebar-inner slimscrollleft">
             <div class="user-details">
                 <div class="pull-left">
-                    <img src="assets/images/users/cus8.png" alt="" class="thumb-md img-circle">
+                    <img src="{{asset('assets/images/users/cus8.png')}}" alt="" class="thumb-md img-circle">
                 </div>
                 <div class="user-info">
                     <div class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Rocky <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)"><i class="md md-face-unlock"></i> Profile<div class="ripple-wrapper"></div></a></li>
-                            <li><a href="javascript:void(0)"><i class="md md-settings"></i> Settings</a></li>
-                            <li><a href="javascript:void(0)"><i class="md md-lock"></i> Lock screen</a></li>
-                            <li><a href="{{ url('/') }}"><i class="md md-settings-power"></i> Logout</a></li>
-                        </ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{Auth::User()->username}}</a>
                     </div>
                     
-                    <p style="color:#fff;" class="text-muted m-0">Administrator</p>
+                    <p style="color:#fff;" class="text-muted m-0">{{ucfirst(Auth::User()->role)}}</p>
                 </div>
             </div>
             <!--- Divider -->

@@ -9,7 +9,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{Auth::User()->username}}</a>
                     </div>
                     
-                    <p style="color:#fff;" class="text-muted m-0">Administrator</p>
+                    <p style="color:#fff;" class="text-muted m-0">{{ucfirst(Auth::User()->role)}}</p>
                 </div>
             </div>
             <!--- Divider -->

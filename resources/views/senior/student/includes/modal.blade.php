@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                 <h4 class="modal-title">Add Student</h4> 
             </div> 
-            <form action="{{ route('elem.senioradd')}}" method="post">
+            <form action="{{ route('senior.offenseadd')}}" method="post">
                 {{csrf_field()}}
             <div class="modal-body"> 
                 <div class="row"> 
@@ -112,7 +112,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                 <h4 class="modal-title">Update Student</h4> 
             </div>
-            <form action="{{ route('elem.updateStudent')}}" method="post">
+            <form action="{{ route('senior.updateStudent')}}" method="post">
                 {{csrf_field()}}
                 <div class="modal-body">
                     <div class="row">

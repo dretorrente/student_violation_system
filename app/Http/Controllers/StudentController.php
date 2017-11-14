@@ -67,7 +67,7 @@ class StudentController extends Controller
     /**
      * Senior high add students
      */
-    public function add_senior_elem(Request $request){
+    public function add_student_senior(Request $request){
         if ($request->isMethod('post')) {
             $students = new Student();
             $students->fill($request->all());
@@ -94,6 +94,55 @@ class StudentController extends Controller
             return redirect('/senior/students/');
         } else {
             return redirect('/senior/students/');
+        }
+    }
+
+    // Junior high school
+
+    /**
+     * Junior high dashboard
+     */
+    public function student_junior(){
+        $sections = Section::all();
+        $school_years = SchoolYear::all();
+        $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->select('students.*', 'school_years.school_year')
+                    ->where('students.group_id', '=', 2)
+                    ->get();
+        return view('junior.student.index',['sections' => $sections],['school_years' => $school_years,'students'=>$students]);
+    }
+
+    /**
+     * Junior high add students
+     */
+    public function add_student_junior(Request $request){
+        if ($request->isMethod('post')) {
+            $students = new Student();
+            $students->fill($request->all());
+            $students->group_id = Auth::user()['group_id'];
+            if($students->save()){
+                Session::flash('message','Your student has been succesfully added!');
+                Session::flash('alert-class', 'alert-info');
+                return redirect('/junior/students/');
+            }
+
+        }
+    }
+
+    /**
+     * Junior high update students
+     */
+    public function update_student_junior(Request $request) {
+        $update = Student::find($request['id']);
+        if ($update) {
+            $update->fill($request->all());
+            $update->save();
+            Session::flash('message','Your student has been succesfully update!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/junior/students/');
+        } else {
+            return redirect('/junior/students/');
         }
     }
 }

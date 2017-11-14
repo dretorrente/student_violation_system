@@ -43,6 +43,15 @@
     </div>
     <div class="row">
         <div class="col-lg-12"> 
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="tab-content profile-tab-content"> 
             <div class="tab-pane active" id="settings-2">
                 <div class="panel panel-default panel-fill">
@@ -50,22 +59,23 @@
                         <h3 class="panel-title">Account Settings</h3> 
                     </div> 
                     <div class="panel-body"> 
-                        <form role="form">
+                        <form role="form" method="POST" action="{{ route('senior.updateSettings')}}">
+                            {{csrf_field()}}
                             <div class="form-group">
                                 <label for="FullName">Full Name</label>
-                                <input type="text" id="FullName" class="form-control">
+                                <input type="text" id="FullName" name="username" class="form-control" value="{{ $user->username }}">
                             </div>
                             <div class="form-group">
                                 <label for="Email">Email</label>
-                                <input type="email" id="Email" class="form-control">
+                                <input type="email" id="Email" name="email" class="form-control" value="{{ $user->email }}">
                             </div>
                             <div class="form-group">
                                 <label for="Password">Password</label>
-                                <input type="password" id="Password" class="form-control" placeholder="6 - 15 Characters">
+                                <input type="password" name="password" id="Password" class="form-control" placeholder="6 - 15 Characters">
                             </div>
                             <div class="form-group">
                                 <label for="RePassword">Confirm Password</label>
-                                <input type="password" id="RePassword" class="form-control" placeholder="6 - 15 Characters">
+                                <input type="password" name="password_confirmation" id="RePassword" class="form-control" placeholder="6 - 15 Characters">
                             </div>
                             <button class="btn btn-success waves-effect waves-light" type="submit"><i class="md md-check"></i> Save Changes</button>
                         </form>
@@ -74,7 +84,7 @@
                 </div>
             </div> 
 
-			<div class="tab-pane" id="home-2"> 
+            <div class="tab-pane" id="home-2"> 
                 <div class="row">
                     <div class="col-md-4">
                         <div class="panel panel-default panel-fill">
@@ -127,6 +137,6 @@
 </div>
 </div>
 @section('footer')
-	@include('senior.student.includes.footer')
+    @include('senior.student.includes.footer')
 @show
 @endsection

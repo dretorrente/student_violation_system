@@ -179,35 +179,127 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses' => 'UserController@home_junior',
         'as'   => 'junior.home'
     ]);
-
-    Route::get('/junior/forgot', function () {
+    Route::get('/forgot', function () {
         return view('junior.auth.forgot');
     });
-   
-    Route::get('/junior/student', function () {
-        return view('junior.student.index');
-    });
-    Route::get('/jrstud_offense', function () {
-        return view('junior.stud_offense.index');
-    });
-    Route::get('/junior/records', function () {
-        return view('junior.offense_records.index');
-    });
-    Route::get('/junior/section', function() {
-       return view('junior.section.index');
-    });
-    Route::get('/junior/users', function() {
-       return view('junior.users.index');
-    });
-    Route::get('/junior/settings', function() {
-       return view('junior.admin.settings');
-    });
-    Route::get('/junior/violation', function() {
-       return view('junior.violations.index');
-    });
-    Route::get('/junior/schoolyear', function() {
-       return view('junior.schoolyear.index');
-    });
+
+    Route::get('/junior/students/', [
+        'uses'  => 'StudentController@student_junior'
+    ]);
+
+    Route::post('/junior/students', [
+        'uses'  => 'StudentController@add_junior_elem',
+        'as'    => 'junior.studentadd'
+    ]);
+
+    Route::post('/junior/student/update',[
+        'uses' => 'StudentController@update_student_junior',
+        'as'   => 'junior.updateStudent'
+    ]);
+
+    Route::get('/junior/violation',[
+        'uses' => 'ViolationController@violation_junior'
+    ]);
+
+    Route::post('/junior/violation',[
+        'uses' => 'ViolationController@add_violation_junior',
+        'as'   => 'junior.addviolation'
+    ]);
+
+    Route::match(['get', 'post'], '/junior/delete/{id}',[
+        'uses' => 'ViolationController@delete_violation_junior',
+        'as'   => 'junior.deleteViolation'
+    ]);
+
+    Route::post('/junior/update/',[
+        'uses' => 'ViolationController@update_violation_junior',
+        'as'   => 'junior.updateViolation'
+    ]);
+
+    Route::get('/junior/section', [
+        'uses'  => 'SectionController@section_junior'
+    ]);
+    Route::post('/junior/section', [
+        'uses'  => 'SectionController@add_section_junior',
+        'as'    => 'junior.sectionadd'
+    ]);
+
+    Route::post('/junior/section/update',[
+        'uses' => 'SectionController@update_section_junior',
+        'as'   => 'junior.updateSection'
+    ]);
+
+    Route::get('/junior/schoolyear',[
+        'uses'  => 'SchoolYearController@schoolyear_junior'
+    ]);
+    Route::post('/junior/schoolyear',[
+        'uses'  => 'SchoolYearController@add_schoolyear_junior',
+        'as'    => 'junior.syadd'
+    ]);
+
+    Route::post('/junior/sy/update',[
+        'uses' => 'SchoolYearController@update_sy_junior',
+        'as'   => 'junior.updateSY'
+    ]);
+
+    Route::get('/junior/users',[
+        'uses' => 'UserController@junior_management'
+    ]);
+
+    Route::match(['get', 'post'], '/junior/users_add',[
+        'uses' => 'UserController@junior_management_add',
+        'as'   => 'junior.userAdd'
+    ]);
+
+    Route::match(['get', 'post'], '/junior/users_delete/{id}',[
+        'uses' => 'UserController@junior_delete_management',
+        'as'   => 'junior.deleteUser'
+    ]);
+
+    Route::match(['get', 'post'], '/junior/users_update/',[
+        'uses' => 'UserController@junior_management_update',
+        'as'   => 'junior.userUpdate'
+    ]);
+
+    Route::get('/junior/offense/',[
+        'uses'  => 'OffenseController@offense_junior',
+    ]);
+
+    Route::post('/junior/offense/',[
+        'uses'  => 'OffenseController@add_offense_junior',
+        'as'    => 'junior.offenseadd'
+    ]);
+
+    Route::get('/junior/records/',[
+        'uses'  => 'OffenseController@offense_records_junior',
+    ]);
+
+    Route::get('/junior/settings', [
+        'uses' => 'UserController@setting_junior'
+    ]);
+
+    Route::post('/junior/edit/',[
+        'uses' => 'UserController@update_junior',
+        'as'   => 'junior.updateSettings'
+    ]);
+
+    Route::get('/junior/contacts', [
+        'uses' => 'ContactController@sms_contact_junior'
+    ]);
+
+    Route::get('/junior/compose', [
+        'uses' => 'ContactController@sms_compose_junior'
+    ]);
+
+    Route::post('/junior/compose', [
+        'uses' => 'ContactController@sms_send_junior',
+        'as'   => 'junior.sendSMS'
+    ]);
+
+    Route::post('/junior/contacts', [
+        'uses'  => 'ContactController@add_contact_junior',
+        'as'    => 'junior.contactadd'
+    ]);
 
     //senior routes
     Route::get('/senior/home', [
@@ -224,38 +316,117 @@ Route::group(['middleware' =>['auth.shs']], function() {
 
     Route::post('/senior/students', [
         'uses'  => 'StudentController@add_senior_elem',
-        'as'    => 'elem.senioradd'
+        'as'    => 'senior.studentadd'
     ]);
 
     Route::post('/senior/student/update',[
         'uses' => 'StudentController@update_student_senior',
-        'as'   => 'elem.updateStudent'
+        'as'   => 'senior.updateStudent'
     ]);
 
-    Route::get('/senior/offense', function () {
-        return view('senior.stud_offense.index');
-    });
-    Route::get('/senior/records', function () {
-        return view('senior.offense_records.index');
-    });
-    Route::get('/senior/section', function() {
-        return view('senior.section.index');
-    });
-    Route::get('/senior/users', function() {
-        return view('senior.users.index');
-    });
-    Route::get('/senior/settings', function() {
-        return view('senior.admin.settings');
-    });
-    Route::get('/senior/violation', function() {
-        return view('senior.violations.index');
-    });
-    Route::get('/senior/schoolyear', function() {
-        return view('senior.schoolyear.index');
-    });
-    Route::get('/senior/resetpass', function() {
-        return view('senior.resetpass.index');
-    });
+    Route::get('/senior/violation',[
+        'uses' => 'ViolationController@violation_senior'
+    ]);
+
+    Route::post('/senior/violation',[
+        'uses' => 'ViolationController@add_violation_senior',
+        'as'   => 'senior.addviolation'
+    ]);
+
+    Route::match(['get', 'post'], '/senior/delete/{id}',[
+        'uses' => 'ViolationController@delete_violation_senior',
+        'as'   => 'senior.deleteViolation'
+    ]);
+
+    Route::post('/senior/update/',[
+        'uses' => 'ViolationController@update_violation_senior',
+        'as'   => 'senior.updateViolation'
+    ]);
+
+    Route::get('/senior/section', [
+        'uses'  => 'SectionController@section_senior'
+    ]);
+    Route::post('/senior/section', [
+        'uses'  => 'SectionController@add_section_senior',
+        'as'    => 'senior.sectionadd'
+    ]);
+
+    Route::post('/senior/section/update',[
+        'uses' => 'SectionController@update_section_senior',
+        'as'   => 'senior.updateSection'
+    ]);
+
+    Route::get('/senior/schoolyear',[
+        'uses'  => 'SchoolYearController@schoolyear_senior'
+    ]);
+    Route::post('/senior/schoolyear',[
+        'uses'  => 'SchoolYearController@add_schoolyear_senior',
+        'as'    => 'senior.syadd'
+    ]);
+
+    Route::post('/senior/sy/update',[
+        'uses' => 'SchoolYearController@update_sy_senior',
+        'as'   => 'senior.updateSY'
+    ]);
+
+    Route::get('/senior/users',[
+        'uses' => 'UserController@senior_management'
+    ]);
+
+    Route::match(['get', 'post'], '/senior/users_add',[
+        'uses' => 'UserController@senior_management_add',
+        'as'   => 'senior.userAdd'
+    ]);
+
+    Route::match(['get', 'post'], '/senior/users_delete/{id}',[
+        'uses' => 'UserController@senior_delete_management',
+        'as'   => 'senior.deleteUser'
+    ]);
+
+    Route::match(['get', 'post'], '/senior/users_update/',[
+        'uses' => 'UserController@senior_management_update',
+        'as'   => 'senior.userUpdate'
+    ]);
+
+    Route::get('/senior/offense/',[
+        'uses'  => 'OffenseController@offense_senior',
+    ]);
+
+    Route::post('/senior/offense/',[
+        'uses'  => 'OffenseController@add_offense_senior',
+        'as'    => 'senior.offenseadd'
+    ]);
+
+    Route::get('/senior/records/',[
+        'uses'  => 'OffenseController@offense_records_senior',
+    ]);
+
+    Route::get('/senior/settings', [
+        'uses' => 'UserController@setting_senior'
+    ]);
+
+    Route::post('/senior/edit/',[
+        'uses' => 'UserController@update_senior',
+        'as'   => 'senior.updateSettings'
+    ]);
+
+    Route::get('/senior/contacts', [
+        'uses' => 'ContactController@sms_contact_senior'
+    ]);
+
+    Route::get('/senior/compose', [
+        'uses' => 'ContactController@sms_compose_senior'
+    ]);
+
+    Route::post('/senior/compose', [
+        'uses' => 'ContactController@sms_send_senior',
+        'as'   => 'senior.sendSMS'
+    ]);
+
+    Route::post('/senior/contacts', [
+        'uses'  => 'ContactController@add_contact_senior',
+        'as'    => 'senior.contactadd'
+    ]);
 });
 
 

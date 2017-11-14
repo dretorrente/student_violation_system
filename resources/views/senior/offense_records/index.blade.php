@@ -1,7 +1,7 @@
 
 
 @extends('senior.admin.layouts.dashboard')
-@section('title', 'Student Offense Records | Prefect of Discipline Students Violation Monitoring System')
+@section('title', 'Student Management | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
 <div class="content">
    <div class="container">
@@ -9,7 +9,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li>Students Offense Records</li>
+                        <li><a href="#">Students</a></li>
                     </ol>
                 </div>
             </div>
@@ -19,9 +19,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Student Offense Records</h3>
             </div>
-        @section('modal')
-            @include('senior.student.includes.modal')
-        @show
+
         <div class="col-lg-6">
             <div style="padding: 10px 3px;" class="btn-group">
                 <select class="form-control" id="exampleFormControlSelect1">
@@ -42,8 +40,9 @@
             </div>
               <button class="btn btn-info">Print</button>
         </div>
-      
-
+            @section('modal')
+                @include('senior.offense_records.includes.modal')
+            @show
             <div class="panel-body">
                 <div class="row">
                     <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -61,140 +60,21 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-
                             <tbody>
+                            @foreach($offenses as $offense)
                                 <tr>
-                                    <td>1</td>
-                                    <td>1000801721</td>
-                                    <td>2017-2018</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>61</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - System Architect</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
+                                    <td>{{$offense->id}}</td>
+                                    <td>{{$offense->student_id}}</td>
+                                    <td>{{$offense->school_year}}</td>
+                                    <td>{{$offense->section_id}}</td>
+                                    <td>{{$offense->date_commit}}</td>
+                                    <td>{{date("H:i:s",strtotime($offense->created_at))}}</td>
+                                    <td>{{Config::get('constants.violation_name.'.$offense->category)}}</td>
+                                    <td>{{$offense->student_offense}}</td>
+                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#offense-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
+                                        <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>1000806991</td>
-                                    <td>2017-2018</td>
-                                    <td>Garrett Winters</td>
-                                    <td>63</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Accountant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>1000801021</td>
-                                    <td>2017-2018</td>
-                                    <td>Ashton Cox</td>
-                                    <td>66</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Junior Technical Author</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>1000801081</td>
-                                    <td>2017-2018</td>
-                                    <td>Cedric Kelly</td>
-                                    <td>22</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Senior Javascript Developer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>1000801555</td>
-                                    <td>2017-2018</td>
-                                    <td>Airi Satou</td>
-                                    <td>33</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Accountant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>1000801091</td>
-                                    <td>2017-2018</td>
-                                    <td>Brielle William</td>
-                                    <td>61</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Integration Specialist</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>1000801121</td>
-                                    <td>2017-2018</td>
-                                    <td>Herrod Chandler</td>
-                                    <td>59</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Sales Assistant</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>1000801221</td>
-                                    <td>2017-2018</td>
-                                    <td>Rhona Davidson</td>
-                                    <td>55</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Integration Specialist</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>1000801841</td>
-                                    <td>2017-2018</td>
-                                    <td>Colleen Hurst</td>
-                                    <td>39</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Javascript Developer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>1000801761</td>
-                                    <td>2017-2018</td>
-                                    <td>Sonya Frost</td>
-                                    <td>23</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Software Engineer</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>1000801021</td>
-                                    <td>2017-2018</td>
-                                    <td>Jena Gaines</td>
-                                    <td>30</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Office Manager</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    </td>
-                                </tr>
+                            @endforeach>
                             </tbody>
                         </table>
                     </div>
@@ -224,7 +104,7 @@
                                             <th>City</th>
                                         </tr>
                                     </thead>
-                                 
+
                                 </table>
                             </div>
                         </div>

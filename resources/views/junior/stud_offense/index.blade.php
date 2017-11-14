@@ -1,66 +1,75 @@
 
 
 @extends('junior.admin.layouts.dashboard')
-@section('title', 'Student Offense | Prefect of Discipline Students Violation Monitoring System')
+@section('title', 'Student Offense Records | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
-
-<div class="content">
-   <div class="container">
+    <div class="content">
+        @if (Session::has('message'))
+            <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ Session::get('message') }}
+            </div>
+        @endif
+        <div class="container">
+        <form action="{{ route('junior.offenseadd')}}" method="post">
+            {{csrf_field()}}
             <div class="row">
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li>Student Offense</li>
+                        <li>Student Offense Records</li>
                     </ol>
                 </div>
             </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Information</h3>
-        </div>
-        <div class="panel-body">
-        @section('modal')
-        @include('junior.stud_offense.includes.modal')
-        @show
-            <div class="col-md-6"> 
-                <div class="form-group"> 
-                    <button data-toggle="modal" data-target="#select-student" class="btn btn-info">Select Student Profile</button>
-                    <br>
-                    <label for="field-1" class="control-label">Search Student ID</label> 
-                     <input type="text" class="form-control" id="field-1" readonly required="">
-                     <label for="field-1" class="control-label">First Name</label> 
-                     <input type="text" class="form-control" id="field-1" readonly required=""> 
-                     <label for="field-1" class="control-label">Last Name</label> 
-                     <input type="text" class="form-control" id="field-1" readonly required=""> 
-                     <label for="field-1" class="control-label">Middle Name</label> 
-                      <input type="text" class="form-control" id="field-1" readonly required=""> 
-                </div> 
-            </div>
-             <div class="col-md-6"> 
-                <div class="form-group"> 
-                     <label for="field-1" class="control-label">Gender</label> 
-                     <input type="text" class="form-control" id="field-1" readonly required=""> 
-                     <label for="field-1" class="control-label">Adviser</label> 
-                     <input type="text" class="form-control" id="field-1" readonly required=""> 
-                     <label for="field-1" class="control-label">Grade Section</label> 
-                      <input type="text" class="form-control" id="field-1" readonly required=""> 
-                </div> 
-            </div>
-        </div>
-    </div>
 
-     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Offense</h3>
-        </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Information</h3>
+                </div>
+                <div class="panel-body">
+                    @section('modal')
+                        @include('junior.stud_offense.includes.modal')
+                    @show
 
-        <div class="panel-body">
-                <div class="row">
-                    <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <label>Search <input type="text" class="form-control" ></label> <button class="btn btn-primary">Search</button>
-                        <table id="datatable" class="table table-striped table-hover">
-                            <thead>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <button type="button" data-toggle="modal" data-target="#modal-offense" class="btn btn-info">Select Student Profile</button>
+                                <br>
+                                <label for="field-1" class="control-label">Student ID</label>
+                                <input type="text" name="student_id" class="form-control" id="stud_id" readonly="readonly" >
+                                <label for="field-1" class="control-label">First Name</label>
+                                <input type="text" class="form-control" id="first_name" readonly>
+                                <label for="field-1" class="control-label">Last Name</label>
+                                <input type="text" class="form-control" id="last_name" readonly>
+                                <label for="field-1" class="control-label" >Middle Name</label>
+                                <input type="text" class="form-control" id="middle_name" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Gender</label>
+                                <input type="text" class="form-control" id="gender" readonly>
+                                <label for="field-1" class="control-label" >Adviser</label>
+                                <input type="text" class="form-control" id="adviser" readonly>
+                                <label for="field-1" class="control-label">Grade Section</label>
+                                <input type="text" class="form-control" id="grade_section" readonly>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Offense</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <table id="datatable" class="table table-striped table-hover">
+                                <thead>
                                 <tr>
                                     <th>Select</th>
                                     <th>Category</th>
@@ -73,182 +82,80 @@
                                     <th>6th Sanction</th>
                                     <th>7th Sanction</th>
                                 </tr>
-                            </thead>
+                                </thead>
 
-                            <tbody>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Wearing earings inside of the school</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                   
-                                </tr>
-                                <tr>
-                                      <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Not wearing proper slocks</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    
-                                </tr>
-                                <tr>
-                                      <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Wearing earings inside of the school</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                   
-                                </tr>
-                                <tr>
-                                      <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Not wearing proper slocks</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    
-                                </tr>
-                                <tr>
-                                      <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Wearing earings inside of the school</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                  
-                                </tr>
-                                <tr>
-                                      <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Not wearing proper slocks</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                   
-                                </tr>
-                                <tr>
-                                      <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td>Advising to transfer to other school</td>
-                                   
-                                </tr>
-                                <tr>
-                                      <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td>Advising to transfer to other school</td>
-                                  
-                                </tr>
-                                <tr>
-                                      <td><input type="checkbox" name=""></td>
-                                    <td>Minor Offense</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>Promisory Note, noted by the student</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student cannot enter the school</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>The student will refer to Guidance Counselor</td>
-                                    <td>Advising to transfer to other school</td>
-                                    <td>Advising to transfer to other school</td>
-                                   
-                                </tr>
-                            </tbody>
-                        </table>
+                                <tbody>
+                                @foreach($violations as $violation)
+                                    <tr>
+                                        <td><input type="radio" name="violation" id="{{ $violation->id }}"></td>
+                                        <td>{{Config::get('constants.violation_name.'.$violation->category)}}</td>
+                                        <td>{{ $violation->violation }}</td>
+                                        <td>{{ $violation->first_sanction }}</td>
+                                        <td>{{ $violation->second_sanction }}</td>
+                                        <td>{{ $violation->third_sanction }}</td>
+                                        <td>{{ $violation->fourth_sanction }}</td>
+                                        <td>{{ $violation->fifth_sanction }}</td>
+                                        <td>{{ $violation->sixth_sanction }}</td>
+                                        <td>{{ $violation->seventh_sanction }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-           
-             
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 style="visibility: hidden;" class="panel-title">Student Information</h3>
-        </div>
-        <div class="panel-body">
-            <div class="col-md-4"> 
-                <div class="form-group"> 
-                     <label for="field-1" class="control-label">Date Commit</label> 
-                     <input type="date" class="form-control" id="field-1"> 
-                     <label for="field-1" class="control-label">Category</label> 
-                     <input type="text" class="form-control" id="field-1"> 
-                     <label for="field-1" class="control-label">Student Offense</label> 
-                     <input type="text" class="form-control" id="field-1">
-                     <label for="field-1" class="control-label">Description</label> 
-                     <textarea class="form-control" rows="3" cols="44"></textarea> 
-                </div> 
-            </div>
-             <div class="col-md-4"> 
-                <div class="form-group"> 
-                     <label for="field-1" class="control-label">Persons Involved</label> 
-                     <input type="text" class="form-control" id="field-1"> 
-                     <label for="field-1" class="control-label">Offense Number of Attempt</label> 
-                     <input type="text" class="form-control" id="field-1"> 
-                     <label for="field-1" class="control-label">Sanction</label> 
-                     <textarea class="form-control" rows="3" cols="44"></textarea><br>
-                     <button type="submit" style="margin-left: 255px;" class="btn btn-info"><i class="md md-check"></i> Save</button>
-                </div> 
-            </div>
-        </div>
-    </div>
 
 
 
-
-
-
-        <div style="visibility: hidden;" class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Responsive Table</h3>
+                    <h3 style="visibility: hidden;" class="panel-title">Student Information</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">Date Commit</label>
+                            <input type="date" name="date_commit" class="form-control" id="field-1" required="required">
+                            <label for="field-1" class="control-label">Category</label>
+                            <input type="text" class="form-control" id="category" required="required">
+                            <label for="field-1" class="control-label">Student Offense</label>
+                            <input type="text" name="student_offense" class="form-control" id="violation_name" required="required">
+                            <label for="field-1"  class="control-label">Description</label>
+                            <textarea rows="3" cols="44" name="description" class="form-control" required="required"></textarea>
+                            <input type="hidden" name="violation_id" id="violation_id">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-1"  class="control-label" required="required">Persons Involved</label>
+                            <input type="text" name="persons_involve" class="form-control" id="field-1" required="required">
+                            <label for="field-1" class="control-label">Offense Number of Attempt</label>
+                            <input type="text" name="offense_number_attempt" class="form-control" id="field-1" required="required">
+                            <label for="field-1" class="control-label">Sanction</label>
+                            <textarea rows="3" name="sanction" cols="44" class="form-control" required="required"></textarea><br>
+                            <button type="submit" style="margin-left: 255px;" class="btn btn-info"><i class="md md-check"></i> Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+            <div style="visibility: hidden;" class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Responsive Table</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
                                         <tr>
                                             <th>#</th>
                                             <th>First Name</th>
@@ -257,9 +164,10 @@
                                             <th>Age</th>
                                             <th>City</th>
                                         </tr>
-                                    </thead>
-                                 
-                                </table>
+                                        </thead>
+
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -267,11 +175,43 @@
             </div>
         </div>
     </div>
-</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#stud_offense").on("click",function(e){
+            e.preventDefault();
+            var parent = $('input[name=student]:checked').parent().parent();
+            var studentID = $(':nth-child(2)', parent).text();
+            var first_name =  $(':nth-child(4)', parent).text();
+            var middle_name =  $(':nth-child(5)', parent).text();
+            var last_name =  $(':nth-child(6)', parent).text();
+            var gender =  $(':nth-child(8)', parent).text();
+            var adviser =  $(':nth-child(9)', parent).text();
+            var section =  $(':nth-child(10)', parent).text();
+            document.getElementById('stud_id').value = studentID;
+            document.getElementById('first_name').value = first_name;
+            document.getElementById('middle_name').value = middle_name;
+            document.getElementById('last_name').value = last_name;
+            document.getElementById('gender').value = gender;
+            document.getElementById('adviser').value = adviser;
+            document.getElementById('grade_section').value = section;
+            $('#modal-offense').modal('toggle');
+            $(':nth-child(1)', parent).prop('checked', false);
+        });
 
+        $('input:radio[name="violation"]').change(
+        function(){
+            if ($(this).is(':checked')){
+                var parent = $(this).parent().parent();
+                var category = $(':nth-child(2)', parent).text();
+                var violation = $(':nth-child(3)', parent).text();
+                document.getElementById('category').value = category;
+                document.getElementById('violation_name').value = violation;
+                document.getElementById('violation_id').value = $(this).attr('id');
+            }
+        });
+    });
+</script>
 @section('footer')
-    @include('junior.student.includes.footer')
+    @include('senior.student.includes.footer')
 @show
 @endsection
-
-

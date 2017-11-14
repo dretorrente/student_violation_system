@@ -74,7 +74,7 @@
                         <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="assets/images/users/cus8.png" alt="user-img" class="img-circle"> </a>
+                        <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{asset('assets/images/users/cus8.png')}}" alt="user-img" class="img-circle"> </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{url('/settings')}}"><i class="md md-textsms"></i> Send SMS</a></li>
                             <li><a href="{{url('/jrsettings')}}"><i class="md md-settings"></i> Settings</a></li>

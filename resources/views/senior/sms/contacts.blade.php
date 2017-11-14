@@ -2,6 +2,12 @@
 @section('title', 'Contacts | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
 <div class="content">
+    @if (Session::has('message'))
+        <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ Session::get('message') }}
+        </div>
+    @endif
    <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -40,34 +46,15 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>09213434121</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#contacts-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#contacts-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Garrett Winters</td>
-                                    <td>09213434122</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#contacts-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#contacts-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Ashton Cox</td>
-                                    <td>09213434121</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#contacts-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#contacts-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Cedric Kelly</td>
-                                    <td>09213434123</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#contacts-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                    <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#contact-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
-                                </tr>
+                                @foreach($contacts as $contact)
+                                    <tr>
+                                        <td>{{$contact->id}}</td>
+                                        <td>{{$contact->name}}</td>
+                                        <td>{{$contact->contact_no}}</td>
+                                        <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#section-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
+                                            <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#section-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5"><i class="md md-delete"></i></button></td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 

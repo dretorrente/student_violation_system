@@ -1,5 +1,5 @@
 {{-- Student Profile --}}
-<div id="select-student" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="modal-offense" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog"> 
         <div class="modal-content"> 
             <div class="modal-header"> 
@@ -24,126 +24,20 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801721</td>
-                                    <td>2017-2018</td>
-                                    <td>Tiger Nixon</td>
-                                    <td>61</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - System Architect</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000806991</td>
-                                    <td>2017-2018</td>
-                                    <td>Garrett Winters</td>
-                                    <td>63</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Accountant</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801021</td>
-                                    <td>2017-2018</td>
-                                    <td>Ashton Cox</td>
-                                    <td>66</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Junior Technical Author</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801081</td>
-                                    <td>2017-2018</td>
-                                    <td>Cedric Kelly</td>
-                                    <td>22</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Senior Javascript Developer</td>
-                                    
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801555</td>
-                                    <td>2017-2018</td>
-                                    <td>Airi Satou</td>
-                                    <td>33</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Accountant</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801091</td>
-                                    <td>2017-2018</td>
-                                    <td>Brielle William</td>
-                                    <td>61</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Integration Specialist</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801121</td>
-                                    <td>2017-2018</td>
-                                    <td>Herrod Chandler</td>
-                                    <td>59</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Sales Assistant</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801221</td>
-                                    <td>2017-2018</td>
-                                    <td>Rhona Davidson</td>
-                                    <td>55</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>11 - Integration Specialist</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801841</td>
-                                    <td>2017-2018</td>
-                                    <td>Colleen Hurst</td>
-                                    <td>39</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Javascript Developer</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801761</td>
-                                    <td>2017-2018</td>
-                                    <td>Sonya Frost</td>
-                                    <td>23</td>
-                                    <td>Female</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Software Engineer</td>
-                                   
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" name=""></td>
-                                    <td>1000801021</td>
-                                    <td>2017-2018</td>
-                                    <td>Jena Gaines</td>
-                                    <td>30</td>
-                                    <td>Male</td>
-                                    <td>Rocky</td>
-                                    <td>12 - Office Manager</td>
-                                </tr>
+                                @foreach($students as $student)
+                                    <tr id="{{$student->student_id}}">
+                                        <td><input type="radio" name="student"></td>
+                                        <td>{{$student->student_id}}</td>
+                                        <td>{{$student->school_year}}</td>
+                                        <td>{{$student->first_name}}</td>
+                                        <td>{{$student->middle_name}}</td>
+                                        <td>{{$student->last_name}}</td>
+                                        <td>{{$student->age}}</td>
+                                        <td>{{Config::get('constants.gender.'.$student->gender)}}</td>
+                                        <td>{{$student->adviser}}</td>
+                                        <td>{{$student->section_id}}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -152,7 +46,7 @@
           
             <div class="modal-footer"><br> 
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Select Student</button> 
+                <button type="button" id="stud_offense" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Select Student</button> 
             </div> 
         </div> 
     </div>
