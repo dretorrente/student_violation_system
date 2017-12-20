@@ -19,6 +19,7 @@ class CreateSectionsTable extends Migration
             $table->increments('id');
             $table->string('grade');
             $table->string('section');
+            $table->enum('group_id',array(1,2,3));
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 <div class="topbar">
     <div class="topbar-left">
         <div class="text-center">
-            <a href="{{url('/home')}}" class="logo"><i class="md md-assignment-ind"></i> <span>P.O.D. </span></a>
+            <a href="{{url('/senior/home')}}" class="logo"><i class="md md-assignment-ind"></i> <span>P.O.D. </span></a>
         </div>
     </div>
     <div class="navbar navbar-default" role="navigation">
@@ -19,55 +19,32 @@
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <li class="dropdown hidden-xs">
                         <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-                            <i class="md md-notifications" style="color:#fff;"></i> <span class="badge badge-xs badge-danger">3</span>
+                            <i class="md md-notifications" style="color:#fff;"></i>
+                            <span class="badge badge-xs badge-danger">@if(Helper::senior_students_offense()['count'] > 0)
+                                    {!! Helper::senior_students_offense()['count'] !!}
+                                @endif</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg">
-                            <li class="text-center notifi-title">Notification</li>
-                            <li class="list-group">
-                               <a href="javascript:void(0);" class="list-group-item">
-                                  <div class="media">
-                                     <div class="media-left">
-                                        <em class="fa fa-user-plus fa-2x text-info"></em>
-                                     </div>
-                                     <div class="media-body clearfix">
-                                        <div class="media-heading">New user registered</div>
-                                        <p class="m-0">
-                                           <small>You have 10 unread messages</small>
-                                        </p>
-                                     </div>
-                                  </div>
-                               </a>
-                                <a href="javascript:void(0);" class="list-group-item">
-                                  <div class="media">
-                                     <div class="media-left">
-                                        <em class="fa fa-diamond fa-2x text-primary"></em>
-                                     </div>
-                                     <div class="media-body clearfix">
-                                        <div class="media-heading">New settings</div>
-                                        <p class="m-0">
-                                           <small>There are new settings available</small>
-                                        </p>
-                                     </div>
-                                  </div>
-                                </a>
-                                <a href="javascript:void(0);" class="list-group-item">
-                                  <div class="media">
-                                     <div class="media-left">
-                                        <em class="fa fa-bell-o fa-2x text-danger"></em>
-                                     </div>
-                                     <div class="media-body clearfix">
-                                        <div class="media-heading">Updates</div>
-                                        <p class="m-0">
-                                           <small>There are
-                                              <span class="text-primary">2</span> new updates available</small>
-                                        </p>
-                                     </div>
-                                  </div>
-                                </a>
-                                <a href="javascript:void(0);" class="list-group-item">
-                                  <small>See all notifications</small>
-                                </a>
-                            </li>
+                            @if(Helper::senior_students_offense()['count'] > 0)
+                                <li class="text-center notifi-title">Notification for Student
+                                    with 3 offenses</li>
+                                <li class="list-group">
+                                    @foreach(Helper::senior_students_offense()['student_offense'] as $student)
+                                        <a href="javascript:void(0);" class="list-group-item" style="cursor:default;">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <em class="fa fa-user-plus fa-2x text-info"></em>
+                                                </div>
+                                                <div class="media-body clearfix">
+                                                    <div class="media-heading">{{$student->first_name.' '.$student->last_name}}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                </li>
+                            @else
+                                <li class="text-center notifi-title">No student got 3 offenses yet</li>
+                            @endif
                         </ul>
                     </li>
                     <li class="hidden-xs">
@@ -78,7 +55,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{url('/settings')}}"><i class="md md-textsms"></i> Send SMS</a></li>
                             <li><a href="{{url('/settings')}}"><i class="md md-settings"></i> Settings</a></li>
-                            <li><a style="margin-left: 3px;" href="{{url('/')}}"><i class="ion-log-out"></i> Sign Out</a></li>
+                            <li><a style="margin-left: 3px;" href="{{route('logout')}}"><i class="ion-log-out"></i> Sign Out</a></li>
                         </ul>
                     </li>
                 </ul>

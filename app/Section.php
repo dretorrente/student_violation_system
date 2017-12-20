@@ -10,7 +10,7 @@ class Section extends Model
 //        return $this->belongsTo('App\User');
 //    }
     protected $fillable = [
-        'grade', 'section',
+        'grade', 'section','group_id'
     ];
 
 }

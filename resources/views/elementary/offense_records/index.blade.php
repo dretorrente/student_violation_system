@@ -9,7 +9,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Students</a></li>
+                        <li><a href="#">Student Offense</a></li>
                     </ol>
                 </div>
             </div>
@@ -19,7 +19,9 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Student Offense Records</h3>
             </div>
-
+        @section('modal')
+            @include('elementary.offense_records.includes.modal')
+        @show
         <div class="col-lg-6">
             <div style="padding: 10px 3px;" class="btn-group">
                 <select class="form-control" id="exampleFormControlSelect1">
@@ -40,9 +42,6 @@
             </div>
               <button class="btn btn-info">Print</button>
         </div>
-            @section('modal')
-                @include('elementary.offense_records.includes.modal')
-            @show
             <div class="panel-body">
                 <div class="row">
                     <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -71,8 +70,7 @@
                                     <td>{{date("H:i:s",strtotime($offense->created_at))}}</td>
                                     <td>{{Config::get('constants.violation_name.'.$offense->category)}}</td>
                                     <td>{{$offense->student_offense}}</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#offense-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
-                                        <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button></td>
                                 </tr>
                             @endforeach>
                             </tbody>

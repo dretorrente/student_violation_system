@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    //elementary
-    public function home_elem() {
-        return view('elementary.admin.home');
-    }
 
     public function login(Request $request) {
 
@@ -27,14 +23,14 @@ class UserController extends Controller
 
         if(Auth::attempt(['username' => $request['username'], 'password' => $request['password'], 'group_id'=>3]))
         {
-            return redirect()->route('elem.home');
+            return redirect()->route('elem.student');
 
         }
         elseif(Auth::attempt(['username' => $request['username'], 'password' => $request['password'], 'group_id'=>2])) {
-            return redirect()->route('junior.home');
+            return redirect()->route('junior.student');
         }
         elseif(Auth::attempt(['username' => $request['username'], 'password' => $request['password'], 'group_id'=>1])){
-            return redirect()->route('senior.home');
+            return redirect()->route('senior.student');
         }
         else{
             return redirect()->back()->withInput($request->all)->with(['message' => 'Invalid password']);
@@ -164,17 +160,6 @@ class UserController extends Controller
         return redirect()->route('signin');
     }
 
-
-    // junior
-    public function home_junior() {
-        return view('junior.admin.home');
-    }
-
-    public function home_senior() {
-        return view('senior.admin.home');
-    }
-
-    //Senior high
 
     /**
      * Senior high users management list

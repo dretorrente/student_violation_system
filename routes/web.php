@@ -14,13 +14,13 @@
 Route::get('/', function () {
 
     if(\Illuminate\Support\Facades\Auth::user()['group_id']==3){
-        return redirect('/elementary/home');
+        return redirect('/elementary/students');
     }
     if(\Illuminate\Support\Facades\Auth::user()['group_id']==2){
-        return redirect('/junior/home');
+        return redirect('/junior/students');
     }
     if(\Illuminate\Support\Facades\Auth::user()['group_id']==1){
-        return redirect('/senior/home');
+        return redirect('/senior/students');
     }
     return view('auth.signin');
 })->name('signin');
@@ -33,10 +33,6 @@ Route::post('/', [
 // Middleware for authentication elementary, junior, senior
 Route::group(['middleware' =>['auth.shs']], function() {
     //elementary routes
-    Route::get('/elementary/home', [
-        'uses' => 'UserController@home_elem',
-        'as'   => 'elem.home'
-    ]);
 
     Route::get('/logout', [
         'uses'  => 'UserController@logout',
@@ -44,7 +40,8 @@ Route::group(['middleware' =>['auth.shs']], function() {
     ]);
 
     Route::get('/elementary/students', [
-        'uses'  => 'StudentController@student_elem'
+        'uses'  => 'StudentController@student_elem',
+        'as'   => 'elem.student'
     ]);
     Route::post('/elementary/students', [
         'uses'  => 'StudentController@add_student_elem',
@@ -174,17 +171,18 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'    => 'elem.contactadd'
     ]);
 
+    Route::get('/elemmonthly', function() {
+        return view('elementary.monthly.index');
+    });
+
     //junior routes
-    Route::get('/junior/home', [
-        'uses' => 'UserController@home_junior',
-        'as'   => 'junior.home'
-    ]);
     Route::get('/forgot', function () {
         return view('junior.auth.forgot');
     });
 
     Route::get('/junior/students/', [
-        'uses'  => 'StudentController@student_junior'
+        'uses'  => 'StudentController@student_junior',
+        'as'   => 'junior.student'
     ]);
 
     Route::post('/junior/students', [
@@ -301,17 +299,19 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'    => 'junior.contactadd'
     ]);
 
+    Route::get('/jryearly', function() {
+        return view('junior.yearly.index');
+    });
+
     //senior routes
-    Route::get('/senior/home', [
-        'uses' => 'UserController@home_senior',
-        'as'   => 'senior.home'
-    ]);
+
     Route::get('/forgot', function () {
         return view('senior.auth.forgot');
     });
 
     Route::get('/senior/students/', [
-        'uses'  => 'StudentController@student_senior'
+        'uses'  => 'StudentController@student_senior',
+        'as'   => 'senior.student'
     ]);
 
     Route::post('/senior/students', [
@@ -427,6 +427,14 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses'  => 'ContactController@add_contact_senior',
         'as'    => 'senior.contactadd'
     ]);
+
+    Route::get('/srmonthly', function() {
+        return view('senior.monthly.index');
+    });
+
+    Route::get('/sryearly', function() {
+        return view('senior.yearly.index');
+    });
 });
 
 

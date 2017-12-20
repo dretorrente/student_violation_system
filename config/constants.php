@@ -18,4 +18,12 @@ return [
         1 => 'Minor Offense',
         2 => 'Major Offense'
     ],
+    'class' => [
+        'Day' => 1,
+        'Evening' => 2
+    ],
+    'semester' => [
+        '1st_Sem' => 1,
+        '2nd_Sem' => 2
+    ],
 ];

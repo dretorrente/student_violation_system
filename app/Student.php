@@ -10,6 +10,6 @@ class Student extends Model
 //        return $this->belongsTo('App\User');
 //    }
     protected $fillable = [
-        'student_id', 'sy_id','first_name','middle_name','last_name','age','gender','adviser','section_id','address',
+        'student_id', 'sy_id','first_name','middle_name','last_name','adviser','section_id','class','semester'
     ];
 }

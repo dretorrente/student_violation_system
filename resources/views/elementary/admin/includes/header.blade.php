@@ -1,7 +1,7 @@
 <div class="topbar">
     <div class="topbar-left">
         <div class="text-center">
-            <a href="{{url('/elementary/home')}}" class="logo"><i class="md md-assignment-ind"></i> <span>P.O.D. </span></a>
+            <a href="{{url('/elementary/students/')}}" class="logo"><i class="md md-assignment-ind"></i> <span>P.O.D. </span></a>
         </div>
     </div>
     <div class="navbar navbar-default" role="navigation">

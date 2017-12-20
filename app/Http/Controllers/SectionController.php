@@ -5,17 +5,22 @@ use App\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use DB;
 class SectionController extends Controller
 {
 
     public function section_elem(){
-        $sections = Section::all();
+        $sections = DB::table('sections')
+            ->select('sections.*')
+            ->where('sections.group_id', '=', 3)
+            ->get();
         return view('elementary.section.index',['sections' => $sections]);
     }
     public function add_section_elem(Request $request){
         if ($request->isMethod('post')) {
             $section = new Section();
             $section->fill($request->all());
+            $section->group_id = Auth::user()['group_id'];
             if($section->save()){
                 Session::flash('message','Your section has been succesfully added!');
                 Session::flash('alert-class', 'alert-info');

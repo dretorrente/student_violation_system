@@ -26,6 +26,10 @@
                         <a href="{{ url('/senior/offense/') }}" class="waves-effect"><i class="md md-assignment-late"></i><span>Student Offense</span></a>
                     </li>
 
+                    <li>
+                        <a href="{{url('/senior/records/')}}" class="waves-effect"><i class="ion-android-book"></i><span>Stud. Offense Records</span></a>
+                    </li>
+
                     <li class="has_sub">
                         <a href="#" class="waves-effect"><i class="md md-perm-data-setting"></i><span>File Maintenance </span><span class="pull-right"><i class="md md-add"></i></span></a>
                         <ul class="list-unstyled">
@@ -34,20 +38,24 @@
                             <li><a href="{{url('/senior/schoolyear/')}}"><i class="md md-event-available"></i> School Year</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{ url('/senior/users/') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>User Management</span></a>
-                    </li>
-
-                     <li>
-                        <a href="{{url('/senior/records/')}}" class="waves-effect"><i class="ion-android-book"></i><span>Stud. Offense Records</span></a>
-                    </li>
 
                     <li class="has_sub">
-                         <a href="#" class="waves-effect"><i class="md md-textsms"></i><span>SMS</span><span class="pull-right"><i class="md md-add"></i></span></a>
+                        <a href="#" class="waves-effect"><i class="fa fa-file"></i><span>Reports</span><span class="pull-right"><i class="md md-add"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{url('/srmonthly')}}"><i class="fa fa-calendar"></i> Monthly Reports</a></li>
+                            <li><a href="{{url('/sryearly')}}"><i class="fa fa-calendar"></i> Yearly Reports</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="has_sub">
+                        <a href="#" class="waves-effect"><i class="md md-textsms"></i><span>SMS</span><span class="pull-right"><i class="md md-add"></i></span></a>
                         <ul class="list-unstyled">
                             <li><a href="{{url('/senior/compose/')}}"><i class="fa fa-pencil"></i> Compose Message</a></li>
                             <li><a href="{{url('/senior/contacts/')}}"><i class="md-contacts"></i> Contacts</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{ url('/senior/users/') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>User Management</span></a>
                     </li>
 
                      <li>

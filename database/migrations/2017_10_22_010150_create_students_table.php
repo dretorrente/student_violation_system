@@ -22,11 +22,10 @@ class CreateStudentsTable extends Migration
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('last_name');
-            $table->integer('age');
-            $table->enum('gender',array(1,2));
-            $table->string('adviser');
+            $table->string('adviser')->nullable();;
             $table->string('section_id');
-            $table->string('address');
+            $table->enum('class',array(1,2));
+            $table->enum('semester',array(1,2));
             $table->enum('group_id',array(1,2,3));
             $table->rememberToken();
             $table->timestamps();

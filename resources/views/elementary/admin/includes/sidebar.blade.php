@@ -16,13 +16,13 @@
             <div id="sidebar-menu">
                 <ul>
                     <li>
-                        <a href="{{ url('/elementary/home') }}" class="waves-effect"><i class="md md-dashboard"></i><span>Dashboard </span></a>
-                    </li>
-                    <li>
                         <a href="{{ url('/elementary/students') }}" class="waves-effect"><i style="font-size: 20px;" class="ion-ios7-people"></i><span>Student Management</span></a>
                     </li>
                     <li>
                         <a href="{{ url('/elementary/offense') }}" class="waves-effect"><i class="md md-assignment-late"></i><span>Student Offense</span></a>
+                    </li>
+                    <li>
+                        <a href="{{url('/elementary/records')}}" class="waves-effect"><i class="ion-android-book"></i><span>Stud. Offense Records</span></a>
                     </li>
                     <li class="has_sub">
                         <a href="#" class="waves-effect"><i class="md md-perm-data-setting"></i><span>File Maintenance </span><span class="pull-right"><i class="md md-add"></i></span></a>
@@ -32,20 +32,21 @@
                             <li><a href="{{url('/elementary/schoolyear')}}"><i class="md md-event-available"></i> School Year</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{ url('/elementary/users') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>User Management</span></a>
+                    <li class="has_sub">
+                        <a href="#" class="waves-effect"><i class="fa fa-file"></i><span>Reports</span><span class="pull-right"><i class="md md-add"></i></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{url('/elemmonthly')}}"><i class="fa fa-calendar"></i> Monthly Reports</a></li>
+                        </ul>
                     </li>
-
-                     <li>
-                        <a href="{{url('/elementary/records')}}" class="waves-effect"><i class="ion-android-book"></i><span>Stud. Offense Records</span></a>
-                    </li>
-
                     <li class="has_sub">
                         <a href="#" class="waves-effect"><i class="md md-textsms"></i><span>SMS</span><span class="pull-right"><i class="md md-add"></i></span></a>
                         <ul class="list-unstyled">
                             <li><a href="{{url('/elementary/compose')}}"><i class="fa fa-pencil"></i> Compose Message</a></li>
                             <li><a href="{{url('/elementary/contacts')}}"><i class="md-contacts"></i> Contacts</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{ url('/elementary/users') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>User Management</span></a>
                     </li>
 
                      <li>
