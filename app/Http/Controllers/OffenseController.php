@@ -37,15 +37,20 @@ class OffenseController extends Controller
 
     public function add_offense_elem(Request $request){
         if ($request->isMethod('post')) {
-            $offense = new Offense();
-            unset($request['datatable_length']);
-            unset($request['violation']);
-            $offense->fill($request->all());
-            if($offense->save()){
-                Session::flash('message','Your student offense has been succesfully added!');
-                Session::flash('alert-class', 'alert-info');
-                return redirect('/elementary/offense/');
+            echo "<pre>";
+
+            foreach($request->persons_involve as $person_involve) {
+                print_r($request->all());
             }
+            $offense = new Offense();
+//            unset($request['datatable_length']);
+//            unset($request['violation']);
+//            $offense->fill($request->all());
+//            if($offense->save()){
+//                Session::flash('message','Your student offense has been succesfully added!');
+//                Session::flash('alert-class', 'alert-info');
+//                return redirect('/elementary/offense/');
+//            }
         }
     }
 

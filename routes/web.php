@@ -175,6 +175,11 @@ Route::group(['middleware' =>['auth.shs']], function() {
         return view('elementary.monthly.index');
     });
 
+    Route::post('/elem/student/attempt',[
+        'uses' => 'StudentController@total_attempt_elem',
+        'as'   => 'total_attempt_elem'
+    ]);
+
     //junior routes
     Route::get('/forgot', function () {
         return view('junior.auth.forgot');

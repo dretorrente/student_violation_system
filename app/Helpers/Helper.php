@@ -11,7 +11,7 @@ class Helper
             if(!empty($lastname)) {
                 $fullname = $name . " " . $lastname;
                 if (!empty($middlename)) {
-                    $fullname = $name . " " . $middlename;
+                    $fullname = $name. " " .$middlename." ".$lastname;
                 }
             }
         }

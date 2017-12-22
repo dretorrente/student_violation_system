@@ -87,7 +87,7 @@
                                         <td>{{$student->section_id}}</td>
                                         <td>{{$student->address}}</td>
                                         <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
-                                        <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                        <button data-tooltip="tooltip" data-placement="top" id="total_attempts" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
                                         <input type="hidden" value="{{$student->sy_id}}">
                                         <input type="hidden" value="{{$student->gender}}">
                                     </tr>
@@ -168,6 +168,7 @@
             $('#student-update #gender').val(gender);
             $('#student-update #hiddenStudent').val(id);
         });
+
     });
 </script>
 

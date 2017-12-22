@@ -145,4 +145,16 @@ class StudentController extends Controller
             return redirect('/junior/students/');
         }
     }
+
+    public function total_attempt_elem(Request $request) {
+        if ($request->isMethod('post')) {
+            $students = DB::table("offenses")
+                ->join('students', 'students.student_id', '=', 'offenses.student_id')
+                ->select(DB::raw("COUNT(offenses.student_id) count"))
+                ->groupBy("offenses.student_id")
+                ->where('students.student_id', '=', $request->stud_id)
+                ->get();
+            return response()->json(array('msg'=> $students), 200);
+        }
+    }
 }

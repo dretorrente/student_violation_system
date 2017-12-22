@@ -18,8 +18,6 @@
                                 <th>First Name</th>
                                 <th>Middle Name
                                 <th>Last Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
                                 <th>Adviser</th>
                                 <th>Grade &amp; Section</th>
                             </tr>
@@ -34,8 +32,6 @@
                                     <td>{{$student->first_name}}</td>
                                     <td>{{$student->middle_name}}</td>
                                     <td>{{$student->last_name}}</td>
-                                    <td>{{$student->age}}</td>
-                                    <td>{{Config::get('constants.gender.'.$student->gender)}}</td>
                                     <td>{{$student->adviser}}</td>
                                     <td>{{$student->section_id}}</td>
                                 </tr>

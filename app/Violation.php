@@ -18,7 +18,8 @@ class Violation extends Model
         'fourth_sanction',
         'fifth_sanction',
         'sixth_sanction',
-        'seventh_sanction'
+        'seventh_sanction',
+        'group_id'
     ];
 
     public $timestamps = true;

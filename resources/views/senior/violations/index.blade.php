@@ -73,7 +73,7 @@
                         </table>
                     </div>
                 </div>
-                {{ $violations->links() }}  
+                {{ $violations->links() }}
             </div>
         </div>
     </div>
@@ -99,7 +99,7 @@
                                                 <th>City</th>
                                             </tr>
                                         </thead>
-                                     
+
                                     </table>
                                 </div>
                             </div>

@@ -81,7 +81,7 @@
                                         <td>{{$student->adviser}}</td>
                                         <td>{{$student->section_id}}</td>
                                         <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
-                                        <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                            <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye"></i></button></td>
                                         <input type="hidden" value="{{$student->sy_id}}">
                                     </tr>
                                 @endforeach
@@ -139,28 +139,48 @@
             var parent = $(this).parent().parent();
             var id = $(':nth-child(1)', parent).text();
             var studentID = $(':nth-child(2)', parent).html();
+            var school_year = $(':nth-child(3)', parent).val();
             var first_name =  $(':nth-child(4)', parent).text();
             var middle_name =  $(':nth-child(5)', parent).text();
             var last_name =  $(':nth-child(6)', parent).text();
-            var age =  $(':nth-child(7)', parent).text();
-            var gender =  $(':nth-child(14)', parent).val();
-            var adviser =  $(':nth-child(9)', parent).text();
-            var section =  $(':nth-child(10)', parent).text();
-            var address =  $(':nth-child(11)', parent).text();
-            var school_year = $(':nth-child(13)', parent).val();
+            var adviser =  $(':nth-child(7)', parent).text();
+            var section =  $(':nth-child(8)', parent).text();
+
             $('#student-update #student_id').val(studentID);
             $('#student-update #first_name').val(first_name);
             $('#student-update #middle_name').val(middle_name);
             $('#student-update #last_name').val(last_name);
-            $('#student-update #age').val(age);
-            $('#student-update #gender').val(gender);
             $('#student-update #adviser').val(adviser);
-            $('#student-update #address').val(address);
             $('#student-update #sy_id').val(school_year);
             $('#student-update #section_id').val(section);
-            $('#student-update #gender').val(gender);
             $('#student-update #hiddenStudent').val(id);
         });
+
+        $('.total_attempts').on('click',function(e){
+            e.preventDefault();
+            var parent = $(this).parent().parent();
+            var studentID = $(':nth-child(2)', parent).html();
+            $.ajax({
+                method: 'POST',
+                url: '/elem/student/attempt',
+                data: {stud_id: studentID,_token:'<?php echo csrf_token() ?>'},
+                dataType: 'json'
+            }).done(function(response){
+                console.log(response);
+//                if(response) {
+//                    $('#deleteModal').modal('hide');
+//                    location.reload();
+//                }else{
+//                    alert('Error');
+//                }
+            });
+//            $.ajax({
+//
+//            });
+//            $('#elemview-attempt').modal('show');
+        });
+
+//    });
     });
 </script>
 
@@ -168,19 +188,4 @@
 @section('footer')
     @include('elementary.student.includes.footer')
 @show
-<script type="text/javascript">
-    $(document).ready(function(){
-        $(document).on('change','#datatable_length select', function(){
-            var num_entries  = $(this).val();
-            $.ajax({
-                type: 'post',
-                url: "/",
-                data: {entries:num_entries},
-                success: function(response) {
-                  console.log(response);
-                }
-            });
-        });
-    });
-</script>
 @endsection

@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class ViolationController extends Controller
 {
     public function violation_elem() {
-    	$violation = DB::table('violations')->simplePaginate(10);
+    	$violation = DB::table('violations')
+            ->select('violations.*')
+            ->where('violations.group_id', '=', 3)
+            ->get();
         return view('elementary.violations.index',['violations' => $violation]);
     }
 
@@ -18,6 +21,7 @@ class ViolationController extends Controller
     	 if ($request->isMethod('post')) {
             $violation = new Violation();
             $violation->fill($request->all());
+            $violation->group_id = Auth::user()['group_id'];
             if ($violation->save()) {
             	Session::flash('message','Your violation has been succesfully added!');
     			Session::flash('alert-class', 'alert-info'); 

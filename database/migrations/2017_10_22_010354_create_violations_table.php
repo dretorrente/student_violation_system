@@ -26,6 +26,7 @@ class CreateViolationsTable extends Migration
             $table->string('fifth_sanction')->nullable();
             $table->string('sixth_sanction')->nullable();
             $table->string('seventh_sanction')->nullable();
+            $table->enum('group_id',array(1,2,3));
             $table->timestamps();
         });
     }
