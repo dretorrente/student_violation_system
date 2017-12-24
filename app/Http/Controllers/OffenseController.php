@@ -10,6 +10,7 @@ use DB;
 use App\Violation;
 use Illuminate\Support\Facades\Session;
 use Config;
+use Carbon\Carbon;
 
 class OffenseController extends Controller
 {
@@ -37,20 +38,25 @@ class OffenseController extends Controller
 
     public function add_offense_elem(Request $request){
         if ($request->isMethod('post')) {
-            echo "<pre>";
-
+            $data = [];
             foreach($request->persons_involve as $person_involve) {
-                print_r($request->all());
+                unset($request['datatable_length']);
+                unset($request['violation']);
+                $data = [
+                    'student_id'      => $person_involve,
+                    'date_commit'     => $request->date_commit,
+                    'violation_id'    => $request->violation_id,
+                    'student_offense' => $request->student_offense,
+                    'description'     => $request->description,
+                    'sanction'       => $request->sanction,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ];
+                Offense::insert($data);
             }
-            $offense = new Offense();
-//            unset($request['datatable_length']);
-//            unset($request['violation']);
-//            $offense->fill($request->all());
-//            if($offense->save()){
-//                Session::flash('message','Your student offense has been succesfully added!');
-//                Session::flash('alert-class', 'alert-info');
-//                return redirect('/elementary/offense/');
-//            }
+            Session::flash('message','Your student offense has been succesfully added!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/elementary/offense/');
         }
     }
 

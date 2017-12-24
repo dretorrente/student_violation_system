@@ -192,6 +192,6 @@
     }
 </style>
 @section('footer')
-    @include('elementary.sms.includes.footer')
+    @include('elementary.stud_offense.includes.footer')
 @show
 @endsection

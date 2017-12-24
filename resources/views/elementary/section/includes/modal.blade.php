@@ -13,13 +13,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Grade</label>
-                                <input type="text" name="grade" class="form-control" id="grade">
+                                <input type="text" name="grade" class="form-control" id="grade" required="required">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-3" class="control-label">Section</label>
-                                <input type="text" name="section" class="form-control" id="section">
+                                <input type="text" name="section" class="form-control" id="section" required="required">
                             </div>
                         </div>
                     </div>

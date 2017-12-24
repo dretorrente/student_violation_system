@@ -13,7 +13,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">School Year</label>
-                                <input type="text" class="form-control" name="school_year" id="school_year" placeholder="E.g. 2017-2018">
+                                <input type="text" class="form-control" name="school_year" id="school_year" placeholder="E.g. 2017-2018" required="required">
                             </div>
                         </div>
                     </div>

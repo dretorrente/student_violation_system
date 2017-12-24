@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="field-2" class="control-label">School Year</label>
                             <select class="form-control" name="sy_id" id="sy_id" required="required">
-                                <option selected disabled>Please select school year</option>
+                                <option value="">Please select</option>
                                 @foreach($school_years as $school_year)
                                     <option value="{{$school_year->id}}" >{{$school_year->school_year}}</option>
                                 @endforeach
@@ -59,11 +59,19 @@
                         <div class="form-group">
                             <label for="field-2" class="control-label">Grade &amp; Section</label>
                             <select class="form-control" id="section_id" name="section_id" required="required">
-                                <option selected disabled>Please select Grade & Section</option>
+                                <option value="">Please select</option>
                                 @foreach($sections as $section)
                                     <option value="{{$section->grade}} - {{$section->section}}">{{$section->grade}} - {{$section->section}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">Parent's Contact No.</label>
+                            <input type="text" name="contact_no" class="form-control" id="contact_no" required="required">
                         </div>
                     </div>
                 </div>
@@ -98,8 +106,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">School Year</label>
-                                <select class="form-control" name="sy_id" id="sy_id">
-                                    <option selected disabled>Please select school year</option>
+                                <select class="form-control" name="sy_id" id="sy_id" required>
+                                    <option value="">Please select</option>
                                     @foreach($school_years as $school_year)
                                         <option value="{{$school_year->id}}">{{$school_year->school_year}}</option>
                                     @endforeach
@@ -137,12 +145,20 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Grade &amp; Section</label>
-                                <select class="form-control" id="section_id" name="section_id">
-                                    <option selected disabled>Please select Grade & Section</option>
+                                <select class="form-control" id="section_id" name="section_id" required>
+                                    <option value="">Please select</option>
                                     @foreach($sections as $section)
                                         <option value="{{$section->grade}} - {{$section->section}}">{{$section->grade}} - {{$section->section}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Parent's Contact No.</label>
+                                <input type="text" name="contact_no" class="form-control" id="contact_no" required="required">
                             </div>
                         </div>
                     </div>
@@ -171,7 +187,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="field-2" class="control-label">Total:</label>
-                            <input type="number" class="form-control" id="field-3" readonly="">
+                            <input type="number" id="attempt" class="form-control" id="field-3" readonly="">
                         </div>
                     </div>
                 </div>

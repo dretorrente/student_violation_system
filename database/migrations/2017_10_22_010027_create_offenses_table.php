@@ -20,7 +20,6 @@ class CreateOffensesTable extends Migration
             $table->string('student_id');
             $table->date('date_commit');
             $table->integer('violation_id');
-            $table->string('offense_number_attempt');
             $table->string('student_offense');
             $table->string('sanction');
             $table->string('description');

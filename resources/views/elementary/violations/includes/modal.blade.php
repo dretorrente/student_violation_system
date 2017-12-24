@@ -22,7 +22,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="field-2" class="control-label">Violation</label>
-                            <textarea class="form-control autogrow" id="field-7" placeholder="Write something about violation" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px" name="violation"></textarea>                                                    
+                            <textarea class="form-control autogrow" id="field-7" placeholder="Write something about violation" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px" name="violation" required="required"></textarea>
                         </div>
                     </div> 
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-md-12"> 
                         <div class="form-group"> 
                             <label for="field-2" class="control-label">4th Sanction</label> 
-                            <input type="text" name="fourth_sanction" class="form-control" id="field-2"> 
+                            <input type="text" name="fourth_sanction" class="form-control" id="field-2" required>
                         </div> 
                     </div> 
                     <div class="col-md-12"> 

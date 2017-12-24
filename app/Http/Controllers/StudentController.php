@@ -152,9 +152,9 @@ class StudentController extends Controller
                 ->join('students', 'students.student_id', '=', 'offenses.student_id')
                 ->select(DB::raw("COUNT(offenses.student_id) count"))
                 ->groupBy("offenses.student_id")
-                ->where('students.student_id', '=', $request->stud_id)
+                ->where('offenses.student_id', '=', $request->stud_id)
                 ->get();
-            return response()->json(array('msg'=> $students), 200);
+            return response()->json(array('msg'=> $students[0]), 200);
         }
     }
 }
