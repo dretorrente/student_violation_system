@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('group_id',array(1,2,3));
             $table->enum('role',array('administrator','staff'));
+            $table->string('upload')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -2,7 +2,11 @@
         <div class="sidebar-inner slimscrollleft">
             <div class="user-details">
                 <div class="pull-left">
-                    <img src="{{asset('assets/images/users/cus8.png')}}" alt="" class="thumb-md img-circle">
+                    <?php if(empty(Auth::User()->upload)): ?>
+                    <img src="{{asset('assets/images/users/cus8.png')}}" class="thumb-md img-circle" alt="profile-image">
+                    <?php else: ?>
+                    <img src="{{asset('assets/images/users/')}}<?php echo '/'.Auth::User()->upload;?>" class="thumb-md img-circle" alt="profile-image">
+                    <?php endif; ?>
                 </div>
                 <div class="user-info">
                     <div class="dropdown">
@@ -45,10 +49,11 @@
                             <li><a href="{{url('/elementary/contacts')}}"><i class="md-contacts"></i> Contacts</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{ url('/elementary/users') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>User Management</span></a>
-                    </li>
-
+                    <?php if(Auth::User()->role == 'administrator'): ?>
+                        <li>
+                            <a href="{{ url('/elementary/users') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>User Management</span></a>
+                        </li>
+                    <?php endif; ?>
                      <li>
                         <a href="{{url('/elementary/settings')}}" class="waves-effect"><i class="md md-settings"></i><span>Settings </span></a>
                     </li>

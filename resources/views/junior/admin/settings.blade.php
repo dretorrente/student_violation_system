@@ -15,6 +15,8 @@
             <!--/ meta -->
         </div>
     </div>
+    <form role="form" method="POST" action="{{ route('elem.updateSettings')}}" enctype="multipart/form-data">
+        {{csrf_field()}}
     <div class="row user-tabs">
         <div class="col-sm-9 col-lg-6">
             <ul class="nav nav-tabs tabs">
@@ -36,7 +38,7 @@
             <div class="pull-right">
                 <button type="button" class="fileupload btn btn-info waves-effect waves-light">
                     <span><i class="ion-android-camera"></i> Upload a Photo</span>
-                    <input type="file" class="upload">
+                    <input type="file" name="upload" id="upload" class="upload">
                 </button>         
               </div>
         </div>
@@ -59,8 +61,7 @@
                         <h3 class="panel-title">Account Settings</h3> 
                     </div> 
                     <div class="panel-body"> 
-                        <form role="form" method="POST" action="{{ route('elem.updateSettings')}}">
-                            {{csrf_field()}}
+
                             <div class="form-group">
                                 <label for="FullName">Full Name</label>
                                 <input type="text" id="FullName" name="username" class="form-control" value="{{ $user->username }}">
@@ -78,7 +79,7 @@
                                 <input type="password" name="password_confirmation" id="RePassword" class="form-control" placeholder="6 - 15 Characters">
                             </div>
                             <button class="btn btn-success waves-effect waves-light" type="submit"><i class="md md-check"></i> Save Changes</button>
-                        </form>
+
 
                     </div> 
                 </div>
@@ -131,9 +132,11 @@
                 </div>
             </div> 
 
-        </div> 
+        </div>
+
     </div>
     </div>
+    </form>
 </div>
 </div>
 @section('footer')

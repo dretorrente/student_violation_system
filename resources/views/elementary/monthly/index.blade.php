@@ -3,6 +3,12 @@
 @section('title', 'Monthly Reports | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
 <div class="content">
+    @if (Session::has('message'))
+        <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ Session::get('message') }}
+        </div>
+    @endif
    <div class="container">
             <div class="row">
 <div class="row">
@@ -18,21 +24,27 @@
         </div>
        
         <div class="col-lg-9" style="margin-top: 10px;">
+            <form action="{{ url('downloadExcel/xlsx') }}" method="get">
+                {{csrf_field()}}
             <div style="padding: 10px 3px;" class="btn-group">
-                <select class="form-control" id="exampleFormControlSelect1">
-                      <option>6 - Falcata</option>
-                      <option>4 - Salome</option>
-                      <option>3 - Compassion</option>
+                <select class="form-control" id="section" name="section" required="required">
+                    <option value="">Please select</option>
+                    @foreach($sections as $section)
+                        <option <?php if(isset($_GET['section'])):
+                            echo $_GET['section']== $section->id ? "selected" : "";
+                        endif; ?> value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
+                    @endforeach
                 </select>
             </div>
             <div style="padding: 10px 5px;" class="btn-group">
-                <input type="month"></input>
+                <input type="month" name="month" id="month" required="required"/>
+
             </div>
-           
+
              <div style="padding: 10px 5px;" class="btn-group">
-                 <button type="button" class="btn btn-info waves-effect waves-light"><i class="fa fa-download"></i> Export</button>
+                <button class="btn btn-info waves-effect waves-light">Export</button>
             </div>
-           
+           </form>
         </div>
             <div class="panel-body">
                 <div class="row">
@@ -46,30 +58,12 @@
                             </thead>
 
                             <tbody>
+                            @foreach($students as $student)
                                  <tr>
-                                    <td>John Wako</td>
-                                    <td>5</td>
+                                    <td>{!! Helper::fullname($student->first_name,$student->middle_name,$student->last_name) !!}</td>
+                                    <td>{{$student->count}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Henry Omaga Diaz</td>
-                                    <td>15</td>
-                                </tr>
-                                 <tr>
-                                    <td>Ted Failon</td>
-                                    <td>25</td>
-                                </tr>
-                                <tr>
-                                    <td>Korina Sanchez</td>
-                                    <td>15</td>
-                                </tr>
-                                 <tr>
-                                    <td>Karen Davila</td>
-                                    <td>5</td>
-                                </tr>
-                                <tr>
-                                    <td>Jose Rizal</td>
-                                    <td>15</td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

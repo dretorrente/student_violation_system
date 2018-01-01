@@ -79,7 +79,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-1" class="control-label">Date Commit</label>
-                            <input type="date" name="date_commit" class="form-control" id="field-1" required="required">
+                            <input type="datetime-local" name="date_commit" class="form-control" id="date_commit" required="required">
                             <label for="field-1" class="control-label">Category</label>
                             <input type="text" class="form-control" id="category" required="required">
                             <label for="field-1" class="control-label">Student Offense</label>

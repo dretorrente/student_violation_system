@@ -10,15 +10,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 class StudentController extends Controller
 {
-    public function student_elem(){
-        $sections = Section::all();
-        $school_years = SchoolYear::all();
-        $students = DB::table('students')
-                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
-                    ->select('students.*', 'school_years.school_year')
-                    ->where('students.group_id', '=', 3)
-                    ->get();
-        return view('elementary.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+    public function student_elem(Request $request){
+        if ($request->isMethod('get')) {
+
+            $sections = Section::all();
+            $school_years = SchoolYear::all();
+            $students = DB::table('students')
+                ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                ->join('sections', 'students.section_id', '=', 'sections.id')
+                ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                ->where('students.group_id', '=', 3)
+                ->get();
+            return view('elementary.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+
+        }
+
     }
     public function add_student_elem(Request $request){
         if ($request->isMethod('post')) {
@@ -146,15 +152,66 @@ class StudentController extends Controller
         }
     }
 
-    public function total_attempt_elem(Request $request) {
+    public function total_attempt_elem(Request $request)
+    {
         if ($request->isMethod('post')) {
             $students = DB::table("offenses")
                 ->join('students', 'students.student_id', '=', 'offenses.student_id')
                 ->select(DB::raw("COUNT(offenses.student_id) count"))
                 ->groupBy("offenses.student_id")
-                ->where('offenses.student_id', '=', $request->stud_id)
+                ->where('offenses.student_id', '=', $request->studID)
                 ->get();
-            return response()->json(array('msg'=> $students[0]), 200);
+                return json_encode(count($students));
+        }
+    }
+
+    public function search_elem_stud(Request $request)
+    {
+        if ($request->isMethod('get')) {
+            if(!empty($request->sy) && !empty($request->section)) {
+                $sections = Section::all();
+                $school_years = SchoolYear::all();
+                $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->join('sections', 'students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->where([['students.group_id', '=', 3],['students.sy_id','=', $request->sy],['students.section_id','=', trim($request->section)]])
+                    ->get();
+                return view('elementary.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+            }
+            else if(!empty($request->section)) {
+                $sections = Section::all();
+                $school_years = SchoolYear::all();
+                $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->join('sections', 'students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->where([['students.group_id', '=', 3],['students.section_id','=', trim($request->section)]])
+                    ->get();
+                return view('elementary.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+            }
+            else if(!empty($request->sy)) {
+                $sections = Section::all();
+                $school_years = SchoolYear::all();
+                $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->join('sections', 'students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->where([['students.group_id', '=', 3],['students.sy_id','=', $request->sy]])
+                    ->get();
+                return view('elementary.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+            }
+            else {
+                $sections = Section::all();
+                $school_years = SchoolYear::all();
+                $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->join('sections', 'students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->where([['students.group_id', '=', 3]])
+                    ->get();
+                return view('elementary.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+            }
         }
     }
 }

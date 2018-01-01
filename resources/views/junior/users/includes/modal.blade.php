@@ -80,6 +80,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input type="password" name="password" id="Password" class="form-control" placeholder="6 - 15 Characters">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="RePassword">Confirm Password</label>
+                            <input type="password" name="password_confirmation" id="RePassword" class="form-control" placeholder="6 - 15 Characters">
+                        </div>
+                    </div>
+                </div>
             </div>
             <input type="hidden" name="id">
             <div class="modal-footer"><br>

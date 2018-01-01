@@ -171,13 +171,38 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'    => 'elem.contactadd'
     ]);
 
-    Route::get('/elemmonthly', function() {
-        return view('elementary.monthly.index');
-    });
+    Route::get('/elemmonthly', [
+        'uses' => 'ReportController@elem_report'
+    ]);
 
     Route::post('/elem/student/attempt',[
         'uses' => 'StudentController@total_attempt_elem',
         'as'   => 'total_attempt_elem'
+    ]);
+
+//    Route::get('/elem/section-filter',[
+//        'uses' => 'StudentController@section_filter_elem',
+//        'as'   => 'section_filter_elem'
+//    ]);
+
+    Route::get('/elem/stud_elem_add',[
+        'uses' => 'StudentController@search_elem_stud',
+        'as'   => 'elem.studSearch'
+    ]);
+
+    Route::get('/elem/offense_elem_add',[
+        'uses' => 'OffenseController@search_elem_offense',
+        'as'   => 'elem.offenseSearch'
+    ]);
+    Route::post('/elem/offense_update',[
+        'uses' => 'OffenseController@update_elem_offense',
+        'as'   => 'elem.updateOffense'
+    ]);
+
+    Route::get('importExport', 'MaatwebsiteDemoController@importExport');
+    Route::get('downloadExcel/{type}', [
+       'uses' => 'ReportController@downloadExcel',
+        'as'  => 'elem.reportSearch'
     ]);
 
     //junior routes

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Offense;
 use App\Student;
+
 use App\SchoolYear;
 use App\Section;
 use DB;
@@ -15,6 +16,7 @@ use Carbon\Carbon;
 class OffenseController extends Controller
 {
     public function offense_elem(){
+
         $students = DB::table('students')
             ->join('school_years', 'students.sy_id', '=', 'school_years.id')
             ->select('students.*', 'school_years.school_year')
@@ -25,14 +27,17 @@ class OffenseController extends Controller
     }
 
     public function offense_records_elem(){
+        $sections = Section::all();
+        $school_years = SchoolYear::all();
         $offenses= DB::table('offenses')
             ->join('students', 'offenses.student_id', '=', 'students.student_id')
             ->join('violations', 'offenses.violation_id', '=', 'violations.id')
             ->join('school_years','students.sy_id', '=', 'school_years.id')
-            ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year')
+            ->join('sections','students.section_id', '=', 'sections.id')
+            ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
             ->where('students.group_id', '=', 3)
             ->get();
-        return view('elementary.offense_records.index',['offenses' => $offenses]);
+        return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
     }
 
 
@@ -54,6 +59,21 @@ class OffenseController extends Controller
                 ];
                 Offense::insert($data);
             }
+            $students = DB::table("offenses")
+                ->join('students', 'students.student_id', '=', 'offenses.student_id')
+                ->select(DB::raw("COUNT(offenses.student_id) count,students.first_name, students.last_name"))
+                ->groupBy("offenses.student_id")
+                ->havingRaw("COUNT(offenses.student_id) = 3")
+                ->where('students.group_id', '=', 3)
+                ->get();
+            if(!empty($students)) {
+                foreach($students as $student) {
+                    $stud = new Student();
+                    $stud->status = 'unread';
+                    $stud->save();
+                }
+            }
+
             Session::flash('message','Your student offense has been succesfully added!');
             Session::flash('alert-class', 'alert-info');
             return redirect('/elementary/offense/');
@@ -155,6 +175,78 @@ class OffenseController extends Controller
                 Session::flash('alert-class', 'alert-info');
                 return redirect('/junior/offense/');
             }
+        }
+    }
+
+    public function search_elem_offense(Request $request)
+    {
+        if ($request->isMethod('get')) {
+            if(!empty($request->sy) && !empty($request->section)) {
+                $sections = Section::all();
+                $school_years = SchoolYear::all();
+                $offenses= DB::table('offenses')
+                    ->join('students', 'offenses.student_id', '=', 'students.student_id')
+                    ->join('violations', 'offenses.violation_id', '=', 'violations.id')
+                    ->join('school_years','students.sy_id', '=', 'school_years.id')
+                    ->join('sections','students.section_id', '=', 'sections.id')
+                    ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
+                    ->where([['students.group_id', '=', 3],['students.sy_id','=', $request->sy],['students.section_id','=', trim($request->section)]])
+                    ->get();
+                return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
+            }
+            else if(!empty($request->section)) {
+                $sections = Section::all();
+                $school_years = SchoolYear::all();
+                $offenses= DB::table('offenses')
+                    ->join('students', 'offenses.student_id', '=', 'students.student_id')
+                    ->join('violations', 'offenses.violation_id', '=', 'violations.id')
+                    ->join('school_years','students.sy_id', '=', 'school_years.id')
+                    ->join('sections','students.section_id', '=', 'sections.id')
+                    ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
+                    ->where([['students.group_id', '=', 3],['students.section_id','=', trim($request->section)]])
+                    ->get();
+                return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
+            }
+            else if(!empty($request->sy)) {
+                $sections = Section::all();
+                $school_years = SchoolYear::all();
+                $offenses= DB::table('offenses')
+                    ->join('students', 'offenses.student_id', '=', 'students.student_id')
+                    ->join('violations', 'offenses.violation_id', '=', 'violations.id')
+                    ->join('school_years','students.sy_id', '=', 'school_years.id')
+                    ->join('sections','students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
+                    ->where([['students.group_id', '=', 3],['students.sy_id','=', $request->sy]])
+                    ->get();
+                return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
+            }
+            else {
+                $sections = Section::all();
+                $school_years = SchoolYear::all();
+                $offenses= DB::table('offenses')
+                    ->join('students', 'offenses.student_id', '=', 'students.student_id')
+                    ->join('violations', 'offenses.violation_id', '=', 'violations.id')
+                    ->join('school_years','students.sy_id', '=', 'school_years.id')
+                    ->join('sections','students.section_id', '=', 'sections.id')
+                    ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
+                    ->where('students.group_id', '=', 3)
+                    ->get();
+                return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
+            }
+        }
+    }
+
+    public function update_elem_offense(Request $request) {
+        $update = Offense::find($request['id']);
+        if ($update) {
+            $update->fill($request->all());
+            $update->save();
+            Session::flash('message','Your Offense has been succesfully update!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/elementary/records/');
+        } else {
+            return redirect('/elementary/records/');
         }
     }
 }

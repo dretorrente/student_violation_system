@@ -15,7 +15,7 @@ class UserController extends Controller
 {
 
     public function login(Request $request) {
-
+        $request['username'] = lcfirst($request['username']);
         $this->validate($request, [
             'username' => 'required|exists:users,username',
             'password' => "required"
@@ -71,6 +71,15 @@ class UserController extends Controller
      */
     public function update_elem(Request $request) {
         if (Auth::Check()) {
+//            print_r($_FILES);
+//            die();
+            $name = '';
+            if ($request->hasFile('upload')) {
+                $image = $request->file('upload');
+                $name = time() . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('assets\images\users');
+                $image->move($destinationPath, $name);
+            }
             $request_data = $request->All();
             $this->validate($request, [
                 'email' => 'email',
@@ -81,6 +90,7 @@ class UserController extends Controller
             $obj_user->password = Hash::make($request_data['password']);
             $obj_user->email    = $request_data['email'];
             $obj_user->username = $request_data['username'];
+            $obj_user->upload   = $name;
             $obj_user->save();
             Session::flash('message','Your account has been successfully update!');
             Session::flash('alert-class', 'alert-info'); 
@@ -103,8 +113,14 @@ class UserController extends Controller
     public function elem_management_add(Request $request) {
         if ($request->isMethod('post')) {
             $user           = new User();
-            $password       = md5(uniqid(rand(), true));
-            $hashPassword   = Hash::make($password);
+//            $password       = md5(uniqid('prefect3', true));
+            $password = '';
+            if($request['role'] == 'administrator') {
+                $password = $request['username'].'elemadmin';
+            } else {
+                $password = $request['username'].'elemstaff';
+            }
+            $hashPassword   = bcrypt($password);
             $user->email    = $request['email'];
             $user->username = $request['username'];
             $user->role     = $request['role'];
@@ -113,11 +129,11 @@ class UserController extends Controller
 
             $request_data = $request->all();
             if ($user->save()) {
-                Mail::send('elementary.users.email', ['password' => $password], function ($m) use ($request_data) {
-                    $m->from('lihuza@duck2.club', 'Your Temporary Password');
+                // Mail::send('elementary.users.email', ['password' => $password], function ($m) use ($request_data) {
+                //     $m->from('lihuza@duck2.club', 'Your Temporary Password');
 
-                    $m->to($request_data['email'], $request_data['username'])->subject('Your Temporary Password');
-                });
+                //     $m->to($request_data['email'], $request_data['username'])->subject('Your Temporary Password');
+                // });
                 return redirect('/elementary/users/');
             }
         }
@@ -128,10 +144,15 @@ class UserController extends Controller
      * @return [type] [description]
      */
     public function elem_management_update(request $request) {
+        $this->validate($request, [
+            'email' => 'email',
+            'password' => 'required|min:6|max:15|confirmed',
+        ]);
         $user = User::find($request['id']);
         if ($user) {
             $user->email = $request['email'];
             $user->username = $request['username'];
+            $user->password = Hash::make($request['password']);
             $user->role = $request['role'];
             $user->save();
             Session::flash('message','Your users has been succesfully update!');

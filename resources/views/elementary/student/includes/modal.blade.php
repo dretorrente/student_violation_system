@@ -61,7 +61,7 @@
                             <select class="form-control" id="section_id" name="section_id" required="required">
                                 <option value="">Please select</option>
                                 @foreach($sections as $section)
-                                    <option value="{{$section->grade}} - {{$section->section}}">{{$section->grade}} - {{$section->section}}</option>
+                                    <option value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -148,7 +148,7 @@
                                 <select class="form-control" id="section_id" name="section_id" required>
                                     <option value="">Please select</option>
                                     @foreach($sections as $section)
-                                        <option value="{{$section->grade}} - {{$section->section}}">{{$section->grade}} - {{$section->section}}</option>
+                                        <option value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
                                     @endforeach
                                 </select>
                             </div>
