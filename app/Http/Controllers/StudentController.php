@@ -13,8 +13,14 @@ class StudentController extends Controller
     public function student_elem(Request $request){
         if ($request->isMethod('get')) {
 
-            $sections = Section::all();
-            $school_years = SchoolYear::all();
+            $sections = DB::table('sections')
+                ->select('sections.*')
+                ->where('sections.group_id', '=', 3)
+                ->get();
+            $school_years = DB::table('school_years')
+                ->select('school_years.*')
+                ->where('school_years.group_id', '=', 3)
+                ->get();
             $students = DB::table('students')
                 ->join('school_years', 'students.sy_id', '=', 'school_years.id')
                 ->join('sections', 'students.section_id', '=', 'sections.id')

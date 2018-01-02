@@ -5,6 +5,7 @@ use App\SchoolYear;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use DB;
 class SchoolYearController extends Controller
 {
 

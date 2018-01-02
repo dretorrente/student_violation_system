@@ -27,8 +27,14 @@ class OffenseController extends Controller
     }
 
     public function offense_records_elem(){
-        $sections = Section::all();
-        $school_years = SchoolYear::all();
+        $sections = DB::table('sections')
+            ->select('sections.*')
+            ->where('sections.group_id', '=', 3)
+            ->get();
+        $school_years = DB::table('school_years')
+            ->select('school_years.*')
+            ->where('school_years.group_id', '=', 3)
+            ->get();
         $offenses= DB::table('offenses')
             ->join('students', 'offenses.student_id', '=', 'students.student_id')
             ->join('violations', 'offenses.violation_id', '=', 'violations.id')
