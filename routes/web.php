@@ -216,7 +216,7 @@ Route::group(['middleware' =>['auth.shs']], function() {
     ]);
 
     Route::post('/junior/students', [
-        'uses'  => 'StudentController@add_junior_elem',
+        'uses'  => 'StudentController@add_student_junior',
         'as'    => 'junior.studentadd'
     ]);
 

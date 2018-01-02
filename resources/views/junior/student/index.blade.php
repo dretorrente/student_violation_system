@@ -63,11 +63,8 @@
                                     <th>First Name</th>
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
-                                    <th>Age</th>
-                                    <th>Gender</th>
                                     <th>Adviser</th>
                                     <th>Grade &amp; Section</th>
-                                    <th>Address</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -81,15 +78,12 @@
                                         <td>{{$student->first_name}}</td>
                                         <td>{{$student->middle_name}}</td>
                                         <td>{{$student->last_name}}</td>
-                                        <td>{{$student->age}}</td>
-                                        <td>{{Config::get('constants.gender.'.$student->gender)}}</td>
                                         <td>{{$student->adviser}}</td>
-                                        <td>{{$student->section_id}}</td>
-                                        <td>{{$student->address}}</td>
+                                        <td>{{$student->grade}} - {{$student->section}}</td>
                                         <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
-                                        <button data-tooltip="tooltip" data-placement="top" id="total_attempts" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
+                                            <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
                                         <input type="hidden" value="{{$student->sy_id}}">
-                                        <input type="hidden" value="{{$student->gender}}">
+                                        <input type="hidden" value="{{$student->contact_no}}">
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -146,29 +140,48 @@
             var parent = $(this).parent().parent();
             var id = $(':nth-child(1)', parent).text();
             var studentID = $(':nth-child(2)', parent).html();
+            var school_year = $(':nth-child(3)', parent).text();
             var first_name =  $(':nth-child(4)', parent).text();
             var middle_name =  $(':nth-child(5)', parent).text();
             var last_name =  $(':nth-child(6)', parent).text();
-            var age =  $(':nth-child(7)', parent).text();
-            var gender =  $(':nth-child(14)', parent).val();
-            var adviser =  $(':nth-child(9)', parent).text();
-            var section =  $(':nth-child(10)', parent).text();
-            var address =  $(':nth-child(11)', parent).text();
-            var school_year = $(':nth-child(13)', parent).val();
+            var adviser =  $(':nth-child(7)', parent).text();
+            var section =  $(':nth-child(8)', parent).text();
+            var contact_no = $(':nth-child(11)', parent).val();
+            var sy = $('#student-update #sy_id option:contains("'+school_year+'")').val();
+            var section_update = $('#student-update #section_id option:contains("'+section+'")').val();
             $('#student-update #student_id').val(studentID);
             $('#student-update #first_name').val(first_name);
             $('#student-update #middle_name').val(middle_name);
             $('#student-update #last_name').val(last_name);
-            $('#student-update #age').val(age);
-            $('#student-update #gender').val(gender);
             $('#student-update #adviser').val(adviser);
-            $('#student-update #address').val(address);
-            $('#student-update #sy_id').val(school_year);
-            $('#student-update #section_id').val(section);
-            $('#student-update #gender').val(gender);
+            $('#student-update #sy_id').val(sy);
+            $('#student-update #section_id').val(section_update);
             $('#student-update #hiddenStudent').val(id);
+            $('#student-update #contact_no').val(contact_no);
         });
 
+        $('.total_attempts').on('click',function(e){
+
+            e.preventDefault();
+            var parent = $(this).parent().parent();
+            var studentID = $(':nth-child(2)', parent).html();
+            $.ajax({
+                method: 'POST',
+                url: '/junior/student/attempt',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'studID': studentID
+                },
+                dataType: 'json'
+            }).done(function(response) {
+                var count_attempt = parseInt(response);
+
+                $('#elemview-attempt #attempt').val(count_attempt);
+                $('#elemview-attempt').modal('show');
+
+            });
+
+        });
     });
 </script>
 

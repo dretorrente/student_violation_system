@@ -9,7 +9,10 @@ class SchoolYearController extends Controller
 {
 
     public function schoolyear_elem(){
-        $school_years = SchoolYear::all();
+        $school_years = DB::table('school_years')
+            ->select('school_years.*')
+            ->where('school_years.group_id', '=', 3)
+            ->get();
         return view('elementary.schoolyear.index',['school_years' => $school_years]);
     }
 
@@ -17,6 +20,7 @@ class SchoolYearController extends Controller
         if ($request->isMethod('post')) {
             $schoolyear = new SchoolYear();
             $schoolyear->school_year = $request['school_year'];
+            $schoolyear->group_id = 3;
             if($schoolyear->save()){
                 Session::flash('message','Your school year has been succesfully added!');
                 Session::flash('alert-class', 'alert-info');

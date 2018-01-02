@@ -109,7 +109,11 @@ class StudentController extends Controller
      * Junior high dashboard
      */
     public function student_junior(){
-        $sections = Section::all();
+        $group_id = Auth::user()['group_id'];
+        $sections = DB::table('sections')
+                    ->select('sections.*')
+                    ->where('sections.group_id', '=', $group_id)
+                    ->get();
         $school_years = SchoolYear::all();
         $students = DB::table('students')
                     ->join('school_years', 'students.sy_id', '=', 'school_years.id')
@@ -132,6 +136,7 @@ class StudentController extends Controller
                 Session::flash('alert-class', 'alert-info');
                 return redirect('/junior/students/');
             }
+
 
         }
     }

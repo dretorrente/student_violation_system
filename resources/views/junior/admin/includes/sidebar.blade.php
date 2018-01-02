@@ -16,9 +16,6 @@
             <div id="sidebar-menu">
                 <ul>
                     <li>
-                        <a href="{{ url('/junior/home') }}" class="waves-effect"><i class="md md-dashboard"></i><span>Dashboard </span></a>
-                    </li>
-                    <li>
                         <a href="{{ url('/junior/students') }}" class="waves-effect"><i style="font-size: 20px;" class="ion-ios7-people"></i><span>Student Management</span></a>
                     </li>
                     <li>

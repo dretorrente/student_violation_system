@@ -117,7 +117,10 @@ class SectionController extends Controller
      * Junior high section dashboard
      */
     public function section_junior(){
-        $sections = Section::all();
+        $sections = $sections = DB::table('sections')
+            ->select('sections.*')
+            ->where('sections.group_id', '=', Auth::user()['group_id'])
+            ->get();
         return view('junior.section.index',['sections' => $sections]);
     }
 
@@ -128,6 +131,7 @@ class SectionController extends Controller
         if ($request->isMethod('post')) {
             $section = new Section();
             $section->fill($request->all());
+            $section->group_id = Auth::user()['group_id'];
             if($section->save()){
                 Session::flash('message','Your section has been succesfully added!');
                 Session::flash('alert-class', 'alert-info');

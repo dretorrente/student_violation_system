@@ -123,7 +123,10 @@ class ViolationController extends Controller
      * Junior high violation
      */
     public function violation_junior() {
-        $violation = DB::table('violations')->simplePaginate(10);
+        $violation = DB::table('violations')
+            ->select('violations.*')
+            ->where('violations.group_id', '=', 2)
+            ->get();
         return view('junior.violations.index',['violations' => $violation]);
     }
 
