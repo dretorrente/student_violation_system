@@ -239,6 +239,19 @@ class ContactController extends Controller
         }
     }
 
+
+     public function delete_contact_senior($id) {
+        $contact = Contact::find($id);
+        if ($contact) {
+            $contact->delete();
+            Session::flash('message','Your contact has been deleted!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/senior/contacts/');
+        } else {
+            return redirect('/senior/contacts/');
+        }
+    }
+
     public function update_contact_junior(Request $request) {
         if ($request->isMethod('post')) {
             $update = Contact::find($request['id']);
@@ -251,6 +264,23 @@ class ContactController extends Controller
                 return redirect('/junior/contacts/');
             } else {
                 return redirect('/junior/contacts/');
+            }
+        }
+    }
+
+
+     public function update_contact_senior(Request $request) {
+        if ($request->isMethod('post')) {
+            $update = Contact::find($request['id']);
+            if ($update) {
+                $update->name = $request['name'];
+                $update->contact_no = $request['contact_no'];
+                $update->save();
+                Session::flash('message','Your contact has been succesfully update!');
+                Session::flash('alert-class', 'alert-info');
+                return redirect('/senior/contacts/');
+            } else {
+                return redirect('/senior/contacts/');
             }
         }
     }

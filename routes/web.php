@@ -545,6 +545,16 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses' => 'StudentController@search_senior_stud',
         'as'   => 'senior.studSearch'
     ]);
+
+     Route::match(['get', 'post'], '/senior/contact_delete/{id}',[
+        'uses' => 'ContactController@delete_contact_senior',
+        'as'   => 'senior.deleteContact'
+    ]);
+
+      Route::post('/senior/contacts_update', [
+        'uses'  => 'ContactController@update_contact_senior',
+        'as'    => 'senior.contactupdate'
+    ]);
 });
 
 

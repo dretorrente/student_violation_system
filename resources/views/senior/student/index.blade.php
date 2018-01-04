@@ -77,6 +77,7 @@
                                     </thead>
 
                                     <tbody>
+                                     <?php $c = 1; ?>
                                     @foreach($students as $student)
                                         <tr>
                                             <td>{{$student->id}}</td>
@@ -92,6 +93,7 @@
                                             <input type="hidden" value="{{$student->sy_id}}">
                                             <input type="hidden" value="{{$student->contact_no}}">
                                         </tr>
+                                         <?php $c++; ?>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -144,7 +146,7 @@
         });
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(1)', parent).text();
+            var id = $(':nth-child(12)', parent).val();
             var studentID = $(':nth-child(2)', parent).html();
             var school_year = $(':nth-child(3)', parent).text();
             var first_name =  $(':nth-child(4)', parent).text();
@@ -165,6 +167,7 @@
             $('#student-update #hiddenStudent').val(id);
             $('#student-update #contact_no').val(contact_no);
         });
+
 
         $('.total_attempts').on('click',function(e){
 
