@@ -138,14 +138,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('.delete').on('click', function(){
-            var id = $(this).attr('id');
-            $('.confirmation').data('id',id);
-        });
-
-        $('.confirmation').on('click', function(){
-            window.location.href = "/elementary/delete/"+$(this).data('id');
-        });
+       
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
             var id = $(':nth-child(12)', parent).val();

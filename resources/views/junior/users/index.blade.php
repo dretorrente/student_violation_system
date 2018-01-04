@@ -60,15 +60,17 @@
                                         </thead>
 
                                         <tbody>
+                                        <?php $c=1; ?>
                                         @foreach($users as $user)
                                         <tr>
-                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $c }}</td>
                                             <td id="email-{{ $user->id }}">{{ $user->email }}</td>
                                             <td id="username-{{ $user->id }}">{{ $user->username }}</td>
                                             <td id="role-{{ $user->id }}">{{ $user->role }}</td>
                                             <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#user-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $user->id }}"><i class="md md-border-color"></i></button>
                                             <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#user-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5 delete" id="{{ $user->id }}" ><i class="md md-delete"></i></button></td>
                                         </tr>
+                                        <?php $c++; ?>
                                         @endforeach
                                         </tbody>
                                     </table>

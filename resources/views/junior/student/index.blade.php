@@ -77,21 +77,24 @@
                             </thead>
 
                             <tbody>
+                            <?php $c = 1; ?>
                             @foreach($students as $student)
                                 <tr>
-                                    <td>{{$student->id}}</td>
-                                    <td>{{$student->student_id}}</td>
-                                    <td>{{$student->school_year}}</td>
-                                    <td>{{$student->first_name}}</td>
-                                    <td>{{$student->middle_name}}</td>
-                                    <td>{{$student->last_name}}</td>
-                                    <td>{{$student->adviser}}</td>
-                                    <td>{{$student->grade}} - {{$student->section}}</td>
-                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
-                                        <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
-                                    <input type="hidden" value="{{$student->sy_id}}">
-                                    <input type="hidden" value="{{$student->contact_no}}">
+                                     <td>{{$c}}</td>
+                                        <td>{{$student->student_id}}</td>
+                                        <td>{{$student->school_year}}</td>
+                                        <td>{{$student->first_name}}</td>
+                                        <td>{{$student->middle_name}}</td>
+                                        <td>{{$student->last_name}}</td>
+                                        <td>{{$student->adviser}}</td>
+                                        <td>{{$student->grade}} - {{$student->section}}</td>
+                                        <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
+                                            <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
+                                        <input type="hidden" value="{{$student->sy_id}}">
+                                        <input type="hidden" value="{{$student->contact_no}}">
+                                        <input type="hidden" value="{{$student->id}}">
                                 </tr>
+                             <?php $c++; ?>
                             @endforeach
                             </tbody>
                         </table>
@@ -134,18 +137,10 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.delete').on('click', function(){
-            var id = $(this).attr('id');
-            $('.confirmation').data('id',id);
-        });
-
-        $('.confirmation').on('click', function(){
-            window.location.href = "/junior/delete/"+$(this).data('id');
-        });
+   $(document).ready(function(){
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(1)', parent).text();
+            var id = $(':nth-child(12)', parent).val();
             var studentID = $(':nth-child(2)', parent).html();
             var school_year = $(':nth-child(3)', parent).text();
             var first_name =  $(':nth-child(4)', parent).text();

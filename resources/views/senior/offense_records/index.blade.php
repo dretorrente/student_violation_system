@@ -75,9 +75,10 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <?php $c = 1; ?>
                             @foreach($offenses as $offense)
                                 <tr>
-                                    <td>{{$offense->id}}</td>
+                                    <td>{{$c}}</td>
                                     <td>{{$offense->student_id}}</td>
                                     <td>{!! Helper::fullname($offense->first_name,$offense->middle_name,$offense->last_name) !!}</td>
                                     <td>{{$offense->adviser}}</td>
@@ -91,7 +92,9 @@
                                     <input type="hidden" value="{{$offense->first_name}}">
                                     <input type="hidden" value="{{$offense->middle_name}}">
                                     <input type="hidden" value="{{$offense->last_name}}">
+                                    <input type="hidden" value="{{$offense->id}}">
                                 </tr>
+                                 <?php $c++; ?>
                             @endforeach
                             </tbody>
                         </table>
@@ -132,6 +135,51 @@
         </div>
     </div>
 </div>
+ <script type="text/javascript">
+        $(document).ready(function(){
+            $('.delete').on('click', function(){
+                var id = $(this).attr('id');
+                $('.confirmation').data('id',id);
+            });
+
+            $('.confirmation').on('click', function(){
+                window.location.href = "/elementary/delete/"+$(this).data('id');
+            });
+            $('.update_offense').on('click', function(){
+                var parent = $(this).parent().parent();
+                var id = $(':nth-child(15)', parent).val();
+                var studentID = $(':nth-child(2)', parent).html();
+                var section =  $(':nth-child(5)', parent).text();
+                var section_update = $('#offense-update #section_id option:contains("'+section+'")').val();
+                var first_name =  $(':nth-child(12)', parent).val();
+                var middle_name =  $(':nth-child(13)', parent).val();
+                var last_name =  $(':nth-child(14)', parent).val();
+                var adviser =  $(':nth-child(4)', parent).text();
+                var offense = $(':nth-child(8)', parent).text();
+                var description = $(':nth-child(9)', parent).text();
+                var sanction = $(':nth-child(10)', parent).text();
+                var date_commit = $(':nth-child(6)', parent).text().split(' ').join('T');
+//                var section =  $(':nth-child(8)', parent).text();
+//                var contact_no = $(':nth-child(11)', parent).val();
+//                var sy = $('#student-update #sy_id option:contains("'+school_year+'")').val();
+//                $('#offense-update #student_id').val(studentID);
+//                $('#offense-update #first_name').val(first_name);
+//                $('#offense-update #middle_name').val(middle_name);
+//                $('#offense-update #last_name').val(last_name);
+//                $('#offense-update #adviser').val(adviser);
+                $('#offense-update #student_offense').val(offense);
+                $('#offense-update #date_commit').val(date_commit);
+//                $('#offense-update #section_id').val(section_update);
+                $('#offense-update #sanction').val(sanction);
+                $('#offense-update #description').val(description);
+                $('#offense-update #hiddenOffense').val(id);
+//                $('#offense-update #sy_id').val(sy);
+//                $('#offense-update #section_id').val(section);
+//                $('#offense-update #hiddenStudent').val(id);
+//                $('#offense-update #contact_no').val(contact_no);
+            });
+        });
+    </script>
 @section('footer')
     @include('senior.student.includes.footer')
 @show

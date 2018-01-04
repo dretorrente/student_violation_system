@@ -45,15 +45,18 @@
                             </thead>
 
                             <tbody>
+                            <?php $c=1; ?>
                             @foreach($sections as $section)
                                 <tr>
-                                    <td>{{$section->id}}</td>
+                                      <td>{{$c}}</td>
                                         <td>{{$section->grade}} - {{$section->section}}</td>
                                     <input type="hidden" value="{{$section->grade}}" id="grade">
                                     <input type="hidden" value="{{$section->section}}" id="section">
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#section-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#section-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5 delete" id="{{ $section->id }}"><i class="md md-delete"></i></button></td>
+                                     <input type="hidden" value="{{$section->id}}"/>
                                 </tr>
+                                 <?php $c++; ?>
                             @endforeach
                             </tbody>
                         </table>
@@ -107,7 +110,7 @@
 
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(1)', parent).text();
+            var id = $(':nth-child(6)', parent).val();
             var grade = $(':nth-child(3)', parent).val();
             var section = $(':nth-child(4)', parent).val();
             $('#section-update #grade').val(grade);

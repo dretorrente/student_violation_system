@@ -67,7 +67,7 @@
         </div> 
     </div>
 </div>
-{{-- Delete Grade/Section --}}
+{{-- Delete Contact --}}
 <div id="contacts-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog"> 
         <div class="modal-content"> 

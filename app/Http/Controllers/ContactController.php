@@ -226,4 +226,32 @@ class ContactController extends Controller
             return redirect('/elementary/contacts/');
         }
     }
+
+     public function delete_contact_junior($id) {
+        $contact = Contact::find($id);
+        if ($contact) {
+            $contact->delete();
+            Session::flash('message','Your contact has been deleted!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/junior/contacts/');
+        } else {
+            return redirect('/junior/contacts/');
+        }
+    }
+
+    public function update_contact_junior(Request $request) {
+        if ($request->isMethod('post')) {
+            $update = Contact::find($request['id']);
+            if ($update) {
+                $update->name = $request['name'];
+                $update->contact_no = $request['contact_no'];
+                $update->save();
+                Session::flash('message','Your contact has been succesfully update!');
+                Session::flash('alert-class', 'alert-info');
+                return redirect('/junior/contacts/');
+            } else {
+                return redirect('/junior/contacts/');
+            }
+        }
+    }
 }

@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="field-2" class="control-label">School Year</label>
                             <select class="form-control" name="sy_id" id="sy_id" required="required">
-                                <option value="">Please select</option>
+                                <option value="">Please select School Year</option>
                                 @foreach($school_years as $school_year)
                                     <option value="{{$school_year->id}}" >{{$school_year->school_year}}</option>
                                 @endforeach
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <label for="field-2" class="control-label">Grade &amp; Section</label>
                             <select class="form-control" id="section_id" name="section_id" required="required">
-                                <option value="">Please select</option>
+                                <option value="">Please select Section</option>
                                 @foreach($sections as $section)
                                     <option value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
                                 @endforeach

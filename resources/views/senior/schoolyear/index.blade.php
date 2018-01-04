@@ -110,7 +110,6 @@
             var parent = $(this).parent().parent();
             var id = $(':nth-child(4)', parent).val();
             var sy = $(':nth-child(2)', parent).text();
-            console.log(sy);
             $('#sy-update #school_year').val(sy);
             $('#sy-update #hiddenSyId').val(id);
         });

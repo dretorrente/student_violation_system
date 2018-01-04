@@ -376,4 +376,17 @@ class OffenseController extends Controller
             return redirect('/senior/records/');
         }
     }
+
+     public function update_junior_offense(Request $request) {
+        $update = Offense::find($request['id']);
+        if ($update) {
+            $update->fill($request->all());
+            $update->save();
+            Session::flash('message','Your Offense has been succesfully update!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/junior/records/');
+        } else {
+            return redirect('/junior/records/');
+        }
+    }
 }
