@@ -45,13 +45,16 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            <?php $c=1; ?>
                             @foreach($school_years as $school_year)
                                 <tr>
-                                    <td>{{$school_year->id}}</td>
+                                    <td>{{$c}}</td>
                                     <td>{{$school_year->school_year}}</td>
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update" data-toggle="modal" data-target="#sy-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update"><i class="md md-border-color"></i></button>
                                     <button data-tooltip="tooltip" data-placement="top" data-original-title="Delete" data-toggle="modal" data-target="#sy-delete" type="button" class="btn-xs btn btn-danger waves-effect waves-light m-b-5 delete" id="{{$school_year->id}}"><i class="md md-delete"></i></button></td>
+                                    <input type="hidden" value="{{$school_year->id}}"/>
                                 </tr>
+                                <?php $c++; ?>
                             @endforeach
                             </tbody>
                         </table>
@@ -105,9 +108,8 @@
 
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(1)', parent).text();
+            var id = $(':nth-child(4)', parent).val();
             var sy = $(':nth-child(2)', parent).text();
-            console.log(sy);
             $('#sy-update #school_year').val(sy);
             $('#sy-update #hiddenSyId').val(id);
         });

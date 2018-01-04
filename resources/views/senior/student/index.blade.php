@@ -33,23 +33,30 @@
                     @include('senior.student.includes.modal')
                 @show
                 <div class="col-lg-6">
-                    <div style="padding: 10px 3px;" class="btn-group">
-                        <select class="form-control" id="exampleFormControlSelect1">
-                              <option>Section</option>
-                              <option>Falcata</option>
-                              <option>Salome</option>
-                              <option>Compassion</option>
-                        </select>
-                    </div>
-                    <div style="padding: 10px 5px;" class="btn-group">
-                        <select class="form-control" id="exampleFormControlSelect1">
-                              <option>2017-2018</option>
-                              <option>2016-2017</option>
-                              <option>2015-2016</option>
-                              <option>2014-2015</option>
-                              <option>2013-2014</option>
-                        </select>
-                    </div>
+                    <form action="{{ route('senior.studSearch')}}" method="get">
+                        {{csrf_field()}}
+                        <div style="padding: 10px 3px;" class="btn-group">
+                            <select class="form-control" id="section" name="section">
+                                <option value="">Please select Section</option>
+                                @foreach($sections as $section)
+                                    <option <?php if(isset($_GET['section'])):
+                                        echo $_GET['section']== $section->id ? "selected" : "";
+                                    endif; ?> value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div style="padding: 10px 5px;" class="btn-group">
+                            <select class="form-control" name="sy" id="sy">
+                                <option value="">Please select School Year</option>
+                                @foreach($school_years as $school_year)
+                                    <option <?php if(isset($_GET['sy'])):
+                                        echo $_GET['sy']== $school_year->id ? "selected" : "";
+                                    endif; ?> value="{{$school_year->id}}">{{$school_year->school_year}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button class="btn btn-info waves-effect waves-light" ><i class="fa fa-search"></i> Search</button>
+                    </form>
                 </div>
                     <div class="panel-body">
                         <div class="row">
@@ -60,9 +67,9 @@
                                             <th>#</th>
                                             <th>Student ID</th>
                                             <th>School-Year</th>
-                                            <th>Name</th>
-                                            <th>Age</th>
-                                            <th>Gender</th>
+                                            <th>First Name</th>
+                                            <th>Middle Name</th>
+                                            <th>Last Name</th>
                                             <th>Adviser</th>
                                             <th>Grade &amp; Section</th>
                                             <th>Actions</th>
@@ -70,25 +77,22 @@
                                     </thead>
 
                                     <tbody>
-                                        @foreach($students as $student)
-                                            <tr>
-                                                <td>{{$student->id}}</td>
-                                                <td>{{$student->student_id}}</td>
-                                                <td>{{$student->school_year}}</td>
-                                                <td>{{$student->first_name}}</td>
-                                                <td>{{$student->middle_name}}</td>
-                                                <td>{{$student->last_name}}</td>
-                                                <td>{{$student->age}}</td>
-                                                <td>{{Config::get('constants.gender.'.$student->gender)}}</td>
-                                                <td>{{$student->adviser}}</td>
-                                                <td>{{$student->section_id}}</td>
-                                                <td>{{$student->address}}</td>
-                                                <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
-                                                <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
-                                                <input type="hidden" value="{{$student->sy_id}}">
-                                                <input type="hidden" value="{{$student->gender}}">
-                                            </tr>
-                                        @endforeach
+                                    @foreach($students as $student)
+                                        <tr>
+                                            <td>{{$student->id}}</td>
+                                            <td>{{$student->student_id}}</td>
+                                            <td>{{$student->school_year}}</td>
+                                            <td>{{$student->first_name}}</td>
+                                            <td>{{$student->middle_name}}</td>
+                                            <td>{{$student->last_name}}</td>
+                                            <td>{{$student->adviser}}</td>
+                                            <td>{{$student->grade}} - {{$student->section}}</td>
+                                            <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
+                                                <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
+                                            <input type="hidden" value="{{$student->sy_id}}">
+                                            <input type="hidden" value="{{$student->contact_no}}">
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -128,6 +132,65 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.delete').on('click', function(){
+            var id = $(this).attr('id');
+            $('.confirmation').data('id',id);
+        });
+
+        $('.confirmation').on('click', function(){
+            window.location.href = "/senior/delete/"+$(this).data('id');
+        });
+        $('.update').on('click', function(){
+            var parent = $(this).parent().parent();
+            var id = $(':nth-child(1)', parent).text();
+            var studentID = $(':nth-child(2)', parent).html();
+            var school_year = $(':nth-child(3)', parent).text();
+            var first_name =  $(':nth-child(4)', parent).text();
+            var middle_name =  $(':nth-child(5)', parent).text();
+            var last_name =  $(':nth-child(6)', parent).text();
+            var adviser =  $(':nth-child(7)', parent).text();
+            var section =  $(':nth-child(8)', parent).text();
+            var contact_no = $(':nth-child(11)', parent).val();
+            var sy = $('#student-update #sy_id option:contains("'+school_year+'")').val();
+            var section_update = $('#student-update #section_id option:contains("'+section+'")').val();
+            $('#student-update #student_id').val(studentID);
+            $('#student-update #first_name').val(first_name);
+            $('#student-update #middle_name').val(middle_name);
+            $('#student-update #last_name').val(last_name);
+            $('#student-update #adviser').val(adviser);
+            $('#student-update #sy_id').val(sy);
+            $('#student-update #section_id').val(section_update);
+            $('#student-update #hiddenStudent').val(id);
+            $('#student-update #contact_no').val(contact_no);
+        });
+
+        $('.total_attempts').on('click',function(e){
+
+            e.preventDefault();
+            var parent = $(this).parent().parent();
+            var studentID = $(':nth-child(2)', parent).html();
+            $.ajax({
+                method: 'POST',
+                url: '/senior/student/attempt',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    'studID': studentID
+                },
+                dataType: 'json'
+            }).done(function(response) {
+                var count_attempt = parseInt(response);
+
+                $('#seniorview-attempt #attempt').val(count_attempt);
+                $('#seniorview-attempt').modal('show');
+
+            });
+
+        });
+    });
+</script>
+
 @section('footer')
     @include('senior.student.includes.footer')
 @show

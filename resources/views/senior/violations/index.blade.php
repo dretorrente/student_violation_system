@@ -73,7 +73,6 @@
                         </table>
                     </div>
                 </div>
-                {{ $violations->links() }}
             </div>
         </div>
     </div>

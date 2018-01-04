@@ -4,12 +4,18 @@
 @section('title', 'Student Management | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
 <div class="content">
+    @if (Session::has('message'))
+        <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ Session::get('message') }}
+        </div>
+    @endif
    <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <ol class="breadcrumb pull-right">
                         <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Students</a></li>
+                        <li>Student Offense</li>
                     </ol>
                 </div>
             </div>
@@ -20,26 +26,32 @@
                 <h3 class="panel-title">Student Offense Records</h3>
             </div>
 
-        <div class="col-lg-6">
-            <div style="padding: 10px 3px;" class="btn-group">
-                <select class="form-control" id="exampleFormControlSelect1">
-                      <option>Category</option>
-                      <option>Falcata</option>
-                      <option>Salome</option>
-                      <option>Compassion</option>
-                </select>
+            <div class="col-lg-6">
+                <form action="{{ route('junior.offenseSearch')}}" method="get">
+                    {{csrf_field()}}
+                    <div style="padding: 10px 3px;" class="btn-group">
+                        <select class="form-control" id="section" name="section">
+                            <option value="">Please select</option>
+                            @foreach($sections as $section)
+                                <option <?php if(isset($_GET['section'])):
+                                    echo $_GET['section']== $section->id ? "selected" : "";
+                                endif; ?> value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div style="padding: 10px 5px;" class="btn-group">
+                        <select class="form-control" name="sy" id="sy">
+                            <option value="">Please select</option>
+                            @foreach($school_years as $school_year)
+                                <option <?php if(isset($_GET['sy'])):
+                                    echo $_GET['sy']== $school_year->id ? "selected" : "";
+                                endif; ?> value="{{$school_year->id}}">{{$school_year->school_year}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button class="btn btn-info waves-effect waves-light" ><i class="fa fa-search"></i> Search</button>
+                </form>
             </div>
-            <div style="padding: 10px 5px;" class="btn-group">
-                <select class="form-control" id="exampleFormControlSelect1">
-                      <option>2017-2018</option>
-                      <option>2016-2017</option>
-                      <option>2015-2016</option>
-                      <option>2014-2015</option>
-                      <option>2013-2014</option>
-                </select>
-            </div>
-              <button class="btn btn-info">Print</button>
-        </div>
             @section('modal')
                 @include('junior.offense_records.includes.modal')
             @show
@@ -74,7 +86,7 @@
                                     <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#offense-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5"><i class="md md-border-color"></i></button>
                                         <button data-tooltip="tooltip" data-placement="top" data-original-title="Violations" type="button" class="btn-xs btn btn-pink waves-effect waves-light m-b-5"><i class="md md-my-library-books"></i></button></td>
                                 </tr>
-                            @endforeach>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

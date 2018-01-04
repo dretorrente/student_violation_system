@@ -22,44 +22,6 @@
                 </div>
             </div>
 
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Information</h3>
-                </div>
-                <div class="panel-body">
-                    @section('modal')
-                        @include('junior.stud_offense.includes.modal')
-                    @show
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <button type="button" data-toggle="modal" data-target="#modal-offense" class="btn btn-info">Select Student Profile</button>
-                                <br>
-                                <label for="field-1" class="control-label">Student ID</label>
-                                <input type="text" name="student_id" class="form-control" id="stud_id" readonly="readonly" >
-                                <label for="field-1" class="control-label">First Name</label>
-                                <input type="text" class="form-control" id="first_name" readonly>
-                                <label for="field-1" class="control-label">Last Name</label>
-                                <input type="text" class="form-control" id="last_name" readonly>
-                                <label for="field-1" class="control-label" >Middle Name</label>
-                                <input type="text" class="form-control" id="middle_name" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="field-1" class="control-label">Gender</label>
-                                <input type="text" class="form-control" id="gender" readonly>
-                                <label for="field-1" class="control-label" >Adviser</label>
-                                <input type="text" class="form-control" id="adviser" readonly>
-                                <label for="field-1" class="control-label">Grade Section</label>
-                                <input type="text" class="form-control" id="grade_section" readonly>
-                            </div>
-                        </div>
-
-                </div>
-            </div>
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Offense</h3>
@@ -111,13 +73,13 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 style="visibility: hidden;" class="panel-title">Student Information</h3>
+                    <h3 class="panel-title">Information</h3>
                 </div>
                 <div class="panel-body">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-1" class="control-label">Date Commit</label>
-                            <input type="date" name="date_commit" class="form-control" id="field-1" required="required">
+                            <input type="datetime-local" name="date_commit" class="form-control" id="date_commit" required="required">
                             <label for="field-1" class="control-label">Category</label>
                             <input type="text" class="form-control" id="category" required="required">
                             <label for="field-1" class="control-label">Student Offense</label>
@@ -130,15 +92,23 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-1"  class="control-label" required="required">Persons Involved</label>
-                            <input type="text" name="persons_involve" class="form-control" id="field-1" required="required">
-                            <label for="field-1" class="control-label">Offense Number of Attempt</label>
-                            <input type="text" name="offense_number_attempt" class="form-control" id="field-1" required="required">
+                            <select size="10" class="select2 form-control" name="persons_involve[]" multiple="multiple" data-placeholder="With Max Selection Limit 20" >
+                                <option selected disabled>Please select receiver</option>
+                                @foreach($students as $student)
+                                    <option value="{{$student->student_id}}"> {!! Helper::fullname($student->first_name,$student->middle_name,$student->last_name) !!}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
                             <label for="field-1" class="control-label">Sanction</label>
                             <textarea rows="3" name="sanction" cols="44" class="form-control" required="required"></textarea><br>
-                            <button type="submit" style="margin-left: 255px;" class="btn btn-info"><i class="md md-check"></i> Save</button>
+
                         </div>
                     </div>
                 </div>
+                <button type="submit"  id="save_offense" class="btn btn-info"><i class="md md-check"></i> Save</button>
             </div>
         </form>
 
@@ -211,7 +181,17 @@
         });
     });
 </script>
+<style>
+    .form-control.select2-container {
+        height: 249px !important;
+    }
+    #save_offense {
+        margin-left: 50%;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+</style>
 @section('footer')
-    @include('senior.student.includes.footer')
+    @include('junior.stud_offense.includes.footer')
 @show
 @endsection

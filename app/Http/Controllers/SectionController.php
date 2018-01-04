@@ -33,7 +33,7 @@ class SectionController extends Controller
         $section = Section::find($id);
            if ($section) {
                $section->delete();
-                Session::flash('message','Your violation has been deleted!');
+                Session::flash('message','Your section has been deleted!');
                 Session::flash('alert-class', 'alert-info');
                 return redirect('/elementary/section/');
            } else {
@@ -47,7 +47,7 @@ class SectionController extends Controller
         if ($update) {
             $update->fill($request->all());
             $update->save();
-            Session::flash('message','Your student has been succesfully update!');
+            Session::flash('message','Your section has been succesfully update!');
             Session::flash('alert-class', 'alert-info');
             return redirect('/elementary/section/');
         } else {
@@ -61,7 +61,10 @@ class SectionController extends Controller
      * Senior high section dashboard
      */
     public function section_senior(){
-        $sections = Section::all();
+        $sections = DB::table('sections')
+            ->select('sections.*')
+            ->where('sections.group_id', '=', 1)
+            ->get();
         return view('senior.section.index',['sections' => $sections]);
     }
 
@@ -72,6 +75,7 @@ class SectionController extends Controller
         if ($request->isMethod('post')) {
             $section = new Section();
             $section->fill($request->all());
+            $section->group_id = 1;
             if($section->save()){
                 Session::flash('message','Your section has been succesfully added!');
                 Session::flash('alert-class', 'alert-info');
@@ -87,7 +91,7 @@ class SectionController extends Controller
         $section = Section::find($id);
            if ($section) {
                $section->delete();
-                Session::flash('message','Your violation has been deleted!');
+                Session::flash('message','Your section has been deleted!');
                 Session::flash('alert-class', 'alert-info');
                 return redirect('/senior/section/');
            } else {
@@ -103,7 +107,7 @@ class SectionController extends Controller
         if ($update) {
             $update->fill($request->all());
             $update->save();
-            Session::flash('message','Your student has been succesfully update!');
+            Session::flash('message','Your section has been succesfully update!');
             Session::flash('alert-class', 'alert-info');
             return redirect('/senior/section/');
         } else {
@@ -117,9 +121,9 @@ class SectionController extends Controller
      * Junior high section dashboard
      */
     public function section_junior(){
-        $sections = $sections = DB::table('sections')
+        $sections = DB::table('sections')
             ->select('sections.*')
-            ->where('sections.group_id', '=', Auth::user()['group_id'])
+            ->where('sections.group_id', '=', 2)
             ->get();
         return view('junior.section.index',['sections' => $sections]);
     }
@@ -131,7 +135,7 @@ class SectionController extends Controller
         if ($request->isMethod('post')) {
             $section = new Section();
             $section->fill($request->all());
-            $section->group_id = Auth::user()['group_id'];
+            $section->group_id = 2;
             if($section->save()){
                 Session::flash('message','Your section has been succesfully added!');
                 Session::flash('alert-class', 'alert-info');

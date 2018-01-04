@@ -3,6 +3,12 @@
 @section('title', 'Yearly Reports | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
 <div class="content">
+    @if (Session::has('message'))
+        <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ Session::get('message') }}
+        </div>
+    @endif
    <div class="container">
             <div class="row">
 <div class="row">
@@ -18,27 +24,33 @@
         </div>
        
         <div class="col-lg-9" style="margin-top: 10px;">
+            <form action="{{ url('/junior/downloadExcel/xlsx') }}" method="get">
+                {{csrf_field()}}
             <div style="padding: 10px 3px;" class="btn-group">
-                <select class="form-control" id="exampleFormControlSelect1">
-                      <option>9 - Section</option>
-                      <option>10 - Falcata</option>
-                      <option>8 - Daisy</option>
+                <select class="form-control" id="section" name="section" required="required">
+                    <option value="">Please select</option>
+                    @foreach($sections as $section)
+                        <option <?php if(isset($_GET['section'])):
+                            echo $_GET['section']== $section->id ? "selected" : "";
+                        endif; ?> value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
+                    @endforeach
                 </select>
             </div>
             <div style="padding: 10px 5px;" class="btn-group">
-                <select class="form-control" id="exampleFormControlSelect1">
-                      <option>2017-2018</option>
-                      <option>2016-2017</option>
-                      <option>2015-2016</option>
-                      <option>2014-2015</option>
-                      <option>2013-2014</option>
+                <select class="form-control" id="sy" name="sy" required="required">
+                    <option value="">Please select</option>
+                    @foreach($school_years as $school_year)
+                        <option <?php if(isset($_GET['sy'])):
+                            echo $_GET['sy']== $school_year->id ? "selected" : "";
+                        endif; ?> value="{{$school_year->id}}">{{$school_year->school_year}}</option>
+                    @endforeach
                 </select>
             </div>
            
              <div style="padding: 10px 5px;" class="btn-group">
-                 <button type="button" class="btn btn-info waves-effect waves-light"><i class="fa fa-download"></i> Export</button>
+                 <button  class="btn btn-info waves-effect waves-light"><i class="fa fa-download"></i> Export</button>
             </div>
-           
+            </form>
         </div>
             <div class="panel-body">
                 <div class="row">
@@ -47,52 +59,17 @@
                             <thead>
                                 <tr>
                                     <th>Name Of Students</th>
-                                    <th>Tardiness And Offenses</th>
-                                    <th>Recommendation</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+                            @foreach($students as $student)
                                 <tr>
-                                    <td>Edward Ocampo</td>
-                                    <td>5</td>
-                                    <td>*required to submit a written personal<br/>
-                                      &nbsp commitment with parent signature ( to be submitted together<br/>&nbsp with the disciplinary provation / commitment form)</td>
+                                    <td>{!! Helper::fullname($student->first_name,$student->middle_name,$student->last_name) !!}</td>
+                                    <td>{{$student->count}}</td>
                                 </tr>
-                                <tr>
-                                    <td>John Wako</td>
-                                    <td>15</td>
-                                    <td>*required to submit a written personal<br/>
-                                      &nbsp commitment with parent signature ( to be submitted together<br/>&nbsp with the disciplinary provation / commitment form)</td>
-                                </tr>
-                                 <tr>
-                                    
-                                    <td>Mark Gonzaga</td>
-                                    <td>15</td>
-                                    <td>*required to submit a written personal<br/>
-                                      &nbsp commitment with parent signature ( to be submitted together<br/>&nbsp with the disciplinary provation / commitment form)</td>
-                                </tr>
-                                <tr>
-                                    
-                                    <td>Kevin Labad</td>
-                                    <td>15</td>
-                                    <td>*required to submit a written personal<br/>
-                                      &nbsp commitment with parent signature ( to be submitted together<br/>&nbsp with the disciplinary provation / commitment form)</td>
-                                </tr>
-                                 <tr>
-                                    
-                                    <td>Dave Pogi</td>
-                                    <td>15</td>
-                                    <td>*required to submit a written personal<br/>
-                                      &nbsp commitment with parent signature ( to be submitted together<br/>&nbsp with the disciplinary provation / commitment form)</td>
-                                </tr>
-                                <tr>
-                                    
-                                    <td>Jazel Law</td>
-                                    <td>15</td>
-                                    <td>*required to submit a written personal<br/>
-                                      &nbsp commitment with parent signature ( to be submitted together<br/>&nbsp with the disciplinary provation / commitment form)</td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

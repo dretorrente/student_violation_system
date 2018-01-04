@@ -28,6 +28,7 @@
                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button>
                     <button type="submit" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Submit</button>
                 </div>
+            </form>
         </div> 
     </div>
 </div>
@@ -38,27 +39,31 @@
             <div class="modal-header"> 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
                 <h4 class="modal-title">Update Contacts</h4> 
-            </div> 
+            </div>
+            <form action="{{ route('elem.contactupdate')}}" method="post">
+                {{csrf_field()}}
             <div class="modal-body"> 
                 <div class="row">
                     <div class="col-md-6"> 
                         <div class="form-group"> 
                             <label for="field-2" class="control-label">Name</label> 
-                            <input type="text" class="form-control" id="field-3"> 
+                            <input type="text" class="form-control" id="name" name="name">
                         </div> 
                     </div>
                     <div class="col-md-6"> 
                         <div class="form-group"> 
                             <label for="field-3" class="control-label">Contact no.</label> 
-                            <input type="text" class="form-control" id="field-3"> 
+                            <input type="text" class="form-control" id="contact_no" name="contact_no">
+                            <input type="hidden" class="form-control" id="hiddenContact" name="id">
                         </div> 
                     </div> 
                 </div> 
-            </div> 
+            </div>
             <div class="modal-footer"><br> 
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Save Changes</button> 
-            </div> 
+                <button type="submit" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Save Changes</button>
+            </div>
+            </form>
         </div> 
     </div>
 </div>
@@ -75,7 +80,7 @@
             </div>
             <div class="modal-footer"><br> 
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"> Cancel</button> 
-                <button type="button" class="btn btn-danger waves-effect waves-light"><i class="ion-trash-b"></i> Delete</button> 
+                <button type="submit" class="btn btn-danger waves-effect waves-light confirmation"><i class="ion-trash-b"></i> Delete</button>
             </div> 
         </div> 
     </div>

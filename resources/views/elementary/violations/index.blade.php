@@ -3,6 +3,12 @@
 @section('title', 'Violations & Sanctions | Prefect of Discipline Students Violation Monitoring System')
 @section('content')
     <div class="content">
+        @if (Session::has('message'))
+            <div class="alert {{ Session::get('alert-class', 'alert-info') }} alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ Session::get('message') }}
+            </div>
+        @endif
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">

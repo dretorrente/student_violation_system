@@ -60,8 +60,8 @@
                             <?php endif; ?>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{url('/settings')}}"><i class="md md-textsms"></i> Send SMS</a></li>
-                            <li><a href="{{url('/elemsettings')}}"><i class="md md-settings"></i> Settings</a></li>
+                            <li><a href="{{url('/junior/compose')}}"><i class="md md-textsms"></i> Send SMS</a></li>
+                            <li><a href="{{url('/elementary/settings')}}"><i class="md md-settings"></i> Settings</a></li>
                             <li><a style="margin-left: 3px;" href="{{ route('logout') }}"><i class="ion-log-out"></i> Sign Out</a></li>
                         </ul>
                     </li>

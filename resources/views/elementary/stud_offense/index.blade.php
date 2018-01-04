@@ -92,7 +92,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="field-1"  class="control-label" required="required">Persons Involved</label>
-                            <select size="10" class="select2 form-control" name="persons_involve[]" multiple="multiple" data-placeholder="With Max Selection Limit 20" >
+                            <select size="10" class="select2 form-control" name="persons_involve[]" multiple="multiple" data-placeholder="With Max Selection Limit 20" required>
                                 <option selected disabled>Please select receiver</option>
                                 @foreach($students as $student)
                                     <option value="{{$student->student_id}}"> {!! Helper::fullname($student->first_name,$student->middle_name,$student->last_name) !!}</option>

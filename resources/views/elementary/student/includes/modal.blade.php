@@ -71,7 +71,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="field-1" class="control-label">Parent's Contact No.</label>
-                            <input type="text" name="contact_no" class="form-control" id="contact_no" required="required">
+                            <input type="number" name="contact_no" class="form-control" id="contact_no" required="required" placeholder="Ex. 91912345678">
                         </div>
                     </div>
                 </div>

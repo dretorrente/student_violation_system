@@ -77,9 +77,10 @@
                                         </thead>
 
                                         <tbody>
+                                        <?php $c = 1; ?>
                                             @foreach($offenses as $offense)
                                                 <tr>
-                                                    <td>{{$offense->id}}</td>
+                                                    <td>{{$c}}</td>
                                                     <td>{{$offense->student_id}}</td>
                                                     <td>{!! Helper::fullname($offense->first_name,$offense->middle_name,$offense->last_name) !!}</td>
                                                     <td>{{$offense->adviser}}</td>
@@ -93,7 +94,9 @@
                                                     <input type="hidden" value="{{$offense->first_name}}">
                                                     <input type="hidden" value="{{$offense->middle_name}}">
                                                     <input type="hidden" value="{{$offense->last_name}}">
+                                                    <input type="hidden" value="{{$offense->id}}">
                                                 </tr>
+                                                <?php $c++; ?>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -146,7 +149,7 @@
             });
             $('.update_offense').on('click', function(){
                 var parent = $(this).parent().parent();
-                var id = $(':nth-child(1)', parent).text();
+                var id = $(':nth-child(15)', parent).val();
                 var studentID = $(':nth-child(2)', parent).html();
                 var section =  $(':nth-child(5)', parent).text();
                 var section_update = $('#offense-update #section_id option:contains("'+section+'")').val();

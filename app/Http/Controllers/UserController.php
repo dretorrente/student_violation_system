@@ -71,8 +71,6 @@ class UserController extends Controller
      */
     public function update_elem(Request $request) {
         if (Auth::Check()) {
-//            print_r($_FILES);
-//            die();
             $name = '';
             if ($request->hasFile('upload')) {
                 $image = $request->file('upload');
@@ -83,7 +81,7 @@ class UserController extends Controller
             $request_data = $request->All();
             $this->validate($request, [
                 'email' => 'email',
-                'password' => 'required|confirmed',
+                'password' => 'required|min:6|max:15|confirmed',
             ]);
             $user_id            = Auth::User()->id;
             $obj_user           = User::find($user_id);
@@ -197,8 +195,14 @@ class UserController extends Controller
     public function senior_management_add(Request $request) {
         if ($request->isMethod('post')) {
             $user           = new User();
-            $password       = md5(uniqid(rand(), true));
-            $hashPassword   = Hash::make($password);
+//            $password       = md5(uniqid('prefect3', true));
+            $password = '';
+            if($request['role'] == 'administrator') {
+                $password = $request['username'].'senioradmin';
+            } else {
+                $password = $request['username'].'seniorstaff';
+            }
+            $hashPassword   = bcrypt($password);
             $user->email    = $request['email'];
             $user->username = $request['username'];
             $user->role     = $request['role'];
@@ -207,11 +211,11 @@ class UserController extends Controller
 
             $request_data = $request->all();
             if ($user->save()) {
-                Mail::send('senior.users.email', ['password' => $password], function ($m) use ($request_data) {
-                    $m->from('lihuza@duck2.club', 'Your Temporary Password');
+                // Mail::send('elementary.users.email', ['password' => $password], function ($m) use ($request_data) {
+                //     $m->from('lihuza@duck2.club', 'Your Temporary Password');
 
-                    $m->to($request_data['email'], $request_data['username'])->subject('Your Temporary Password');
-                });
+                //     $m->to($request_data['email'], $request_data['username'])->subject('Your Temporary Password');
+                // });
                 return redirect('/senior/users/');
             }
         }
@@ -221,10 +225,15 @@ class UserController extends Controller
      * Senior high users management update
      */
     public function senior_management_update(request $request) {
+        $this->validate($request, [
+            'email' => 'email',
+            'password' => 'required|min:6|max:15|confirmed',
+        ]);
         $user = User::find($request['id']);
         if ($user) {
             $user->email = $request['email'];
             $user->username = $request['username'];
+            $user->password = Hash::make($request['password']);
             $user->role = $request['role'];
             $user->save();
             Session::flash('message','Your users has been succesfully update!');
@@ -263,19 +272,27 @@ class UserController extends Controller
      */
     public function update_senior(Request $request) {
         if (Auth::Check()) {
+            $name = '';
+            if ($request->hasFile('upload')) {
+                $image = $request->file('upload');
+                $name = time() . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('assets\images\users');
+                $image->move($destinationPath, $name);
+            }
             $request_data = $request->All();
             $this->validate($request, [
                 'email' => 'email',
-                'password' => 'required|confirmed',
+                'password' => 'required|min:6|max:15|confirmed',
             ]);
             $user_id            = Auth::User()->id;
             $obj_user           = User::find($user_id);
             $obj_user->password = Hash::make($request_data['password']);
             $obj_user->email    = $request_data['email'];
             $obj_user->username = $request_data['username'];
+            $obj_user->upload   = $name;
             $obj_user->save();
             Session::flash('message','Your account has been successfully update!');
-            Session::flash('alert-class', 'alert-info'); 
+            Session::flash('alert-class', 'alert-info');
             return redirect('/senior/settings/');
         }
     }
@@ -287,7 +304,7 @@ class UserController extends Controller
      * @return void
      */
     public function junior_management() {
-        $users = DB::table('users')->where('group_id', '1')->get();
+        $users = DB::table('users')->where('group_id', '2')->get();
         return view('junior.users.index',['users' => $users]);
     }
 
@@ -297,21 +314,27 @@ class UserController extends Controller
     public function junior_management_add(Request $request) {
         if ($request->isMethod('post')) {
             $user           = new User();
-            $password       = md5(uniqid(rand(), true));
-            $hashPassword   = Hash::make($password);
+//            $password       = md5(uniqid('prefect3', true));
+            $password = '';
+            if($request['role'] == 'administrator') {
+                $password = $request['username'].'junioradmin';
+            } else {
+                $password = $request['username'].'juniorstaff';
+            }
+            $hashPassword   = bcrypt($password);
             $user->email    = $request['email'];
             $user->username = $request['username'];
             $user->role     = $request['role'];
-            $user->group_id = 1;
+            $user->group_id = 2;
             $user->password = $hashPassword;
 
             $request_data = $request->all();
             if ($user->save()) {
-                Mail::send('junior.users.email', ['password' => $password], function ($m) use ($request_data) {
-                    $m->from('lihuza@duck2.club', 'Your Temporary Password');
+                // Mail::send('elementary.users.email', ['password' => $password], function ($m) use ($request_data) {
+                //     $m->from('lihuza@duck2.club', 'Your Temporary Password');
 
-                    $m->to($request_data['email'], $request_data['username'])->subject('Your Temporary Password');
-                });
+                //     $m->to($request_data['email'], $request_data['username'])->subject('Your Temporary Password');
+                // });
                 return redirect('/junior/users/');
             }
         }
@@ -321,10 +344,15 @@ class UserController extends Controller
      * Junior high users management update
      */
     public function junior_management_update(request $request) {
+        $this->validate($request, [
+            'email' => 'email',
+            'password' => 'required|min:6|max:15|confirmed',
+        ]);
         $user = User::find($request['id']);
         if ($user) {
             $user->email = $request['email'];
             $user->username = $request['username'];
+            $user->password = Hash::make($request['password']);
             $user->role = $request['role'];
             $user->save();
             Session::flash('message','Your users has been succesfully update!');
@@ -363,20 +391,28 @@ class UserController extends Controller
      */
     public function update_junior(Request $request) {
         if (Auth::Check()) {
+            $name = '';
+            if ($request->hasFile('upload')) {
+                $image = $request->file('upload');
+                $name = time() . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('assets\images\users');
+                $image->move($destinationPath, $name);
+            }
             $request_data = $request->All();
             $this->validate($request, [
                 'email' => 'email',
-                'password' => 'required|confirmed',
+                'password' => 'required|min:6|max:15|confirmed',
             ]);
             $user_id            = Auth::User()->id;
             $obj_user           = User::find($user_id);
             $obj_user->password = Hash::make($request_data['password']);
             $obj_user->email    = $request_data['email'];
             $obj_user->username = $request_data['username'];
+            $obj_user->upload   = $name;
             $obj_user->save();
             Session::flash('message','Your account has been successfully update!');
-            Session::flash('alert-class', 'alert-info'); 
-            return redirect('/junior/settings/');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/elementary/settings/');
         }
     }
 }

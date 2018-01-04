@@ -10,12 +10,18 @@ class ContactController extends Controller
 {
 
     public function sms_contact_elem(){
-        $contacts = DB::table('contacts')->simplePaginate(10);
+        $contacts =  DB::table('contacts')
+            ->select('contacts.*')
+            ->where('contacts.group_id', '=', 3)
+            ->get();
         return view('elementary.sms.contacts',['contacts' => $contacts]);
     }
 
     public function sms_compose_elem(){
-        $contacts = Contact::all();
+        $contacts =  DB::table('contacts')
+            ->select('contacts.*')
+            ->where('contacts.group_id', '=', 3)
+            ->get();
         return view('elementary.sms.compose',['contacts' => $contacts]);
     }
     public function sms_send_elem(Request $request){
@@ -47,6 +53,7 @@ class ContactController extends Controller
         if ($request->isMethod('post')) {
             $contact = new Contact();
             $contact->fill($request->all());
+            $contact->group_id = 3;
             if($contact->save()){
                 Session::flash('message','Your Contact has been succesfully added!');
                 Session::flash('alert-class', 'alert-success');
@@ -61,7 +68,10 @@ class ContactController extends Controller
      * Senior high contact 
      */
     public function sms_contact_senior(){
-        $contacts = DB::table('contacts')->simplePaginate(10);
+        $contacts =  DB::table('contacts')
+            ->select('contacts.*')
+            ->where('contacts.group_id', '=', 1)
+            ->get();
         return view('senior.sms.contacts',['contacts' => $contacts]);
     }
 
@@ -69,7 +79,10 @@ class ContactController extends Controller
      * Senior high compose 
      */
     public function sms_compose_senior(){
-        $contacts = Contact::all();
+        $contacts =  DB::table('contacts')
+            ->select('contacts.*')
+            ->where('contacts.group_id', '=', 1)
+            ->get();
         return view('senior.sms.compose',['contacts' => $contacts]);
     }
 
@@ -108,6 +121,7 @@ class ContactController extends Controller
         if ($request->isMethod('post')) {
             $contact = new Contact();
             $contact->fill($request->all());
+            $contact->group_id = 1;
             if($contact->save()){
                 Session::flash('message','Your Contact has been succesfully added!');
                 Session::flash('alert-class', 'alert-success');
@@ -122,7 +136,10 @@ class ContactController extends Controller
      * Junior high contact 
      */
     public function sms_contact_junior(){
-        $contacts = DB::table('contacts')->simplePaginate(10);
+        $contacts =  DB::table('contacts')
+            ->select('contacts.*')
+            ->where('contacts.group_id', '=', 2)
+            ->get();
         return view('junior.sms.contacts',['contacts' => $contacts]);
     }
 
@@ -130,7 +147,10 @@ class ContactController extends Controller
      * Junior high compose 
      */
     public function sms_compose_junior(){
-        $contacts = Contact::all();
+        $contacts =  DB::table('contacts')
+            ->select('contacts.*')
+            ->where('contacts.group_id', '=', 2)
+            ->get();
         return view('junior.sms.compose',['contacts' => $contacts]);
     }
 
@@ -145,8 +165,8 @@ class ContactController extends Controller
             return redirect('/junior/compose/');
         } else{
             $result = '';
-            $smsGateway = new SmsGateway('sample@gmail.com', '123456');
-            $deviceID = 65980123;
+            $smsGateway = new SmsGateway('dave.torrente@gmail.com', 'davepogi03');
+            $deviceID = 65979;
             $message = $request['message'];
             foreach($request['receiver'] as $receiver) {
                $result = $smsGateway->sendMessageToNumber($receiver, $message, $deviceID);
@@ -169,11 +189,41 @@ class ContactController extends Controller
         if ($request->isMethod('post')) {
             $contact = new Contact();
             $contact->fill($request->all());
+            $contact->group_id = 2;
             if($contact->save()){
                 Session::flash('message','Your Contact has been succesfully added!');
                 Session::flash('alert-class', 'alert-success');
                 return redirect('/junior/contacts/');
             }
+        }
+    }
+
+
+    public function update_contact_elem(Request $request) {
+        if ($request->isMethod('post')) {
+            $update = Contact::find($request['id']);
+            if ($update) {
+                $update->name = $request['name'];
+                $update->contact_no = $request['contact_no'];
+                $update->save();
+                Session::flash('message','Your contact has been succesfully update!');
+                Session::flash('alert-class', 'alert-info');
+                return redirect('/elementary/contacts/');
+            } else {
+                return redirect('/elementary/contacts/');
+            }
+        }
+    }
+
+    public function delete_contact_elem($id) {
+        $contact = Contact::find($id);
+        if ($contact) {
+            $contact->delete();
+            Session::flash('message','Your contact has been deleted!');
+            Session::flash('alert-class', 'alert-info');
+            return redirect('/elementary/contacts/');
+        } else {
+            return redirect('/elementary/contacts/');
         }
     }
 }

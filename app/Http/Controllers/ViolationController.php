@@ -64,7 +64,10 @@ class ViolationController extends Controller
      * Senior high violation
      */
     public function violation_senior() {
-        $violation = DB::table('violations')->simplePaginate(10);
+        $violation = DB::table('violations')
+            ->select('violations.*')
+            ->where('violations.group_id', '=', 1)
+            ->get();
         return view('senior.violations.index',['violations' => $violation]);
     }
 
@@ -137,6 +140,7 @@ class ViolationController extends Controller
          if ($request->isMethod('post')) {
             $violation = new Violation();
             $violation->fill($request->all());
+             $violation->group_id = 2;
             if ($violation->save()) {
                 Session::flash('message','Your violation has been succesfully added!');
                 Session::flash('alert-class', 'alert-info'); 

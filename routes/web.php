@@ -171,6 +171,16 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'    => 'elem.contactadd'
     ]);
 
+    Route::post('/elem/contacts_update', [
+        'uses'  => 'ContactController@update_contact_elem',
+        'as'    => 'elem.contactupdate'
+    ]);
+
+    Route::match(['get', 'post'], '/elementary/contact_delete/{id}',[
+        'uses' => 'ContactController@delete_contact_elem',
+        'as'   => 'elem.deleteContact'
+    ]);
+
     Route::get('/elemmonthly', [
         'uses' => 'ReportController@elem_report'
     ]);
@@ -257,6 +267,11 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'   => 'junior.updateSection'
     ]);
 
+    Route::match(['get', 'post'], '/junior/section_delete/{id}',[
+        'uses' => 'SectionController@delete_section_junior',
+        'as'   => 'junior.deleteSection'
+    ]);
+
     Route::get('/junior/schoolyear',[
         'uses'  => 'SchoolYearController@schoolyear_junior'
     ]);
@@ -268,6 +283,11 @@ Route::group(['middleware' =>['auth.shs']], function() {
     Route::post('/junior/sy/update',[
         'uses' => 'SchoolYearController@update_sy_junior',
         'as'   => 'junior.updateSY'
+    ]);
+
+    Route::match(['get', 'post'], '/junior/sy_delete/{id}',[
+        'uses' => 'SchoolYearController@delete_sy_junior',
+        'as'   => 'junior.deleteSchoolYear'
     ]);
 
     Route::get('/junior/users',[
@@ -306,7 +326,7 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses' => 'UserController@setting_junior'
     ]);
 
-    Route::post('/junior/edit/',[
+    Route::post('/junior/settings',[
         'uses' => 'UserController@update_junior',
         'as'   => 'junior.updateSettings'
     ]);
@@ -329,10 +349,30 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'    => 'junior.contactadd'
     ]);
 
-    Route::get('/jryearly', function() {
-        return view('junior.yearly.index');
-    });
 
+    Route::post('/junior/student/attempt',[
+        'uses' => 'StudentController@total_attempt_junior',
+        'as'   => 'total_attempt_junior'
+    ]);
+    Route::get('/junior/stud_elem_search',[
+        'uses' => 'StudentController@search_junior_stud',
+        'as'   => 'junior.studSearch'
+    ]);
+
+    Route::get('/elem/offense_elem_search',[
+        'uses' => 'OffenseController@search_junior_offense',
+        'as'   => 'junior.offenseSearch'
+    ]);
+
+
+    Route::get('/jryearly', [
+        'uses' => 'ReportController@junior_report'
+    ]);
+
+    Route::get('/junior/downloadExcel/{type}', [
+        'uses' => 'ReportController@junior_download',
+        'as'  => 'junior.reportSearch'
+    ]);
     //senior routes
 
     Route::get('/forgot', function () {
@@ -345,7 +385,7 @@ Route::group(['middleware' =>['auth.shs']], function() {
     ]);
 
     Route::post('/senior/students', [
-        'uses'  => 'StudentController@add_senior_elem',
+        'uses'  => 'StudentController@add_student_senior',
         'as'    => 'senior.studentadd'
     ]);
 
@@ -465,6 +505,29 @@ Route::group(['middleware' =>['auth.shs']], function() {
     Route::get('/sryearly', function() {
         return view('senior.yearly.index');
     });
+    Route::match(['get', 'post'], '/senior/sy_delete/{id}',[
+        'uses' => 'SchoolYearController@delete_sy_senior',
+        'as'   => 'junior.deleteSchoolYear'
+    ]);
+    Route::match(['get', 'post'], '/senior/section_delete/{id}',[
+        'uses' => 'SectionController@delete_section_senior',
+        'as'   => 'senior.deleteSection'
+    ]);
+
+    Route::post('/senior/student/attempt',[
+        'uses' => 'StudentController@total_attempt_senior',
+        'as'   => 'total_attempt_junior'
+    ]);
+
+    Route::post('/senior/offense_update',[
+        'uses' => 'OffenseController@update_senior_offense',
+        'as'   => 'senior.updateOffense'
+    ]);
+
+    Route::get('/senior/stud_senior_search',[
+        'uses' => 'StudentController@search_senior_stud',
+        'as'   => 'senior.studSearch'
+    ]);
 });
 
 

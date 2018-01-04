@@ -33,23 +33,30 @@
             @include('junior.student.includes.modal')
         @show
         <div class="col-lg-6">
-            <div style="padding: 10px 3px;" class="btn-group">
-                <select class="form-control" id="exampleFormControlSelect1">
-                      <option>Section</option>
-                      <option>Falcata</option>
-                      <option>Salome</option>
-                      <option>Compassion</option>
-                </select>
-            </div>
-            <div style="padding: 10px 5px;" class="btn-group">
-                <select class="form-control" id="exampleFormControlSelect1">
-                      <option>2017-2018</option>
-                      <option>2016-2017</option>
-                      <option>2015-2016</option>
-                      <option>2014-2015</option>
-                      <option>2013-2014</option>
-                </select>
-            </div>
+            <form action="{{ route('junior.studSearch')}}" method="get">
+                {{csrf_field()}}
+                <div style="padding: 10px 3px;" class="btn-group">
+                    <select class="form-control" id="section" name="section">
+                        <option value="">Please select</option>
+                        @foreach($sections as $section)
+                            <option <?php if(isset($_GET['section'])):
+                                echo $_GET['section']== $section->id ? "selected" : "";
+                            endif; ?> value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div style="padding: 10px 5px;" class="btn-group">
+                    <select class="form-control" name="sy" id="sy">
+                        <option value="">Please select</option>
+                        @foreach($school_years as $school_year)
+                            <option <?php if(isset($_GET['sy'])):
+                                echo $_GET['sy']== $school_year->id ? "selected" : "";
+                            endif; ?> value="{{$school_year->id}}">{{$school_year->school_year}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button class="btn btn-info waves-effect waves-light" ><i class="fa fa-search"></i> Search</button>
+            </form>
         </div>
             <div class="panel-body">
                 <div class="row">
@@ -70,22 +77,22 @@
                             </thead>
 
                             <tbody>
-                                @foreach($students as $student)
-                                    <tr>
-                                        <td>{{$student->id}}</td>
-                                        <td>{{$student->student_id}}</td>
-                                        <td>{{$student->school_year}}</td>
-                                        <td>{{$student->first_name}}</td>
-                                        <td>{{$student->middle_name}}</td>
-                                        <td>{{$student->last_name}}</td>
-                                        <td>{{$student->adviser}}</td>
-                                        <td>{{$student->grade}} - {{$student->section}}</td>
-                                        <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
-                                            <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
-                                        <input type="hidden" value="{{$student->sy_id}}">
-                                        <input type="hidden" value="{{$student->contact_no}}">
-                                    </tr>
-                                @endforeach
+                            @foreach($students as $student)
+                                <tr>
+                                    <td>{{$student->id}}</td>
+                                    <td>{{$student->student_id}}</td>
+                                    <td>{{$student->school_year}}</td>
+                                    <td>{{$student->first_name}}</td>
+                                    <td>{{$student->middle_name}}</td>
+                                    <td>{{$student->last_name}}</td>
+                                    <td>{{$student->adviser}}</td>
+                                    <td>{{$student->grade}} - {{$student->section}}</td>
+                                    <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
+                                        <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
+                                    <input type="hidden" value="{{$student->sy_id}}">
+                                    <input type="hidden" value="{{$student->contact_no}}">
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -159,7 +166,6 @@
             $('#student-update #hiddenStudent').val(id);
             $('#student-update #contact_no').val(contact_no);
         });
-
         $('.total_attempts').on('click',function(e){
 
             e.preventDefault();
@@ -176,8 +182,8 @@
             }).done(function(response) {
                 var count_attempt = parseInt(response);
 
-                $('#elemview-attempt #attempt').val(count_attempt);
-                $('#elemview-attempt').modal('show');
+                $('#jrview-attempt #attempt').val(count_attempt);
+                $('#jrview-attempt').modal('show');
 
             });
 

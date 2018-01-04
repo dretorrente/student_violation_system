@@ -82,7 +82,7 @@
                                                 <th>City</th>
                                             </tr>
                                         </thead>
-                                     
+
                                     </table>
                                 </div>
                             </div>

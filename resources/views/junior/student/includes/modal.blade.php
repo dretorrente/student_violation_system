@@ -71,7 +71,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">Parent's Contact No.</label>
-                                <input type="text" name="contact_no" class="form-control" id="contact_no" required="required">
+                                <input type="number" name="contact_no" class="form-control" id="contact_no" required="required" placeholder="Ex. 91912345678">
                             </div>
                         </div>
                     </div>
@@ -86,11 +86,11 @@
 </div>
 {{-- Update Student --}}
 <div id="student-update" class="modal fade student-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Update Student</h4> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Update Student</h4>
             </div>
             <form action="{{ route('junior.updateStudent')}}" method="post">
                 {{csrf_field()}}
@@ -105,8 +105,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">School Year</label>
-                                <select class="form-control" name="sy_id" id="sy_id">
-                                    <option selected disabled>Please select school year</option>
+                                <select class="form-control" name="sy_id" id="sy_id" required>
+                                    <option value="">Please select</option>
                                     @foreach($school_years as $school_year)
                                         <option value="{{$school_year->id}}">{{$school_year->school_year}}</option>
                                     @endforeach
@@ -134,24 +134,6 @@
                             </div>
                         </div>
                     </div>
-                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="field-1" class="control-label">Age</label>
-                                <input type="number" name="age" class="form-control" id="age" required="required">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="field-2" class="control-label">Gender</label>
-                                <select class="form-control" id="gender" name="gender">
-                                    <option selected disabled>Please select gender</option>
-                                    <option value="{{Config::get('constants.gender_name.male')}}">Male</option>
-                                    <option value="{{Config::get('constants.gender_name.female')}}">Female</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -162,20 +144,20 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="field-2" class="control-label">Grade &amp; Section</label>
-                                <select class="form-control" id="section_id" name="section_id">
-                                    <option selected disabled>Please select Grade & Section</option>
+                                <select class="form-control" id="section_id" name="section_id" required>
+                                    <option value="">Please select</option>
                                     @foreach($sections as $section)
-                                        <option value="{{$section->grade}} - {{$section->section}}">{{$section->grade}} - {{$section->section}}</option>
+                                        <option value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-3" class="control-label">Address</label>
-                                <input type="text" name="address" class="form-control" id="address" required="required">
+                                <label for="field-1" class="control-label">Parent's Contact No.</label>
+                                <input type="text" name="contact_no" class="form-control" id="contact_no" required="required">
                             </div>
                         </div>
                     </div>
@@ -186,76 +168,9 @@
                     <button type="submit" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Save Changes</button>
                 </div>
             </form>
-        </div> 
+        </div>
     </div>
 </div>
-
-
-{{-- Add Grade/Section --}}
-<div id="section-add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Add Section</h4> 
-            </div> 
-            <div class="modal-body"> 
-                <div class="row">
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Grade</label> 
-                            <input type="text" class="form-control" id="field-3">
-                        </div> 
-                    </div>
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">Section</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
-            </div> 
-        </div> 
-    </div>
-</div>
-
-{{-- Update Grade/Section --}}
-<div id="section-update" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Update Section</h4> 
-            </div> 
-            <div class="modal-body"> 
-                <div class="row">
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-2" class="control-label">Grade</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div>
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <label for="field-3" class="control-label">Section</label> 
-                            <input type="text" class="form-control" id="field-3"> 
-                        </div> 
-                    </div> 
-                </div> 
-            </div> 
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="button" class="btn btn-purple waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
-            </div> 
-        </div> 
-    </div>
-</div>
-
-
 
 
 {{-- View Attempts --}}
@@ -271,7 +186,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="field-2" class="control-label">Total:</label>
-                            <input type="number" class="form-control" id="field-3" readonly="">
+                            <input type="number" class="form-control" id="attempt" readonly="">
                         </div>
                     </div>
                 </div>

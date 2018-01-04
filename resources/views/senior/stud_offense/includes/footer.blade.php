@@ -31,7 +31,34 @@
 <script src="{{ asset('assets/plugins/datatables/dataTables.scroller.min.js') }}"></script>
 <!-- Datatable init js -->
 <script src="{{ asset('assets/pages/datatables.init.js') }}"></script>
+{{-- Multi Select --}}
+<script src="{{ asset('assets/plugins/select2/dist/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/tagsinput/jquery.tagsinput.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/toggles/toggles.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-multi-select/jquery.multi-select.js') }}"></script>
+<script>
+    jQuery(document).ready(function() {
 
+        // Tags Input
+        jQuery('#tags').tagsInput({width:'auto'});
+
+        // Form Toggles
+        jQuery('.toggle').toggles({on: true});
+
+        //multiselect start
+        $('#my_multi_select1').multiSelect();
+        $('#my_multi_select2').multiSelect({
+            selectableOptgroup: true
+        });
+
+        // Select2
+        jQuery(".select2").select2({
+            width: '100%'
+        });
+
+
+    });
+</script>
 <script>
 $(document).ready(function() {
     $('#datatable').dataTable();

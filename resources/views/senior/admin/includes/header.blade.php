@@ -51,10 +51,16 @@
                         <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="{{asset('assets/images/users/cus8.png')}}" alt="user-img" class="img-circle"> </a>
+                        <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true">
+                            <?php if(empty(Auth::User()->upload)): ?>
+                            <img src="{{asset('assets/images/users/cus8.png')}}" class="img-circle" alt="profile-image">
+                            <?php else: ?>
+                            <img src="{{asset('assets/images/users/')}}<?php echo '/'.Auth::User()->upload;?>"  class="img-circle" alt="profile-image">
+                            <?php endif; ?>
+                        </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{url('/settings')}}"><i class="md md-textsms"></i> Send SMS</a></li>
-                            <li><a href="{{url('/settings')}}"><i class="md md-settings"></i> Settings</a></li>
+                            <li><a href="{{url('/senior/compose')}}"><i class="md md-textsms"></i> Send SMS</a></li>
+                            <li><a href="{{url('/senior/settings')}}"><i class="md md-settings"></i> Settings</a></li>
                             <li><a style="margin-left: 3px;" href="{{route('logout')}}"><i class="ion-log-out"></i> Sign Out</a></li>
                         </ul>
                     </li>

@@ -15,29 +15,27 @@
                                     <th>#</th>
                                     <th>Student ID</th>
                                     <th>School-Year</th>
-                                    <th>Name</th>
-                                    <th>Age</th>
-                                    <th>Gender</th>
+                                    <th>First Name</th>
+                                    <th>Middle Name
+                                    <th>Last Name</th>
                                     <th>Adviser</th>
                                     <th>Grade &amp; Section</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @foreach($students as $student)
-                                    <tr id="{{$student->student_id}}">
-                                        <td><input type="radio" name="student"></td>
-                                        <td>{{$student->student_id}}</td>
-                                        <td>{{$student->school_year}}</td>
-                                        <td>{{$student->first_name}}</td>
-                                        <td>{{$student->middle_name}}</td>
-                                        <td>{{$student->last_name}}</td>
-                                        <td>{{$student->age}}</td>
-                                        <td>{{Config::get('constants.gender.'.$student->gender)}}</td>
-                                        <td>{{$student->adviser}}</td>
-                                        <td>{{$student->section_id}}</td>
-                                    </tr>
-                                @endforeach
+                            @foreach($students as $student)
+                                <tr id="{{$student->student_id}}">
+                                    <td><input type="radio" name="student"></td>
+                                    <td>{{$student->student_id}}</td>
+                                    <td>{{$student->school_year}}</td>
+                                    <td>{{$student->first_name}}</td>
+                                    <td>{{$student->middle_name}}</td>
+                                    <td>{{$student->last_name}}</td>
+                                    <td>{{$student->adviser}}</td>
+                                    <td>{{$student->section_id}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

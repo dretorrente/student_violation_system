@@ -57,21 +57,22 @@
     </div>
 </div>
 
+
 {{-- Delete S.Y. --}}
 <div id="sy-delete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Delete Year</h4> 
-            </div> 
-            <div class="modal-body"> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Delete Year</h4>
+            </div>
+            <div class="modal-body">
                 <p>Are you sure you want to delete this school year ?</p>
             </div>
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"> Cancel</button> 
-                <button type="button" class="btn btn-danger waves-effect waves-light confirmation"><i class="ion-trash-b"></i> Delete</button>
-            </div> 
-        </div> 
+            <div class="modal-footer"><br>
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"> Cancel</button>
+                <button type="submit" class="btn btn-danger waves-effect waves-light confirmation"><i class="ion-trash-b"></i> Delete</button>
+            </div>
+        </div>
     </div>
 </div>

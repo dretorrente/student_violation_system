@@ -37,7 +37,7 @@
                 {{csrf_field()}}
             <div style="padding: 10px 3px;" class="btn-group">
                 <select class="form-control" id="section" name="section">
-                    <option value="">Please select</option>
+                    <option value="">Please select Section</option>
                     @foreach($sections as $section)
                         <option <?php if(isset($_GET['section'])):
                             echo $_GET['section']== $section->id ? "selected" : "";
@@ -47,7 +47,7 @@
             </div>
             <div style="padding: 10px 5px;" class="btn-group">
                 <select class="form-control" name="sy" id="sy">
-                    <option value="">Please select</option>
+                    <option value="">Please select School Year</option>
                     @foreach($school_years as $school_year)
                         <option <?php if(isset($_GET['sy'])):
                             echo $_GET['sy']== $school_year->id ? "selected" : "";
@@ -77,9 +77,10 @@
                             </thead>
 
                             <tbody id="t-body">
+                            <?php $c = 1; ?>
                                 @foreach($students as $student)
                                     <tr>
-                                        <td>{{$student->id}}</td>
+                                        <td>{{$c}}</td>
                                         <td>{{$student->student_id}}</td>
                                         <td>{{$student->school_year}}</td>
                                         <td>{{$student->first_name}}</td>
@@ -91,7 +92,9 @@
                                             <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
                                         <input type="hidden" value="{{$student->sy_id}}">
                                         <input type="hidden" value="{{$student->contact_no}}">
+                                        <input type="hidden" value="{{$student->id}}">
                                     </tr>
+                                    <?php $c++; ?>
                                 @endforeach
                             </tbody>
                         </table>
@@ -145,7 +148,7 @@
         });
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(1)', parent).text();
+            var id = $(':nth-child(12)', parent).val();
             var studentID = $(':nth-child(2)', parent).html();
             var school_year = $(':nth-child(3)', parent).text();
             var first_name =  $(':nth-child(4)', parent).text();

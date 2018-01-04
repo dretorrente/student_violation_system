@@ -44,7 +44,6 @@ class SchoolYearController extends Controller
         }
     }
 
-
     public function update_sy_elem(Request $request) {
         $update = SchoolYear::find($request['id']);
         if ($update) {
@@ -64,7 +63,10 @@ class SchoolYearController extends Controller
      * Senior high school year dashboard
      */
     public function schoolyear_senior(){
-        $school_years = SchoolYear::all();
+        $school_years = DB::table('school_years')
+            ->select('school_years.*')
+            ->where('school_years.group_id', '=', 1)
+            ->get();
         return view('senior.schoolyear.index',['school_years' => $school_years]);
     }
     
@@ -75,6 +77,7 @@ class SchoolYearController extends Controller
         if ($request->isMethod('post')) {
             $schoolyear = new SchoolYear();
             $schoolyear->school_year = $request['school_year'];
+            $schoolyear->group_id = 1;
             if($schoolyear->save()){
                 Session::flash('message','Your school year has been succesfully added!');
                 Session::flash('alert-class', 'alert-info');
@@ -122,7 +125,10 @@ class SchoolYearController extends Controller
      * Junior high school year dashboard
      */
     public function schoolyear_junior(){
-        $school_years = SchoolYear::all();
+        $school_years = DB::table('school_years')
+            ->select('school_years.*')
+            ->where('school_years.group_id', '=', 2)
+            ->get();
         return view('junior.schoolyear.index',['school_years' => $school_years]);
     }
     
@@ -130,9 +136,11 @@ class SchoolYearController extends Controller
      * Junior high school year add
      */
     public function add_schoolyear_junior(Request $request){
+
         if ($request->isMethod('post')) {
             $schoolyear = new SchoolYear();
             $schoolyear->school_year = $request['school_year'];
+            $schoolyear->group_id = 2;
             if($schoolyear->save()){
                 Session::flash('message','Your school year has been succesfully added!');
                 Session::flash('alert-class', 'alert-info');

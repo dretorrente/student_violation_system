@@ -15,12 +15,9 @@ class AuthenticateSHS
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        // if(Auth::check())
-        //     return $next($request);
-        // return redirect()->route('home');
+
         if(Auth::guard($guard)->guest())
         {
-
             if($request->ajax())
             {
                 return response('Unauthorized.', 401);

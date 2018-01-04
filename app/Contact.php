@@ -10,7 +10,7 @@ class Contact extends Model
 //        return $this->belongsTo('App\User');
 //    }
     protected $fillable = [
-        'name', 'contact_no',
+        'name', 'contact_no','group_id'
     ];
 
 }

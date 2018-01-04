@@ -24,48 +24,12 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Student Information</h3>
-                </div>
-                <div class="panel-body">
-                    @section('modal')
-                @include('senior.stud_offense.includes.modal')
-                @show
-                    <div class="col-md-6"> 
-                        <div class="form-group"> 
-                            <button data-toggle="modal" data-target="#select-student" class="btn btn-info">Select Student Profile</button>
-                            <br>
-                            <label for="field-1" class="control-label">Search Student ID</label> 
-                             <input type="text" class="form-control" id="field-1">
-                             <label for="field-1" class="control-label">First Name</label> 
-                             <input type="text" class="form-control" id="field-1"> 
-                             <label for="field-1" class="control-label">Last Name</label> 
-                             <input type="text" class="form-control" id="field-1"> 
-                             <label for="field-1" class="control-label">Middle Name</label> 
-                              <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div>
-                     <div class="col-md-6"> 
-                        <div class="form-group"> 
-                             <label for="field-1" class="control-label">Gender</label> 
-                             <input type="text" class="form-control" id="field-1"> 
-                             <label for="field-1" class="control-label">Adviser</label> 
-                             <input type="text" class="form-control" id="field-1"> 
-                             <label for="field-1" class="control-label">Grade Section</label> 
-                              <input type="text" class="form-control" id="field-1"> 
-                        </div> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
                     <h3 class="panel-title">Offense</h3>
                 </div>
 
                 <div class="panel-body">
                     <div class="row">
                         <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <label>Search <input type="text" class="form-control" ></label> <button class="btn btn-primary">Search</button>
                             <table id="datatable" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
@@ -104,33 +68,42 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 style="visibility: hidden;" class="panel-title">Student Information</h3>
+                    <h3 class="panel-title">Information</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="col-md-4"> 
-                        <div class="form-group"> 
-                             <label for="field-1" class="control-label">Date Commit</label> 
-                             <input type="date" class="form-control" id="field-1"> 
-                             <label for="field-1" class="control-label">Category</label> 
-                             <input type="text" class="form-control" id="field-1"> 
-                             <label for="field-1" class="control-label">Student Offense</label> 
-                             <input type="text" class="form-control" id="field-1">
-                             <label for="field-1" class="control-label">Description</label> 
-                             <textarea class="form-control" rows="3" cols="44"></textarea> 
-                        </div> 
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">Date Commit</label>
+                            <input type="datetime-local" name="date_commit" class="form-control" id="date_commit" required="required">
+                            <label for="field-1" class="control-label">Category</label>
+                            <input type="text" class="form-control" id="category" required="required">
+                            <label for="field-1" class="control-label">Student Offense</label>
+                            <input type="text" name="student_offense" class="form-control" id="violation_name" required="required">
+                            <label for="field-1"  class="control-label">Description</label>
+                            <textarea rows="3" cols="44" name="description" class="form-control" required="required"></textarea>
+                            <input type="hidden" name="violation_id" id="violation_id">
+                        </div>
                     </div>
-                     <div class="col-md-4"> 
-                        <div class="form-group"> 
-                             <label for="field-1" class="control-label">Persons Involved</label> 
-                             <input type="text" class="form-control" id="field-1"> 
-                             <label for="field-1" class="control-label">Offense Number of Attempt</label> 
-                             <input type="text" class="form-control" id="field-1"> 
-                             <label for="field-1" class="control-label">Sanction</label> 
-                             <textarea class="form-control" rows="3" cols="44"></textarea><br>
-                             <button type="button" style="margin-left: 255px;" class="btn btn-info"><i class="md md-check"></i> Save</button>
-                        </div> 
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-1"  class="control-label" required="required">Persons Involved</label>
+                            <select size="10" class="select2 form-control" name="persons_involve[]" multiple="multiple" data-placeholder="With Max Selection Limit 20" required>
+                                <option selected disabled>Please select receiver</option>
+                                @foreach($students as $student)
+                                    <option value="{{$student->student_id}}"> {!! Helper::fullname($student->first_name,$student->middle_name,$student->last_name) !!}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">Sanction</label>
+                            <textarea rows="3" name="sanction" cols="44" class="form-control" required="required"></textarea><br>
+
+                        </div>
                     </div>
                 </div>
+                <button type="submit"  id="save_offense" class="btn btn-info"><i class="md md-check"></i> Save</button>
             </div>
         </form>
         <div style="visibility: hidden;" class="col-md-12">
@@ -163,6 +136,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function(){
         $("#stud_offense").on("click",function(e){
@@ -187,20 +161,30 @@
         });
 
         $('input:radio[name="violation"]').change(
-        function(){
-            if ($(this).is(':checked')){
-                var parent = $(this).parent().parent();
-                var category = $(':nth-child(2)', parent).text();
-                var violation = $(':nth-child(3)', parent).text();
-                document.getElementById('category').value = category;
-                document.getElementById('violation_name').value = violation;
-                document.getElementById('violation_id').value = $(this).attr('id');
-            }
-        });
+                function(){
+                    if ($(this).is(':checked')){
+                        var parent = $(this).parent().parent();
+                        var category = $(':nth-child(2)', parent).text();
+                        var violation = $(':nth-child(3)', parent).text();
+                        document.getElementById('category').value = category;
+                        document.getElementById('violation_name').value = violation;
+                        document.getElementById('violation_id').value = $(this).attr('id');
+                    }
+                });
     });
 </script>
+<style>
+    .form-control.select2-container {
+        height: 249px !important;
+    }
+    #save_offense {
+        margin-left: 50%;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+</style>
 @section('footer')
-    @include('senior.student.includes.footer')
+    @include('senior.stud_offense.includes.footer')
 @show
 @endsection
 

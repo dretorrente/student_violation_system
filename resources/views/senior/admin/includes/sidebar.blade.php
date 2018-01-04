@@ -2,7 +2,11 @@
         <div class="sidebar-inner slimscrollleft">
             <div class="user-details">
                 <div class="pull-left">
-                    <img src="{{asset('assets/images/users/cus8.png')}}" alt="" class="thumb-md img-circle">
+                    <?php if(empty(Auth::User()->upload)): ?>
+                    <img src="{{asset('assets/images/users/cus8.png')}}" class="thumb-md img-circle" alt="profile-image">
+                    <?php else: ?>
+                    <img src="{{asset('assets/images/users/')}}<?php echo '/'.Auth::User()->upload;?>" class="thumb-md img-circle" alt="profile-image">
+                    <?php endif; ?>
                 </div>
                 <div class="user-info">
                     <div class="dropdown">
@@ -15,9 +19,6 @@
             <!--- Divider -->
             <div id="sidebar-menu">
                 <ul>
-                    <li>
-                        <a href="{{ url('/senior/home/') }}" class="waves-effect"><i class="md md-dashboard"></i><span>Dashboard </span></a>
-                    </li>
                     <li>
                         <a href="{{ url('/senior/students/') }}" class="waves-effect"><i style="font-size: 20px;" class="ion-ios7-people"></i><span>Student Management</span></a>
                     </li>

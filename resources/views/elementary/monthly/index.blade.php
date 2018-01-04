@@ -59,7 +59,7 @@
 
                             <tbody>
                             @foreach($students as $student)
-                                 <tr>
+                                <tr>
                                     <td>{!! Helper::fullname($student->first_name,$student->middle_name,$student->last_name) !!}</td>
                                     <td>{{$student->count}}</td>
                                 </tr>

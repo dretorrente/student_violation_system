@@ -2,7 +2,11 @@
         <div class="sidebar-inner slimscrollleft">
             <div class="user-details">
                 <div class="pull-left">
-                    <img src="{{asset('assets/images/users/cus8.png')}}" alt="" class="thumb-md img-circle">
+                    <?php if(empty(Auth::User()->upload)): ?>
+                    <img src="{{asset('assets/images/users/cus8.png')}}" class="thumb-md img-circle" alt="profile-image">
+                    <?php else: ?>
+                    <img src="{{asset('assets/images/users/')}}<?php echo '/'.Auth::User()->upload;?>" class="thumb-md img-circle" alt="profile-image">
+                    <?php endif; ?>
                 </div>
                 <div class="user-info">
                     <div class="dropdown">
@@ -22,7 +26,7 @@
                         <a href="{{ url('/junior/offense') }}" class="waves-effect"><i class="md md-assignment-late"></i><span>Student Offense</span></a>
                     </li>
                     <li>
-                        <a href="{{url('/junior/offense_records')}}" class="waves-effect"><i class="ion-android-book"></i><span>Stud. Offense Records</span></a>
+                        <a href="{{url('/junior/records')}}" class="waves-effect"><i class="ion-android-book"></i><span>Stud. Offense Records</span></a>
                     </li>
 
                     <li class="has_sub">
