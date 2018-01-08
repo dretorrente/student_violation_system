@@ -37,7 +37,7 @@
                     </select>
                 </div>
                 <div style="padding: 10px 5px;" class="btn-group">
-                    <select class="form-control" name="semester" id="semester">
+                    <select class="form-control" name="semester" id="semester" required="required">
                         <option value="">Please Select Semester</option>
                         <option <?php if(isset($_GET['semester'])):
                             echo $_GET['semester']== 1 ? "selected" : "";
@@ -52,7 +52,7 @@
 
                 </div>
                 <div style="padding: 10px 5px;" class="btn-group">
-                    <button  class="btn btn-info waves-effect waves-light"><i class="fa fa-download"></i> Export</button>
+                    <button class="btn btn-info waves-effect waves-light"><i class="fa fa-download"></i> Export</button>
                 </div>
             </form>
            

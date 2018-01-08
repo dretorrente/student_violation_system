@@ -558,14 +558,20 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'uses' => 'ReportController@senior_report'
     ]);
 
+    Route::get('/sryearly', [
+        'uses' => 'ReportController@senior_yearly_report'
+    ]);
 
-    Route::get('/sryearly', function() {
-        return view('senior.yearly.index');
-    });
 
     Route::get('/senior_month/downloadExcel/{type}', [
         'uses' => 'ReportController@senior_download',
         'as'  => 'senior.reportSearch'
+    ]);
+
+
+    Route::get('/senior_year/downloadExcel/{type}', [
+        'uses' => 'ReportController@senior_year_download',
+        'as'  => 'senior.report_yearSearch'
     ]);
 });
 
