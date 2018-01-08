@@ -5,6 +5,11 @@ return [
         2 => 'Female'
     ],
 
+    'semester' => [
+        1 => '1st Semester',
+        2 => '2nd Semester'
+    ],
+
     'gender_name' => [
         'male' => 1,
         'female' => 2

@@ -27,7 +27,7 @@
             </div>
 
         <div class="col-lg-6">
-            <form action="{{ route('elem.offenseSearch')}}" method="get">
+            <form action="{{ route('senior.offenseSearch')}}" method="get">
                 {{csrf_field()}}
                 <div style="padding: 10px 3px;" class="btn-group">
                     <select class="form-control" id="section" name="section">
@@ -47,6 +47,17 @@
                                 echo $_GET['sy']== $school_year->id ? "selected" : "";
                             endif; ?> value="{{$school_year->id}}">{{$school_year->school_year}}</option>
                         @endforeach
+                    </select>
+                </div>
+                <div style="padding: 10px 5px;" class="btn-group">
+                    <select class="form-control" name="semester" id="semester">
+                        <option value="">Please select Semester</option>
+                        <option <?php if(isset($_GET['semester'])):
+                            echo $_GET['semester']== 1 ? "selected" : "";
+                        endif; ?> value="1">1st Semester</option>
+                        <option <?php if(isset($_GET['semester'])):
+                            echo $_GET['semester']== 2 ? "selected" : "";
+                        endif; ?> value="2">2nd Semester</option>
                     </select>
                 </div>
                 <button class="btn btn-info waves-effect waves-light" ><i class="fa fa-search"></i> Search</button>

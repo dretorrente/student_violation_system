@@ -1,11 +1,11 @@
 {{-- Add Student --}}
 <div id="student-add" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title">Add Student</h4> 
-            </div> 
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Add Student</h4>
+            </div>
             <form action="{{ route('senior.studentadd')}}" method="post">
                 {{csrf_field()}}
                 <div class="modal-body">
@@ -51,8 +51,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-1" class="control-label">Adviser</label>
-                                <input type="text" name="adviser" id="adviser" class="form-control">
+                                <label for="field-1" class="control-label">Semester</label>
+                                <select class="form-control" id="semester" name="semester" required="required">
+                                    <option value="">Please Select Semester</option>
+                                    <option value="1">1st Semester</option>
+                                    <option value="2">2nd Semester</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -75,13 +79,19 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-1" class="control-label">Adviser</label>
+                            <input type="text" name="adviser" id="adviser" class="form-control">
+                        </div>
+                    </div>
                 </div>
-            <div class="modal-footer"><br> 
-                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button> 
-                <button type="submit" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Submit</button> 
-            </div> 
+            <div class="modal-footer"><br>
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal"><i class="md md-close"></i> Close</button>
+                <button type="submit" class="btn btn-success waves-effect waves-light"><i class="md md-check"></i> Submit</button>
+            </div>
             </form>
-        </div> 
+        </div>
     </div>
 </div>
 

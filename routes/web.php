@@ -359,7 +359,7 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'   => 'junior.studSearch'
     ]);
 
-    Route::get('/elem/offense_elem_search',[
+    Route::get('/junior/offense_junior_search',[
         'uses' => 'OffenseController@search_junior_offense',
         'as'   => 'junior.offenseSearch'
     ]);
@@ -515,13 +515,7 @@ Route::group(['middleware' =>['auth.shs']], function() {
         'as'    => 'senior.contactadd'
     ]);
 
-    Route::get('/srmonthly', function() {
-        return view('senior.monthly.index');
-    });
 
-    Route::get('/sryearly', function() {
-        return view('senior.yearly.index');
-    });
     Route::match(['get', 'post'], '/senior/sy_delete/{id}',[
         'uses' => 'SchoolYearController@delete_sy_senior',
         'as'   => 'senior.deleteSchoolYear'
@@ -554,6 +548,24 @@ Route::group(['middleware' =>['auth.shs']], function() {
       Route::post('/senior/contacts_update', [
         'uses'  => 'ContactController@update_contact_senior',
         'as'    => 'senior.contactupdate'
+    ]);
+
+    Route::get('/senior/offense_senior_search',[
+        'uses' => 'OffenseController@search_senior_offense',
+        'as'   => 'senior.offenseSearch'
+    ]);
+    Route::get('/srmonthly', [
+        'uses' => 'ReportController@senior_report'
+    ]);
+
+
+    Route::get('/sryearly', function() {
+        return view('senior.yearly.index');
+    });
+
+    Route::get('/senior_month/downloadExcel/{type}', [
+        'uses' => 'ReportController@senior_download',
+        'as'  => 'senior.reportSearch'
     ]);
 });
 

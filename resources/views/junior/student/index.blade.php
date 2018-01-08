@@ -175,11 +175,14 @@
                 },
                 dataType: 'json'
             }).done(function(response) {
-                var count_attempt = parseInt(response);
-
-                $('#jrview-attempt #attempt').val(count_attempt);
-                $('#jrview-attempt').modal('show');
-
+                if(response.count) {
+                    var count_attempt = parseInt(response.count);
+                    $('#jrview-attempt #attempt').val(count_attempt);
+                    $('#jrview-attempt').modal('show');
+                } else {
+                    $('#jrview-attempt #attempt').val(0);
+                    $('#jrview-attempt').modal('show');
+                }
             });
 
         });

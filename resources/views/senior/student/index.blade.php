@@ -55,6 +55,17 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div style="padding: 10px 5px;" class="btn-group">
+                            <select class="form-control" name="semester" id="semester">
+                                <option value="">Please select Semester</option>
+                                <option <?php if(isset($_GET['semester'])):
+                                    echo $_GET['semester']== 1 ? "selected" : "";
+                                endif; ?> value="1">1st Semester</option>
+                                <option <?php if(isset($_GET['semester'])):
+                                    echo $_GET['semester']== 2 ? "selected" : "";
+                                endif; ?> value="2">2nd Semester</option>
+                            </select>
+                        </div>
                         <button class="btn btn-info waves-effect waves-light" ><i class="fa fa-search"></i> Search</button>
                     </form>
                 </div>
@@ -124,7 +135,7 @@
                                             <th>City</th>
                                         </tr>
                                     </thead>
-                                 
+
                                 </table>
                             </div>
                         </div>
@@ -183,11 +194,14 @@
                 },
                 dataType: 'json'
             }).done(function(response) {
-                var count_attempt = parseInt(response);
-
-                $('#seniorview-attempt #attempt').val(count_attempt);
-                $('#seniorview-attempt').modal('show');
-
+                if(response.count) {
+                    var count_attempt = parseInt(response.count);
+                    $('#seniorview-attempt #attempt').val(count_attempt);
+                    $('#seniorview-attempt').modal('show');
+                } else {
+                    $('#seniorview-attempt #attempt').val(0);
+                    $('#seniorview-attempt').modal('show');
+                }
             });
 
         });

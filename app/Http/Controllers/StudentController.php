@@ -191,7 +191,12 @@ class StudentController extends Controller
                 ->groupBy("offenses.student_id")
                 ->where('offenses.student_id', '=', $request->studID)
                 ->get();
-                return json_encode(count($students));
+            if(!empty($students[0])) {
+                return json_encode($students[0]);
+            } else {
+                return json_encode(array('count' => 0 ));
+            }
+
         }
     }
 
@@ -204,7 +209,12 @@ class StudentController extends Controller
                 ->groupBy("offenses.student_id")
                 ->where('offenses.student_id', '=', $request->studID)
                 ->get();
-            return json_encode(count($students));
+            if(!empty($students[0])) {
+                return json_encode($students[0]);
+            } else {
+                return json_encode(array('count' => 0 ));
+            }
+
         }
     }
 
@@ -217,7 +227,12 @@ class StudentController extends Controller
                 ->groupBy("offenses.student_id")
                 ->where('offenses.student_id', '=', $request->studID)
                 ->get();
-            return json_encode(count($students));
+            if(!empty($students[0])) {
+                return json_encode($students[0]);
+            } else {
+                return json_encode(array('count' => 0 ));
+            }
+
         }
     }
 
@@ -374,7 +389,24 @@ class StudentController extends Controller
     public function search_senior_stud(Request $request)
     {
         if ($request->isMethod('get')) {
-            if(!empty($request->sy) && !empty($request->section)) {
+            if(!empty($request->sy) && !empty($request->section) &&  !empty($request->semester)) {
+                $sections = DB::table('sections')
+                    ->select('sections.*')
+                    ->where('sections.group_id', '=', 1)
+                    ->get();
+                $school_years = DB::table('school_years')
+                    ->select('school_years.*')
+                    ->where('school_years.group_id', '=',1)
+                    ->get();
+                $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->join('sections', 'students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->where([['students.group_id', '=', 1],['students.semester', '=', $request->semester],['students.sy_id','=', $request->sy],['students.section_id','=', trim($request->section)]])
+                    ->get();
+                return view('senior.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+            }
+            else if(!empty($request->sy) && !empty($request->section) && empty($request->semester)) {
                 $sections = DB::table('sections')
                     ->select('sections.*')
                     ->where('sections.group_id', '=', 1)
@@ -388,6 +420,40 @@ class StudentController extends Controller
                     ->join('sections', 'students.section_id', '=', 'sections.id')
                     ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
                     ->where([['students.group_id', '=', 1],['students.sy_id','=', $request->sy],['students.section_id','=', trim($request->section)]])
+                    ->get();
+                return view('senior.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+            }
+            else if(!empty($request->sy) && empty($request->section) && !empty($request->semester)) {
+                $sections = DB::table('sections')
+                    ->select('sections.*')
+                    ->where('sections.group_id', '=', 1)
+                    ->get();
+                $school_years = DB::table('school_years')
+                    ->select('school_years.*')
+                    ->where('school_years.group_id', '=',1)
+                    ->get();
+                $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->join('sections', 'students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->where([['students.group_id', '=', 1],['students.sy_id','=', $request->sy],['students.semester','=', trim($request->semester)]])
+                    ->get();
+                return view('senior.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+            }
+            else if(empty($request->sy) && !empty($request->section) && !empty($request->semester)) {
+                $sections = DB::table('sections')
+                    ->select('sections.*')
+                    ->where('sections.group_id', '=', 1)
+                    ->get();
+                $school_years = DB::table('school_years')
+                    ->select('school_years.*')
+                    ->where('school_years.group_id', '=',1)
+                    ->get();
+                $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->join('sections', 'students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->where([['students.group_id', '=', 1],['students.section_id','=', $request->section],['students.semester','=', trim($request->semester)]])
                     ->get();
                 return view('senior.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
             }
@@ -422,6 +488,23 @@ class StudentController extends Controller
                     ->join('sections', 'students.section_id', '=', 'sections.id')
                     ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
                     ->where([['students.group_id', '=', 1],['students.sy_id','=', $request->sy]])
+                    ->get();
+                return view('senior.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
+            }
+            else if(!empty($request->semester)) {
+                $sections = DB::table('sections')
+                    ->select('sections.*')
+                    ->where('sections.group_id', '=', 1)
+                    ->get();
+                $school_years = DB::table('school_years')
+                    ->select('school_years.*')
+                    ->where('school_years.group_id', '=',1)
+                    ->get();
+                $students = DB::table('students')
+                    ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+                    ->join('sections', 'students.section_id', '=', 'sections.id')
+                    ->select('students.*', 'school_years.school_year','sections.grade','sections.section')
+                    ->where([['students.group_id', '=', 1],['students.semester','=', $request->semester]])
                     ->get();
                 return view('senior.student.index',['sections' => $sections,'school_years' => $school_years,'students'=>$students]);
             }

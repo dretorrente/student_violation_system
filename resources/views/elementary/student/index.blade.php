@@ -177,10 +177,15 @@
                     },
                     dataType: 'json'
                 }).done(function(response) {
-                    var count_attempt = parseInt(response);
+                    if(response.count) {
+                        var count_attempt = parseInt(response.count);
+                        $('#elemview-attempt #attempt').val(count_attempt);
+                        $('#elemview-attempt').modal('show');
+                    } else {
+                        $('#elemview-attempt #attempt').val(0);
+                        $('#elemview-attempt').modal('show');
+                    }
 
-                    $('#elemview-attempt #attempt').val(count_attempt);
-                    $('#elemview-attempt').modal('show');
 
                 });
 
