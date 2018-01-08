@@ -52,9 +52,11 @@
                             <li><a href="{{url('/junior/contacts')}}"><i class="md-contacts"></i> Contacts</a></li>
                         </ul>
                     </li>
+                    <?php if(Auth::User()->role == 'administrator'): ?>
                     <li>
                         <a href="{{ url('/junior/users') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>User Management</span></a>
                     </li>
+                    <?php endif; ?>
 
                      <li>
                         <a href="{{url('/junior/settings')}}" class="waves-effect"><i class="md md-settings"></i><span>Settings </span></a>

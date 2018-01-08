@@ -55,9 +55,11 @@
                             <li><a href="{{url('/senior/contacts/')}}"><i class="md-contacts"></i> Contacts</a></li>
                         </ul>
                     </li>
+                    <?php if(Auth::User()->role == 'administrator'): ?>
                     <li>
                         <a href="{{ url('/senior/users/') }}" class="waves-effect"><i class="ion-person-stalker"></i><span>User Management</span></a>
                     </li>
+                    <?php endif; ?>
 
                      <li>
                         <a href="{{url('/senior/settings')}}" class="waves-effect"><i class="md md-settings"></i><span>Settings </span></a>
