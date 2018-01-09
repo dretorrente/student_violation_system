@@ -83,6 +83,8 @@
                                             <th>Last Name</th>
                                             <th>Adviser</th>
                                             <th>Grade &amp; Section</th>
+                                            <th>Class</th>
+                                            <th>Semester</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -99,10 +101,14 @@
                                             <td>{{$student->last_name}}</td>
                                             <td>{{$student->adviser}}</td>
                                             <td>{{$student->grade}} - {{$student->section}}</td>
+                                            <td>{{Config::get('constants.class.'.$student->class)}}</td>
+                                            <td>{{Config::get('constants.semester.'.$student->semester)}}</td>
                                             <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
                                                 <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
                                             <input type="hidden" value="{{$student->sy_id}}">
                                             <input type="hidden" value="{{$student->contact_no}}">
+                                            <input type="hidden" value="{{$student->class}}">
+                                            <input type="hidden" value="{{$student->semester}}">
                                         </tr>
                                          <?php $c++; ?>
                                     @endforeach
@@ -165,7 +171,9 @@
             var last_name =  $(':nth-child(6)', parent).text();
             var adviser =  $(':nth-child(7)', parent).text();
             var section =  $(':nth-child(8)', parent).text();
-            var contact_no = $(':nth-child(11)', parent).val();
+            var contact_no = $(':nth-child(13)', parent).val();
+            var class_no = $(':nth-child(14)', parent).val();
+            var semester = $(':nth-child(15)', parent).val();
             var sy = $('#student-update #sy_id option:contains("'+school_year+'")').val();
             var section_update = $('#student-update #section_id option:contains("'+section+'")').val();
             $('#student-update #student_id').val(studentID);
@@ -177,6 +185,8 @@
             $('#student-update #section_id').val(section_update);
             $('#student-update #hiddenStudent').val(id);
             $('#student-update #contact_no').val(contact_no);
+            $('#student-update #class').val(class_no);
+            $('#student-update #semester').val(semester);
         });
 
 

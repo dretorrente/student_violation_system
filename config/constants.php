@@ -9,6 +9,10 @@ return [
         1 => '1st Semester',
         2 => '2nd Semester'
     ],
+    'class' => [
+        1 => 'Day',
+        2 => 'Evening'
+    ],
 
     'gender_name' => [
         'male' => 1,
@@ -22,13 +26,5 @@ return [
     'violation_name' => [
         1 => 'Minor Offense',
         2 => 'Major Offense'
-    ],
-    'class' => [
-        'Day' => 1,
-        'Evening' => 2
-    ],
-    'semester' => [
-        '1st_Sem' => 1,
-        '2nd_Sem' => 2
     ],
 ];

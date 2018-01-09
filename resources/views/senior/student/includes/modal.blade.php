@@ -78,11 +78,23 @@
                                 <input type="number" name="contact_no" class="form-control" id="contact_no" required="required" placeholder="Ex. 91912345678">
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Adviser</label>
+                                <input type="text" name="adviser" id="adviser" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label">Adviser</label>
-                            <input type="text" name="adviser" id="adviser" class="form-control">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Class</label>
+                                <select class="form-control" id="class" name="class" required="required">
+                                    <option value="">Please Select Class</option>
+                                    <option value="1">Day</option>
+                                    <option value="2">Evening</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,8 +160,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="field-1" class="control-label">Adviser</label>
-                                <input type="text" name="adviser" class="form-control" id="adviser" required="required">
+                                <label for="field-1" class="control-label">Semester</label>
+                                <select class="form-control" id="semester" name="semester" required="required">
+                                    <option value="">Please Select Semester</option>
+                                    <option value="1">1st Semester</option>
+                                    <option value="2">2nd Semester</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -169,6 +185,25 @@
                             <div class="form-group">
                                 <label for="field-1" class="control-label">Parent's Contact No.</label>
                                 <input type="text" name="contact_no" class="form-control" id="contact_no" required="required">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Adviser</label>
+                                <input type="text" name="adviser" class="form-control" id="adviser" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-2" class="control-label">Class</label>
+                                <select class="form-control" id="class" name="class" required="required">
+                                    <option value="">Please Select Class</option>
+                                    <option value="1">Day</option>
+                                    <option value="2">Evening</option>
+                                </select>
                             </div>
                         </div>
                     </div>
