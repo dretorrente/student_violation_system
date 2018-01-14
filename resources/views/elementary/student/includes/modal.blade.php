@@ -52,7 +52,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="field-1" class="control-label">Adviser</label>
-                            <input type="text" name="adviser" id="adviser" class="form-control">
+                            <input type="text" name="adviser" id="adviser" class="form-control" required="required">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -64,14 +64,6 @@
                                     <option value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="field-1" class="control-label">Parent's Contact No.</label>
-                            <input type="number" name="contact_no" class="form-control" id="contact_no" required="required" placeholder="Ex. 91912345678">
                         </div>
                     </div>
                 </div>
@@ -151,14 +143,6 @@
                                         <option value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="field-1" class="control-label">Parent's Contact No.</label>
-                                <input type="text" name="contact_no" class="form-control" id="contact_no" required="required">
                             </div>
                         </div>
                     </div>

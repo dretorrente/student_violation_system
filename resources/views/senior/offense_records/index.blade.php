@@ -26,7 +26,7 @@
                 <h3 class="panel-title">Student Offense Records</h3>
             </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <form action="{{ route('senior.offenseSearch')}}" method="get">
                 {{csrf_field()}}
                 <div style="padding: 10px 3px;" class="btn-group">
@@ -60,6 +60,18 @@
                         endif; ?> value="2">2nd Semester</option>
                     </select>
                 </div>
+
+                <div style="padding: 10px 5px;" class="btn-group">
+                    <select class="form-control" name="class" id="class">
+                        <option value="">Please select Class</option>
+                        <option <?php if(isset($_GET['class'])):
+                            echo $_GET['class']== 1 ? "selected" : "";
+                        endif; ?> value="1">Day</option>
+                        <option <?php if(isset($_GET['class'])):
+                            echo $_GET['class']== 2 ? "selected" : "";
+                        endif; ?> value="2">Evening</option>
+                    </select>
+                </div>
                 <button class="btn btn-info waves-effect waves-light" ><i class="fa fa-search"></i> Search</button>
             </form>
         </div>
@@ -77,8 +89,9 @@
                                 <th>Name</th>
                                 <th>Adviser</th>
                                 <th>Grade & Section</th>
+                                <th>Class</th>
+                                <th>Semester</th>
                                 <th>Date & Time Commit</th>
-                                <th>Category</th>
                                 <th>Offense</th>
                                 <th>Description</th>
                                 <th>Sanction</th>
@@ -94,8 +107,9 @@
                                     <td>{!! Helper::fullname($offense->first_name,$offense->middle_name,$offense->last_name) !!}</td>
                                     <td>{{$offense->adviser}}</td>
                                     <td>{{$offense->grade}} - {{$offense->section}}</td>
+                                    <td>{{Config::get('constants.class.'.$offense->class)}}</td>
+                                    <td>{{Config::get('constants.semester.'.$offense->semester)}}</td>
                                     <td>{{$offense->date_commit}}</td>
-                                    <td>{{Config::get('constants.violation_name.'.$offense->category)}}</td>
                                     <td>{{$offense->student_offense}}</td>
                                     <td>{{$offense->description}}</td>
                                     <td>{{$offense->sanction}}</td>
@@ -158,7 +172,8 @@
             });
             $('.update_offense').on('click', function(){
                 var parent = $(this).parent().parent();
-                var id = $(':nth-child(15)', parent).val();
+                var id = $(':nth-child(16)', parent).val();
+                var name = $(':nth-child(3)', parent).text();
                 var studentID = $(':nth-child(2)', parent).html();
                 var section =  $(':nth-child(5)', parent).text();
                 var section_update = $('#offense-update #section_id option:contains("'+section+'")').val();
@@ -166,28 +181,19 @@
                 var middle_name =  $(':nth-child(13)', parent).val();
                 var last_name =  $(':nth-child(14)', parent).val();
                 var adviser =  $(':nth-child(4)', parent).text();
-                var offense = $(':nth-child(8)', parent).text();
-                var description = $(':nth-child(9)', parent).text();
-                var sanction = $(':nth-child(10)', parent).text();
-                var date_commit = $(':nth-child(6)', parent).text().split(' ').join('T');
-//                var section =  $(':nth-child(8)', parent).text();
-//                var contact_no = $(':nth-child(11)', parent).val();
-//                var sy = $('#student-update #sy_id option:contains("'+school_year+'")').val();
-//                $('#offense-update #student_id').val(studentID);
-//                $('#offense-update #first_name').val(first_name);
-//                $('#offense-update #middle_name').val(middle_name);
-//                $('#offense-update #last_name').val(last_name);
-//                $('#offense-update #adviser').val(adviser);
+                var offense = $(':nth-child(9)', parent).text();
+                var description = $(':nth-child(10)', parent).text();
+                var sanction = $(':nth-child(11)', parent).text();
+                var date_commit = $(':nth-child(8)', parent).text().split(' ').join('T');
+
                 $('#offense-update #student_offense').val(offense);
-                $('#offense-update #date_commit').val(date_commit);
-//                $('#offense-update #section_id').val(section_update);
+                $('#offense-update #date_commit').val(date_commit);;
                 $('#offense-update #sanction').val(sanction);
                 $('#offense-update #description').val(description);
                 $('#offense-update #hiddenOffense').val(id);
-//                $('#offense-update #sy_id').val(sy);
-//                $('#offense-update #section_id').val(section);
-//                $('#offense-update #hiddenStudent').val(id);
-//                $('#offense-update #contact_no').val(contact_no);
+                $('#offense-update #name_stud').val(name);
+                $('#offense-update #section_stud').val(section);
+
             });
         });
     </script>

@@ -67,6 +67,7 @@
                                                 <td id="seventh-{{ $violation->id }}">{{ $violation->seventh_sanction }}</td>
                                                 <td><button data-tooltip='tooltip' data-placement='top' data-original-title='Update' data-toggle='modal' data-target='#violation-update' type='button' class='btn-xs btn btn-purple waves-effect waves-light m-b-5 update' id="{{ $violation->id }}"><i class='md md-border-color'></i></button>
                                                     <button data-tooltip='tooltip' data-placement='top' data-original-title='Delete' data-toggle='modal' data-target='#violation-delete' type='button' class='btn-xs btn btn-danger waves-effect waves-light m-b-5 delete' id="{{ $violation->id }}"><i class="md md-delete"></i></button></td>
+                                                <input type="hidden" id="vio_id" value="{{ $violation->category }}">
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -122,7 +123,7 @@
 
         $('.update').on('click', function(){
             var updateId = $(this).attr('id');
-            $('#exampleFormControlSelect2').val($('#category-'+updateId).text());
+            $('#exampleFormControlSelect2').val($('#vio_id').val());
             $('textarea[name=violation]').text($('#violation-'+updateId).text());
             $('input[name=first_sanction]').val($('#first-'+updateId).text());
             $('input[name=second_sanction]').val($('#second-'+updateId).text());

@@ -17,36 +17,6 @@
                     <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
                 </form>
                 <ul class="nav navbar-nav navbar-right pull-right">
-                    <li class="dropdown hidden-xs">
-                        <a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-                            <i class="md md-notifications" style="color:#fff;"></i>
-                            <span class="badge badge-xs badge-danger">@if(Helper::senior_students_offense()['count'] > 0)
-                                    {!! Helper::senior_students_offense()['count'] !!}
-                                @endif</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-lg">
-                            @if(Helper::senior_students_offense()['count'] > 0)
-                                <li class="text-center notifi-title">Notification for Student
-                                    with 3 offenses</li>
-                                <li class="list-group">
-                                    @foreach(Helper::senior_students_offense()['student_offense'] as $student)
-                                        <a href="javascript:void(0);" class="list-group-item" style="cursor:default;">
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <em class="fa fa-user-plus fa-2x text-info"></em>
-                                                </div>
-                                                <div class="media-body clearfix">
-                                                    <div class="media-heading">{{$student->first_name.' '.$student->last_name}}</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                </li>
-                            @else
-                                <li class="text-center notifi-title">No student got 3 offenses yet</li>
-                            @endif
-                        </ul>
-                    </li>
                     <li class="hidden-xs">
                         <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
                     </li>

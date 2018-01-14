@@ -76,9 +76,9 @@
                             <label for="field-1" class="control-label">Date Commit</label>
                             <input type="datetime-local" name="date_commit" class="form-control" id="date_commit" required="required">
                             <label for="field-1" class="control-label">Category</label>
-                            <input type="text" class="form-control" id="category" required="required">
+                            <input type="text" class="form-control" id="category" required="required" readonly>
                             <label for="field-1" class="control-label">Student Offense</label>
-                            <input type="text" name="student_offense" class="form-control" id="violation_name" required="required">
+                            <input type="text" name="student_offense" class="form-control" id="violation_name" required="required" readonly>
                             <label for="field-1"  class="control-label">Description</label>
                             <textarea rows="3" cols="44" name="description" class="form-control" required="required"></textarea>
                             <input type="hidden" name="violation_id" id="violation_id">

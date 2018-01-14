@@ -10,6 +10,9 @@ class SectionController extends Controller
 {
 
     public function section_elem(){
+        if(Auth::user()['group_id'] !=3) {
+            return redirect()->back();
+        }
         $sections = DB::table('sections')
             ->select('sections.*')
             ->where('sections.group_id', '=', 3)
@@ -61,6 +64,9 @@ class SectionController extends Controller
      * Senior high section dashboard
      */
     public function section_senior(){
+        if(Auth::user()['group_id'] !=1) {
+            return redirect()->back();
+        }
         $sections = DB::table('sections')
             ->select('sections.*')
             ->where('sections.group_id', '=', 1)
@@ -121,6 +127,9 @@ class SectionController extends Controller
      * Junior high section dashboard
      */
     public function section_junior(){
+        if(Auth::user()['group_id'] !=2) {
+            return redirect()->back();
+        }
         $sections = DB::table('sections')
             ->select('sections.*')
             ->where('sections.group_id', '=', 2)

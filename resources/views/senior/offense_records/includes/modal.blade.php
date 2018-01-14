@@ -6,9 +6,25 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">Update Student offense Records</h4>
             </div>
-            <form action="{{ route('elem.updateOffense')}}" method="post">
+            <form action="{{ route('senior.updateOffense')}}" method="post">
                 {{csrf_field()}}
             <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-3" class="control-label">Name</label>
+                            <input type="text" class="form-control" id="name_stud" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-3" class="control-label">Section</label>
+                            <input type="text" class="form-control" id="section_stud" readonly>
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">

@@ -25,6 +25,7 @@ class CreateOffensesTable extends Migration
             $table->string('description');
             $table->string('schoolyear_id')->nullable();
             $table->string('semester_id')->nullable();
+            $table->string('class_id')->nullable();
             $table->timestamps();
         });
     }

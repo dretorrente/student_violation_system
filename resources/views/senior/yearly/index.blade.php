@@ -36,20 +36,10 @@
                         @endforeach
                     </select>
                 </div>
-                <div style="padding: 10px 5px;" class="btn-group">
-                    <select class="form-control" name="semester" id="semester" required="required">
-                        <option value="">Please Select Semester</option>
-                        <option <?php if(isset($_GET['semester'])):
-                            echo $_GET['semester']== 1 ? "selected" : "";
-                        endif; ?> value="1">1st Semester</option>
-                        <option <?php if(isset($_GET['semester'])):
-                            echo $_GET['semester']== 2 ? "selected" : "";
-                        endif; ?> value="2">2nd Semester</option>
-                    </select>
-                </div>
+
                 <div style="padding: 10px 5px;" class="btn-group">
                     <select class="form-control" id="sy" name="sy" required="required">
-                        <option value="">Please select</option>
+                        <option value="">Please Select School Year</option>
                         @foreach($school_years as $school_year)
                             <option <?php if(isset($_GET['sy'])):
                                 echo $_GET['sy']== $school_year->id ? "selected" : "";
@@ -57,6 +47,7 @@
                         @endforeach
                     </select>
                 </div>
+
                 <div style="padding: 10px 5px;" class="btn-group">
                     <button class="btn btn-info waves-effect waves-light"><i class="fa fa-download"></i> Export</button>
                 </div>

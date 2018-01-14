@@ -25,7 +25,6 @@ class CreateStudentsTable extends Migration
             $table->string('adviser')->nullable();
             $table->string('section_id');
             $table->enum('semester',array(1,2))->nullable();
-            $table->string('contact_no');
             $table->enum('class',array(1,2))->nullable();
             $table->enum('group_id',array(1,2,3));
             $table->rememberToken();

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class ViolationController extends Controller
 {
     public function violation_elem() {
+        if(Auth::user()['group_id'] !=3) {
+            return redirect()->back();
+        }
     	$violation = DB::table('violations')
             ->select('violations.*')
             ->where('violations.group_id', '=', 3)
@@ -64,6 +67,9 @@ class ViolationController extends Controller
      * Senior high violation
      */
     public function violation_senior() {
+        if(Auth::user()['group_id'] !=1) {
+            return redirect()->back();
+        }
         $violation = DB::table('violations')
             ->select('violations.*')
             ->where('violations.group_id', '=', 1)
@@ -126,6 +132,9 @@ class ViolationController extends Controller
      * Junior high violation
      */
     public function violation_junior() {
+        if(Auth::user()['group_id'] !=2) {
+            return redirect()->back();
+        }
         $violation = DB::table('violations')
             ->select('violations.*')
             ->where('violations.group_id', '=', 2)

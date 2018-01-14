@@ -10,6 +10,9 @@ class SchoolYearController extends Controller
 {
 
     public function schoolyear_elem(){
+        if(Auth::user()['group_id'] !=3) {
+            return redirect()->back();
+        }
         $school_years = DB::table('school_years')
             ->select('school_years.*')
             ->where('school_years.group_id', '=', 3)
@@ -63,6 +66,9 @@ class SchoolYearController extends Controller
      * Senior high school year dashboard
      */
     public function schoolyear_senior(){
+        if(Auth::user()['group_id'] !=1) {
+            return redirect()->back();
+        }
         $school_years = DB::table('school_years')
             ->select('school_years.*')
             ->where('school_years.group_id', '=', 1)
@@ -125,6 +131,9 @@ class SchoolYearController extends Controller
      * Junior high school year dashboard
      */
     public function schoolyear_junior(){
+        if(Auth::user()['group_id'] !=2) {
+            return redirect()->back();
+        }
         $school_years = DB::table('school_years')
             ->select('school_years.*')
             ->where('school_years.group_id', '=', 2)

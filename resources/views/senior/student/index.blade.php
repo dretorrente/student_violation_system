@@ -24,7 +24,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">List of Students</h3>
                     </div>
-                <div class="col-lg-6 pull-right">
+                <div class="col-lg-4 pull-right">
                     <div style="padding: 10px 5px;" class="pull-right btn-group dropdown-btn-group" >
                         <button type="button" class="btn btn-info waves-effect waves-light" data-toggle="modal" data-target="#student-add"><i class="md md-person-add"></i> Add Student</button>
                     </div>
@@ -32,7 +32,7 @@
                 @section('modal')
                     @include('senior.student.includes.modal')
                 @show
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <form action="{{ route('senior.studSearch')}}" method="get">
                         {{csrf_field()}}
                         <div style="padding: 10px 3px;" class="btn-group">
@@ -66,6 +66,18 @@
                                 endif; ?> value="2">2nd Semester</option>
                             </select>
                         </div>
+                        <div style="padding: 10px 5px;" class="btn-group">
+                            <select class="form-control" name="class" id="class">
+                                <option value="">Please select Class</option>
+                                <option <?php if(isset($_GET['class'])):
+                                    echo $_GET['class']== 1 ? "selected" : "";
+                                endif; ?> value="1">Day</option>
+                                <option <?php if(isset($_GET['class'])):
+                                    echo $_GET['class']== 2 ? "selected" : "";
+                                endif; ?> value="2">Evening</option>
+                            </select>
+                        </div>
+
                         <button class="btn btn-info waves-effect waves-light" ><i class="fa fa-search"></i> Search</button>
                     </form>
                 </div>
@@ -93,7 +105,7 @@
                                      <?php $c = 1; ?>
                                     @foreach($students as $student)
                                         <tr>
-                                            <td>{{$student->id}}</td>
+                                            <td>{{$c}}</td>
                                             <td>{{$student->student_id}}</td>
                                             <td>{{$student->school_year}}</td>
                                             <td>{{$student->first_name}}</td>
@@ -106,9 +118,9 @@
                                             <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
                                                 <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
                                             <input type="hidden" value="{{$student->sy_id}}">
-                                            <input type="hidden" value="{{$student->contact_no}}">
                                             <input type="hidden" value="{{$student->class}}">
                                             <input type="hidden" value="{{$student->semester}}">
+                                            <input type="hidden" value="{{$student->id}}">
                                         </tr>
                                          <?php $c++; ?>
                                     @endforeach
@@ -163,7 +175,7 @@
         });
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(12)', parent).val();
+            var id = $(':nth-child(16)', parent).val();
             var studentID = $(':nth-child(2)', parent).html();
             var school_year = $(':nth-child(3)', parent).text();
             var first_name =  $(':nth-child(4)', parent).text();
@@ -171,7 +183,6 @@
             var last_name =  $(':nth-child(6)', parent).text();
             var adviser =  $(':nth-child(7)', parent).text();
             var section =  $(':nth-child(8)', parent).text();
-            var contact_no = $(':nth-child(13)', parent).val();
             var class_no = $(':nth-child(14)', parent).val();
             var semester = $(':nth-child(15)', parent).val();
             var sy = $('#student-update #sy_id option:contains("'+school_year+'")').val();
@@ -184,7 +195,6 @@
             $('#student-update #sy_id').val(sy);
             $('#student-update #section_id').val(section_update);
             $('#student-update #hiddenStudent').val(id);
-            $('#student-update #contact_no').val(contact_no);
             $('#student-update #class').val(class_no);
             $('#student-update #semester').val(semester);
         });

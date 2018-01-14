@@ -12,6 +12,20 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="field-3" class="control-label">Name</label>
+                            <input type="text" class="form-control" id="name_stud" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="field-3" class="control-label">Section</label>
+                            <input type="text" class="form-control" id="section_stud" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label for="field-3" class="control-label">Offense</label>
                             <input type="text" class="form-control" id="student_offense" name="student_offense">
                         </div>

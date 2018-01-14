@@ -6,10 +6,15 @@ use App\Contact;
 use DB;
 use Illuminate\Support\Facades\Session;
 use SmsGateway;
+use Illuminate\Support\Facades\Auth;
+
 class ContactController extends Controller
 {
 
     public function sms_contact_elem(){
+        if(Auth::user()['group_id'] !=3) {
+            return redirect()->back();
+        }
         $contacts =  DB::table('contacts')
             ->select('contacts.*')
             ->where('contacts.group_id', '=', 3)
@@ -18,6 +23,9 @@ class ContactController extends Controller
     }
 
     public function sms_compose_elem(){
+        if(Auth::user()['group_id'] !=3) {
+            return redirect()->back();
+        }
         $contacts =  DB::table('contacts')
             ->select('contacts.*')
             ->where('contacts.group_id', '=', 3)
@@ -68,6 +76,9 @@ class ContactController extends Controller
      * Senior high contact 
      */
     public function sms_contact_senior(){
+        if(Auth::user()['group_id'] !=1) {
+            return redirect()->back();
+        }
         $contacts =  DB::table('contacts')
             ->select('contacts.*')
             ->where('contacts.group_id', '=', 1)
@@ -79,6 +90,9 @@ class ContactController extends Controller
      * Senior high compose 
      */
     public function sms_compose_senior(){
+        if(Auth::user()['group_id'] !=1) {
+            return redirect()->back();
+        }
         $contacts =  DB::table('contacts')
             ->select('contacts.*')
             ->where('contacts.group_id', '=', 1)
@@ -136,6 +150,9 @@ class ContactController extends Controller
      * Junior high contact 
      */
     public function sms_contact_junior(){
+        if(Auth::user()['group_id'] !=2) {
+            return redirect()->back();
+        }
         $contacts =  DB::table('contacts')
             ->select('contacts.*')
             ->where('contacts.group_id', '=', 2)
@@ -147,6 +164,9 @@ class ContactController extends Controller
      * Junior high compose 
      */
     public function sms_compose_junior(){
+        if(Auth::user()['group_id'] !=2) {
+            return redirect()->back();
+        }
         $contacts =  DB::table('contacts')
             ->select('contacts.*')
             ->where('contacts.group_id', '=', 2)

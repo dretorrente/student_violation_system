@@ -150,6 +150,7 @@
             $('.update_offense').on('click', function(){
                 var parent = $(this).parent().parent();
                 var id = $(':nth-child(15)', parent).val();
+                var name = $(':nth-child(3)', parent).text();
                 var studentID = $(':nth-child(2)', parent).html();
                 var section =  $(':nth-child(5)', parent).text();
                 var section_update = $('#offense-update #section_id option:contains("'+section+'")').val();
@@ -175,6 +176,8 @@
                 $('#offense-update #sanction').val(sanction);
                 $('#offense-update #description').val(description);
                 $('#offense-update #hiddenOffense').val(id);
+                $('#offense-update #name_stud').val(name);
+                $('#offense-update #section_stud').val(section);
 //                $('#offense-update #sy_id').val(sy);
 //                $('#offense-update #section_id').val(section);
 //                $('#offense-update #hiddenStudent').val(id);

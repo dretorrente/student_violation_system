@@ -42,7 +42,9 @@ class UserController extends Controller
      * @return [type] [description]
      */
     public function setting_elem() {
-
+        if(Auth::user()['group_id'] !=3) {
+            return redirect()->back();
+        }
         $user = Auth::user();
         return view('elementary.admin.settings', ['user' => $user]);
     }
@@ -101,6 +103,9 @@ class UserController extends Controller
      * @return void
      */
     public function elem_management() {
+        if(Auth::user()['group_id'] !=3) {
+            return redirect()->back();
+        }
         $users = DB::table('users')->where('group_id', '3')->get();
         return view('elementary.users.index',['users' => $users]);
     }
@@ -185,6 +190,9 @@ class UserController extends Controller
      * @return void
      */
     public function senior_management() {
+        if(Auth::user()['group_id'] !=1) {
+            return redirect()->back();
+        }
         $users = DB::table('users')->where('group_id', '1')->get();
         return view('senior.users.index',['users' => $users]);
     }
@@ -261,7 +269,9 @@ class UserController extends Controller
      *Senior high view for settings
      */
     public function setting_senior() {
-
+        if(Auth::user()['group_id'] !=1) {
+            return redirect()->back();
+        }
         $user = Auth::user();
         return view('senior.admin.settings', ['user' => $user]);
     }
@@ -304,6 +314,9 @@ class UserController extends Controller
      * @return void
      */
     public function junior_management() {
+        if(Auth::user()['group_id'] !=2) {
+            return redirect()->back();
+        }
         $users = DB::table('users')->where('group_id', '2')->get();
         return view('junior.users.index',['users' => $users]);
     }
@@ -380,7 +393,9 @@ class UserController extends Controller
      *Junior high view for settings
      */
     public function setting_junior() {
-
+        if(Auth::user()['group_id'] !=2) {
+            return redirect()->back();
+        }
         $user = Auth::user();
         return view('junior.admin.settings', ['user' => $user]);
     }

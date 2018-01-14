@@ -26,16 +26,6 @@
         <div class="col-lg-9" style="margin-top: 10px;">
             <form action="{{ url('/senior_month/downloadExcel/xlsx') }}" method="get">
                 {{csrf_field()}}
-                <div style="padding: 10px 3px;" class="btn-group">
-                    <select class="form-control" id="section" name="section" required="required">
-                        <option value="">Please Select Section</option>
-                        @foreach($sections as $section)
-                            <option <?php if(isset($_GET['section'])):
-                                echo $_GET['section']== $section->id ? "selected" : "";
-                            endif; ?> value="{{$section->id}}">{{$section->grade}} - {{$section->section}}</option>
-                        @endforeach
-                    </select>
-                </div>
                 <div style="padding: 10px 5px;" class="btn-group">
                     <select class="form-control" name="semester" id="semester" required="required">
                         <option value="">Please Select Semester</option>
@@ -45,6 +35,18 @@
                         <option <?php if(isset($_GET['semester'])):
                             echo $_GET['semester']== 2 ? "selected" : "";
                         endif; ?> value="2">2nd Semester</option>
+                    </select>
+                </div>
+
+                <div style="padding: 10px 5px;" class="btn-group">
+                    <select class="form-control" name="class" id="class" required="required">
+                        <option value="">Please select Class</option>
+                        <option <?php if(isset($_GET['class'])):
+                            echo $_GET['class']== 1 ? "selected" : "";
+                        endif; ?> value="1">Day</option>
+                        <option <?php if(isset($_GET['class'])):
+                            echo $_GET['class']== 2 ? "selected" : "";
+                        endif; ?> value="2">Evening</option>
                     </select>
                 </div>
                 <div style="padding: 10px 5px;" class="btn-group">
@@ -71,7 +73,7 @@
                             <tbody>
                             @foreach($students as $student)
                                 <tr>
-                                    <td>{!! Helper::fullname($student->first_name,$student->middle_name,$student->last_name) !!}</td>
+                                    <td>{{$student->grade}} - {{$student->section}}</td>
                                     <td>{{$student->count}}</td>
                                 </tr>
                             @endforeach
