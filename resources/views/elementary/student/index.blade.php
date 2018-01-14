@@ -91,7 +91,6 @@
                                         <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
                                             <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
                                         <input type="hidden" value="{{$student->sy_id}}">
-                                        <input type="hidden" value="{{$student->contact_no}}">
                                         <input type="hidden" value="{{$student->id}}">
                                     </tr>
                                     <?php $c++; ?>
@@ -141,7 +140,7 @@
        
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(12)', parent).val();
+            var id = $(':nth-child(11)', parent).val();
             var studentID = $(':nth-child(2)', parent).html();
             var school_year = $(':nth-child(3)', parent).text();
             var first_name =  $(':nth-child(4)', parent).text();
@@ -149,7 +148,7 @@
             var last_name =  $(':nth-child(6)', parent).text();
             var adviser =  $(':nth-child(7)', parent).text();
             var section =  $(':nth-child(8)', parent).text();
-            var contact_no = $(':nth-child(11)', parent).val();
+            // var contact_no = $(':nth-child(11)', parent).val();
             var sy = $('#student-update #sy_id option:contains("'+school_year+'")').val();
             var section_update = $('#student-update #section_id option:contains("'+section+'")').val();
             $('#student-update #student_id').val(studentID);
@@ -160,7 +159,7 @@
             $('#student-update #sy_id').val(sy);
             $('#student-update #section_id').val(section_update);
             $('#student-update #hiddenStudent').val(id);
-            $('#student-update #contact_no').val(contact_no);
+            // $('#student-update #contact_no').val(contact_no);
         });
 
             $('.total_attempts').on('click',function(e){

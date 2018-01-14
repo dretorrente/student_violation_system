@@ -91,7 +91,6 @@
                                         <td><button data-tooltip="tooltip" data-placement="top" data-original-title="Update Student" data-toggle="modal" data-target="#student-update" type="button" class="btn-xs btn btn-purple waves-effect waves-light m-b-5 update" id="{{ $student->id }}"><i class="md md-border-color"></i></button>
                                             <button data-tooltip="tooltip" data-placement="top" data-original-title="View Number Of Attempts"  type="button" class="btn-xs btn btn-info waves-effect waves-light m-b-5 total_attempts"><i class="md-remove-red-eye "></i></button></td>
                                         <input type="hidden" value="{{$student->sy_id}}">
-                                        <input type="hidden" value="{{$student->contact_no}}">
                                         <input type="hidden" value="{{$student->id}}">
                                 </tr>
                              <?php $c++; ?>
@@ -140,7 +139,7 @@
    $(document).ready(function(){
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(12)', parent).val();
+            var id = $(':nth-child(11)', parent).val();
             var studentID = $(':nth-child(2)', parent).html();
             var school_year = $(':nth-child(3)', parent).text();
             var first_name =  $(':nth-child(4)', parent).text();
