@@ -185,7 +185,7 @@ class ContactController extends Controller
             return redirect('/junior/compose/');
         } else{
             $result = '';
-            $smsGateway = new SmsGateway('dave.torrente@gmail.com', 'davepogi03');
+            $smsGateway = new SmsGateway('sample@gmail.com', 'sample1234');
             $deviceID = 65979;
             $message = $request['message'];
             foreach($request['receiver'] as $receiver) {
