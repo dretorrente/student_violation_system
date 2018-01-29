@@ -175,7 +175,7 @@
         });
         $('.update').on('click', function(){
             var parent = $(this).parent().parent();
-            var id = $(':nth-child(16)', parent).val();
+            var id = $(':nth-child(15)', parent).val();
             var studentID = $(':nth-child(2)', parent).html();
             var school_year = $(':nth-child(3)', parent).text();
             var first_name =  $(':nth-child(4)', parent).text();
