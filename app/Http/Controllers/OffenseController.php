@@ -94,9 +94,9 @@ class OffenseController extends Controller
         if(Auth::user()['group_id'] !=1) {
             return redirect()->back();
         }
-        $students = DB::table('offenses')
-            ->join('school_years', 'offenses.schoolyear_id', '=', 'school_years.id')
-            ->select('offenses.*', 'school_years.school_year')
+        $students = DB::table('students')
+            ->join('school_years', 'students.sy_id', '=', 'school_years.id')
+            ->select('students.*', 'school_years.school_year')
             ->where('students.group_id', '=', 1)
             ->get();
         $violations =  DB::table('violations')
