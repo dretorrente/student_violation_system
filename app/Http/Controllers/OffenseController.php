@@ -94,9 +94,9 @@ class OffenseController extends Controller
         if(Auth::user()['group_id'] !=1) {
             return redirect()->back();
         }
-        $students = DB::table('students')
-            ->join('school_years', 'students.sy_id', '=', 'school_years.id')
-            ->select('students.*', 'school_years.school_year')
+        $students = DB::table('offenses')
+            ->join('school_years', 'offenses.schoolyear_id', '=', 'school_years.id')
+            ->select('offenses.*', 'school_years.school_year')
             ->where('students.group_id', '=', 1)
             ->get();
         $violations =  DB::table('violations')
@@ -126,9 +126,10 @@ class OffenseController extends Controller
             ->join('violations', 'offenses.violation_id', '=', 'violations.id')
             ->join('school_years','students.sy_id', '=', 'school_years.id')
             ->join('sections','students.section_id', '=', 'sections.id')
-            ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
+            ->selectRaw('students.first_name,students.middle_name,students.last_name,students.adviser, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
             ->where('students.group_id', '=', 1)
             ->get();
+
         return view('senior.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
     }
 

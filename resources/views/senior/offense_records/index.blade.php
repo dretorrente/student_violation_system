@@ -107,8 +107,8 @@
                                     <td>{!! Helper::fullname($offense->first_name,$offense->middle_name,$offense->last_name) !!}</td>
                                     <td>{{$offense->adviser}}</td>
                                     <td>{{$offense->grade}} - {{$offense->section}}</td>
-                                    <td>{{Config::get('constants.class.'.$offense->class)}}</td>
-                                    <td>{{Config::get('constants.semester.'.$offense->semester)}}</td>
+                                    <td>{{Config::get('constants.class.'.$offense->class_id)}}</td>
+                                    <td>{{Config::get('constants.semester.'.$offense->semester_id)}}</td>
                                     <td>{{$offense->date_commit}}</td>
                                     <td>{{$offense->student_offense}}</td>
                                     <td>{{$offense->description}}</td>
