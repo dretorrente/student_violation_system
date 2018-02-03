@@ -193,7 +193,7 @@ class ReportController extends Controller
                 ->join('students', 'students.student_id', '=', 'offenses.student_id')
                 ->join('sections','students.section_id', '=', 'sections.id')
                 ->join('school_years','students.sy_id', '=', 'school_years.id')
-                ->select(DB::raw("COUNT(offenses.student_id) count,students.first_name,students.adviser, students.last_name,sections.section,sections.grade"))
+                ->select(DB::raw("COUNT(offenses.student_id) count,students.first_name,students.adviser, students.last_name,sections.section,sections.grade,school_years.school_year"))
                 ->groupBy("offenses.student_id")
                 ->where([['students.group_id', '=', 2],['students.section_id','=', trim($request->section)],['students.sy_id','=', trim($request->sy)]])
                 ->get();
@@ -243,43 +243,49 @@ class ReportController extends Controller
                             // manipulate the cell
                             $cell->setValue(' ')->setAlignment('center');
                         });
-
                         $sheet->appendRow(13, array(
-                            null,null, $results[0]->grade .' - '. $results[0]->section
+                            null,null, "SY.".$results[0]->school_year
                         ));
                         $sheet->cell('C13', function ($cell) {
                             // manipulate the cell
                             $cell->setAlignment('center');
                         });
                         $sheet->appendRow(14, array(
-                            null,null, 'ADVISER: '.$results[0]->adviser
+                            null,null, $results[0]->grade .' - '. $results[0]->section
                         ));
                         $sheet->cell('C14', function ($cell) {
                             // manipulate the cell
                             $cell->setAlignment('center');
                         });
+                        $sheet->appendRow(15, array(
+                            null,null, 'ADVISER: '.$results[0]->adviser
+                        ));
+                        $sheet->cell('C15', function ($cell) {
+                            // manipulate the cell
+                            $cell->setAlignment('center');
+                        });
 
-                        $sheet->cell('B16', function ($cell) {
+                        $sheet->cell('B17', function ($cell) {
                             // manipulate the cell
                             $cell->setValue('NAME OF STUDENT')->setAlignment('right');
                         });
 
-                        $sheet->cell('D16', function ($cell) {
+                        $sheet->cell('D17', function ($cell) {
                             // manipulate the cell
                             $cell->setValue('Total number of Offenses')->setAlignment('left');
                         });
 
                         for ($i = 0; $i < count($results); $i++) {
-                            $sheet->appendRow(17 + $i, array(
+                            $sheet->appendRow(18 + $i, array(
                                 null, $results[$i]->first_name . ' ' . $results[$i]->last_name, null, $results[$i]->count
                             ));
 
 
-                            $sheet->cell('B' . ($i + 17), function ($cell) {
+                            $sheet->cell('B' . ($i + 18), function ($cell) {
                                 // manipulate the cell
                                 $cell->setAlignment('center');
                             });
-                            $sheet->cell('D' . ($i + 17), function ($cell) {
+                            $sheet->cell('D' . ($i + 18), function ($cell) {
                                 // manipulate the cell
                                 $cell->setAlignment('center');
                             });
@@ -346,7 +352,7 @@ class ReportController extends Controller
                 ->join('students', 'students.student_id', '=', 'offenses.student_id')
                 ->join('sections','students.section_id', '=', 'sections.id')
                 ->join('school_years','students.sy_id', '=', 'school_years.id')
-                ->select(DB::raw("COUNT(offenses.student_id) count,students.first_name,students.adviser, students.last_name,sections.section,sections.grade"))
+                ->select(DB::raw("COUNT(offenses.student_id) count,students.first_name,students.adviser, students.last_name,sections.section,sections.grade,school_years.school_year"))
                 ->groupBy("sections.id")
                 ->where([['students.group_id', '=', 1],['offenses.semester_id','=', trim($request->semester)],['offenses.class_id','=', trim($request->class)]])
                 ->whereYear('offenses.date_commit', '=',  $year)
@@ -401,7 +407,7 @@ class ReportController extends Controller
                         });
 
                         $sheet->appendRow(13, array(
-                            null,null, 'Date : '.$sample
+                            null,null, 'School Year : '.$results[0]->school_year
                         ));
                         $sheet->cell('C14', function ($cell) {
                             // manipulate the cell
@@ -494,7 +500,7 @@ class ReportController extends Controller
                 ->join('students', 'students.student_id', '=', 'offenses.student_id')
                 ->join('sections','students.section_id', '=', 'sections.id')
                 ->join('school_years','students.sy_id', '=', 'school_years.id')
-                ->select(DB::raw("COUNT(offenses.student_id) count,students.first_name,students.adviser, students.last_name,sections.section,sections.grade"))
+                ->select(DB::raw("COUNT(offenses.student_id) count,students.first_name,students.adviser, students.last_name,sections.section,sections.grade,school_years.school_year"))
                 ->groupBy("offenses.student_id")
                 ->where([['students.group_id', '=', 1],['students.section_id','=', trim($request->section)],['students.sy_id','=', trim($request->sy)]])
                 ->get();
@@ -546,26 +552,34 @@ class ReportController extends Controller
                         });
 
                         $sheet->appendRow(13, array(
-                            null,null, $results[0]->grade .' - '. $results[0]->section
+                            null,null, "SY.".$results[0]->school_year
                         ));
                         $sheet->cell('C13', function ($cell) {
                             // manipulate the cell
                             $cell->setAlignment('center');
                         });
+
                         $sheet->appendRow(14, array(
-                            null,null, 'ADVISER: '.$results[0]->adviser
+                            null,null, $results[0]->grade .' - '. $results[0]->section
                         ));
                         $sheet->cell('C14', function ($cell) {
                             // manipulate the cell
                             $cell->setAlignment('center');
                         });
+                        $sheet->appendRow(15, array(
+                            null,null, 'ADVISER: '.$results[0]->adviser
+                        ));
+                        $sheet->cell('C15', function ($cell) {
+                            // manipulate the cell
+                            $cell->setAlignment('center');
+                        });
 
-                        $sheet->cell('B16', function ($cell) {
+                        $sheet->cell('B17', function ($cell) {
                             // manipulate the cell
                             $cell->setValue('NAME OF STUDENT')->setAlignment('right');
                         });
 
-                        $sheet->cell('D16', function ($cell) {
+                        $sheet->cell('D17', function ($cell) {
                             // manipulate the cell
                             $cell->setValue('Total number of Offenses')->setAlignment('left');
                         });
