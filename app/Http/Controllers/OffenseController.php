@@ -66,6 +66,7 @@ class OffenseController extends Controller
             foreach($request->persons_involve as $person_involve) {
                 unset($request['datatable_length']);
                 unset($request['violation']);
+                $student = Student::where('student_id', $person_involve)->first();
                 $data = [
                     'student_id'      => $person_involve,
                     'date_commit'     => $request->date_commit,
@@ -73,6 +74,7 @@ class OffenseController extends Controller
                     'student_offense' => $request->student_offense,
                     'description'     => $request->description,
                     'sanction'       => $request->sanction,
+                    'schoolyear_id'  => $student->sy_id,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ];
@@ -234,6 +236,7 @@ class OffenseController extends Controller
             foreach($request->persons_involve as $person_involve) {
                 unset($request['datatable_length']);
                 unset($request['violation']);
+                $student = Student::find(1)->where('student_id', '=', $person_involve)->first();
                 $data = [
                     'student_id'      => $person_involve,
                     'date_commit'     => $request->date_commit,
@@ -241,6 +244,7 @@ class OffenseController extends Controller
                     'student_offense' => $request->student_offense,
                     'description'     => $request->description,
                     'sanction'       => $request->sanction,
+                    'schoolyear_id'  => $student->first_name,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ];
@@ -356,7 +360,7 @@ class OffenseController extends Controller
                     ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
                     ->where([['students.group_id', '=', 2],['students.sy_id','=', $request->sy],['students.section_id','=', trim($request->section)]])
                     ->get();
-                return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
+                return view('junior.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
             }
             else if(!empty($request->section)) {
                 $sections = DB::table('sections')
@@ -375,7 +379,7 @@ class OffenseController extends Controller
                     ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
                     ->where([['students.group_id', '=', 2],['students.section_id','=', trim($request->section)]])
                     ->get();
-                return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
+                return view('junior.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
             }
             else if(!empty($request->sy)) {
                 $sections = DB::table('sections')
@@ -395,7 +399,7 @@ class OffenseController extends Controller
                     ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
                     ->where([['students.group_id', '=', 2],['students.sy_id','=', $request->sy]])
                     ->get();
-                return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
+                return view('junior.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
             }
             else {
                 $sections = DB::table('sections')
@@ -414,7 +418,7 @@ class OffenseController extends Controller
                     ->selectRaw('students.*, offenses.*,violations.category,violations.violation,school_years.school_year,sections.section,sections.grade')
                     ->where('students.group_id', '=', 2)
                     ->get();
-                return view('elementary.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
+                return view('junior.offense_records.index',['sections' => $sections,'school_years' => $school_years,'offenses' => $offenses]);
             }
         }
     }
